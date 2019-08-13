@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, {Fragment} from 'react';
+import React, {Fragment, Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,101 +14,278 @@ import {
   View,
   Text,
   StatusBar,
+  TouchableOpacity,
+  Image
 } from 'react-native';
-
 import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  createSwitchNavigator,
+  createDrawerNavigator,
+  createStackNavigator,
+  createAppContainer,
+  DrawerItems
+} from "react-navigation";
 
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
+import Home from './components/Home.js';
+import ViewAccount from './components/ViewAccount.js';
+import ViewOrders from './components/ViewOrders.js';
+import ServicePreview from './components/ServicePreview.js';
+import Register from './components/Register.js';
+import ViewService from './components/ViewService.js';
+import ContinueWithPassword from './components/ContinueWithPassword.js';
+import NavigationService from './components/NavigationService.js';
+import CreateAccount from './components/CreateAccount.js';
+import CreateLocation from './components/CreateLocation.js';
+import PurchaseService from './components/PurchaseService.js';
+import AuthLoadingScreen from './components/AuthLoadingScreen.js';
+
+class NavigationDrawerStructure extends Component {
+  //Structure for the navigation Drawer
+  toggleDrawer = () => {
+    this.props.navigationProps.toggleDrawer();
+  };
+
+  signOut = () => {
+    this.props.navigationProps.navigate("Auth");
+  };
+
+  render() {
+    return (
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
+          <Image
+            source={require("./image/drawer.png")}
+            style={{ width: 35, height: 35, marginLeft: 8 }}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+// stack of components accessible through side drawer navigation
+const DrawerNavigatorExample = createDrawerNavigator(
+  {
+    //Drawer Options and indexing
+
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        drawerLabel: "Home"
+      }
+    },
+    ViewAccount: {
+      screen: ViewAccount,
+      navigationOptions: {
+        drawerLabel: "My Account"
+      }
+    },
+    ViewOrders: {
+      screen: ViewOrders,
+      navigationOptions: {
+        drawerLabel: "My Orders"
+      }
+    }        
+  },
+  {
+    contentComponent: props => (
+      <SafeAreaView
+        style={{ flex: 1 }}
+        forceInset={{ top: "always", horizontal: "never" }}
+      >
+        <View
+          style={{
+            height: 150,
+            backgroundColor: "white",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <Image
+            source={require("./image/avatar1.jpg")}
+            style={{ height: 120, width: 120, borderRadius: 60 }}
+          />
+        </View>
+        <ScrollView>
+          <DrawerItems {...props} />
         </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
-};
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            paddingBottom: 20
+          }}
+        >
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+          <TouchableOpacity
+            style={st.btnSignOut}
+            onPress={async () => {
+              try {
+                NavigationService.navigate("Auth");
+              } catch (error) {
+                console.log(error);
+              }
+            }}
+          >
+            <Text style={st.btnText}>SIGN OUT</Text>
+          </TouchableOpacity>
+
+        </View>
+      </SafeAreaView>
+    ),
+    contentOptions: { activeTintColor: "#E88D72" }
+  }
+);
+
+
+// stack of components for authentication navigation
+const AuthStack = createStackNavigator({
+  Register: {
+    screen: Register,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  ContinueWithPassword: {
+    screen: ContinueWithPassword,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },  
+  CreateAccount: {
+    screen: CreateAccount,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },  
+  CreateLocation: {
+    screen: CreateLocation,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  }  
 });
 
-export default App;
+// stack of components for core application navigation
+const AppStack = createStackNavigator({
+  Home: {
+    screen: DrawerNavigatorExample,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ServicePreview: {
+    screen: ServicePreview,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ViewAccount: {
+    screen: ViewAccount,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ViewOrders: {
+    screen: ViewOrders,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ViewService: {
+    screen: ViewService,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  PurchaseService: {
+    screen: PurchaseService,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },  
+});
+
+
+
+// switch navigator for swapping between navigation stacks
+const switchNavigator = createSwitchNavigator(
+  {
+    //AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+    AuthLoading: AuthLoadingScreen
+  },
+  {
+    initialRouteName: "AuthLoading"
+  }
+);
+
+
+// create the overall application container utilizing the switch navigator
+const AppContainer = createAppContainer(switchNavigator);
+
+const st = require("./styles/style.js");
+
+// export the app using the AppContainer
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppContainer
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    );
+  }
+}
+
