@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import HomeView from './views/HomeView.js';
-import ViewService from './ViewService.js';
 
 class Home extends Component {
     constructor(props) {
@@ -8,10 +7,11 @@ class Home extends Component {
     };
 
     selectServiceCategory = () => {
-        this.props.navigation.navigate("ViewService");
+        this.props.navigation.navigate("ServicePreview");
     };    
 
     render() {
+
         return (
             <HomeView 
             navigation={this.props.navigation}

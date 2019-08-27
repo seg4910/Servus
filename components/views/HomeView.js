@@ -19,7 +19,6 @@ class HomeView extends Component {
   }
 
   render() {
-    const { navigation } = this.props.navigation;
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -191,7 +190,7 @@ class HomeView extends Component {
                 >
                   <ServicePreview
                     style={{ flexDirection: "row" }}
-                    navigation={navigation}
+                    navigation={this.props.navigation}
                   />
                 </ScrollView>
               </View>

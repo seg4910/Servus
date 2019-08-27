@@ -21,8 +21,9 @@ class PurchaseService extends Component {
 
   componentWillMount() {
     AsyncStorage.getItem('userId', (err, result) => {
-      const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
-      this.setState({serviceInfo: serviceInfo});
+      if (this.props.navigation.getParam("serviceInfo", "NO-SERVICE")) {
+        this.setState({serviceInfo: this.props.navigation.getParam("serviceInfo", "NO-SERVICE")});
+      }
 
       var encodedID = encodeURIComponent(result);
       fetch(`http://localhost:8080/api/getStripeCustomer?id=${encodeURIComponent(encodedID)}`, {

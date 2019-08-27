@@ -18,13 +18,16 @@ class ContinueWithPassword extends Component {
       password: "",
       id: "",
       showPass: true,
-      press: false
+      press: false,
+      email: "",
+      firstName: ""
     };
   }
-
   static navigationOptions = {
     title: "Servus"
   };
+
+  
 
   showPass = () => {
     if (this.state.press == false) {

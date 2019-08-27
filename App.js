@@ -197,7 +197,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },
+  } ,
   ServicePreview: {
     screen: ServicePreview,
     navigationOptions: ({ navigation }) => ({
@@ -252,7 +252,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },  
+  },   
 });
 
 
