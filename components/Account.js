@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { View, Text, TextInput, Button, Image, AsyncStorage } from "react-native";
+import AccountView from "./views/appViews/AccountView.js";
 //import ImagePicker from 'react-native-image-picker';
 const fetch = require("node-fetch");
 
-class ViewAccount extends Component {
+class Account extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -73,26 +74,15 @@ class ViewAccount extends Component {
     
         const { photo } = this.state;
         return (
-          <View style={st.container}>
-               <Text style={st.heading1}>Your Account</Text>
-         <Text style={st.heading2}>{this.state.name}</Text>
-                    <TextInput style={style}></TextInput> 
-              <Text style={st.heading2}>{this.state.email}</Text>
-               <TextInput style={style}></TextInput>  
-               <Button title='Edit Info' onPress={this.editAccountInfo}/>
-              <Button title='Payment Info' onPress={this.paymentInfo}/> 
-    
-               {photo && (
-                <Image
-                  source={{ uri: photo.uri }}
-                  style={{ width: 300, height: 300 }}
-                />
-              )} 
-               <Button title="Choose Photo" onPress={this.handleChoosePhoto} />  
-          </View>
+          <AccountView
+            paymentInfo = {this.paymentInfo}
+            editAccountInfo = {this.editAccountInfo}
+            handleChoosePhoto = {this.handleChoosePhoto}
+            
+          />
         );
     }
 }
       
 const st = require("../styles/style.js");
-export default ViewAccount;
+export default Account;

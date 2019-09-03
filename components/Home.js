@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomeView from './views/HomeView.js';
+import HomeView from './views/appViews/HomeView.js';
 
 class Home extends Component {
     constructor(props) {

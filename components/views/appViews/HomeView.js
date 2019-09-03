@@ -10,8 +10,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
-import Category from '../Category.js';
-import ServicePreview from '../ServicePreview';
+import CategoryCard from './CategoryCard';
+import ServicePreview from '../../ServicePreview';
 
 class HomeView extends Component {
   constructor(props) {
@@ -93,8 +93,8 @@ class HomeView extends Component {
                         borderBottomWidth: 3
                       }}
                     >
-                      <Category
-                        imageUri={require("../../image/LawnMowing.jpg")}
+                      <CategoryCard
+                        imageUri={require("../../../image/LawnMowing.jpg")}
                         name="Lawn Mowing"
                       />
                     </View>
@@ -115,8 +115,8 @@ class HomeView extends Component {
                         borderBottomWidth: 3
                       }}
                     >
-                      <Category
-                        imageUri={require("../../image/SnowRemoval.jpg")}
+                      <CategoryCard
+                        imageUri={require("../../../image/SnowRemoval.jpg")}
                         name="Snow Removal"
                       />
                     </View>
@@ -137,8 +137,8 @@ class HomeView extends Component {
                         borderBottomWidth: 3
                       }}
                     >
-                      <Category
-                        imageUri={require("../../image/CleaningServices.jpg")}
+                      <CategoryCard
+                        imageUri={require("../../../image/CleaningServices.jpg")}
                         name="Cleaning Services"
                       />
                     </View>
@@ -159,8 +159,8 @@ class HomeView extends Component {
                         borderBottomWidth: 3
                       }}
                     >
-                      <Category
-                        imageUri={require("../../image/HandymanServices.jpg")}
+                      <CategoryCard
+                        imageUri={require("../../../image/HandymanServices.jpg")}
                         name="Handyman"
                       />
                     </View>
@@ -202,5 +202,5 @@ class HomeView extends Component {
   }
 }
 
-const st = require("../../styles/style.js");
+const st = require("../../../styles/style.js");
 export default HomeView;

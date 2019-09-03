@@ -7,6 +7,8 @@ import {
 } from "react-native";
 //import SelectPayment from 'react-native-checkout';
 
+const fetch = require("node-fetch");
+
 class PurchaseService extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,8 @@ class PurchaseService extends Component {
       serviceInfo: []
     };
   }
+
+  componentWillReceiveProps(props) {}
 
   componentWillMount() {
     AsyncStorage.getItem('userId', (err, result) => {

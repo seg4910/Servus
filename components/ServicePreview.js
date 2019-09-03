@@ -5,7 +5,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const fetch = require("node-fetch");
 
-
 class ServicePreview extends Component {
     constructor(props) {
       super(props);

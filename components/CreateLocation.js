@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { AsyncStorage } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
+const fetch = require("node-fetch");
+
 class CreateLocation extends Component{
     constructor(props) {
         super(props);

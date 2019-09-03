@@ -11,7 +11,9 @@ import {
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 
-class ContinueWithPassword extends Component {
+const fetch = require("node-fetch");
+
+class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -80,54 +82,14 @@ class ContinueWithPassword extends Component {
       JSON.stringify(navigation.getParam("firstName", "NO-NAME"))
     );
     return (
-      <ImageBackground
-        source={require("../image/back.jpg")}
-        style={st.authContainer}
-      >
-        <View style={st.logoContainer}>
-          <Image
-            source={require("../image/React.js_logo-512.png")}
-            style={st.logo}
-          />
-          <Text style={st.servus}>Welcome back, {firstName}!</Text>
-        </View>
-        <Text style={st.heading2}> To continue, please verify it's you </Text>
-
-        <View style={st.inputContainer}>
-          <Icon
-            name={"lock-outline"}
-            size={28}
-            color={"rgba(255,255,255,0.7)"}
-            style={st.inputIcon}
-          />
-          <TextInput
-            style={st.input}
-            type="text"
-            placeholder="Password"
-            placeholderTextColor={"rgba(255,255,255,0.7)"}
-            onChangeText={text => this.setState({ password: text })}
-            underlineColorAndroid="transparent"
-            secureTextEntry={this.state.showPass}
-          />
-          <TouchableOpacity
-            style={st.btnEye}
-            onPress={this.showPass.bind(this)}
-          >
-            <Icon2
-              name={this.state.press == false ? "eye" : "eye-off"}
-              size={28}
-              color={"rgba(255,255,255,0.7)"}
-            />
-          </TouchableOpacity>
-        </View>
-
-        <TouchableOpacity style={st.btn} onPress={this.signIn.bind()}>
-          <Text style={st.btnText}>LOGIN</Text>
-        </TouchableOpacity>
-      </ImageBackground>
+      // continue with password (sing in)
+      <SignInView
+        signIn = {this.signIn}
+        showPass = {this.showPass}
+      />
     );
   }
 }
 
 const st = require("../styles/style.js");
-export default ContinueWithPassword;
+export default SignIn;

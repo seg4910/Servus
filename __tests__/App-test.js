@@ -9,14 +9,14 @@ import App from '../App';
 
 import renderer from 'react-test-renderer';
 import Home from '../components/Home.js';
-import ViewAccount from '../components/ViewAccount.js';
+import Account from '../components/Account.js';
 import ViewOrders from '../components/ViewOrders.js';
 import ServicePreview from '../components/ServicePreview.js';
-import Register from '../components/Register.js';
-import ViewService from '../components/ViewService.js';
-import ContinueWithPassword from '../components/ContinueWithPassword.js';
+import Register from '../components/EnterEmail.js';
+import ViewService from '../components/Service.js';
+import SignIn from '../components/SignIn.js';
 import NavigationService from '../components/NavigationService.js';
-import CreateAccount from '../components/CreateAccount.js';
+import CreateAccount from '../components/Register.js';
 import CreateLocation from '../components/CreateLocation.js';
 import PurchaseService from '../components/PurchaseService.js';
 import AuthLoadingScreen from '../components/AuthLoadingScreen.js';
@@ -36,8 +36,8 @@ it('ViewOrders : renders correctly', async () => {
   renderer.create(<ViewOrders />);
 });
 
-it('ViewAccount : renders correctly', async () => {
-  renderer.create(<ViewAccount />);
+it('Account : renders correctly', async () => {
+  renderer.create(<Account />);
 });
 
 it('ServicePreview : renders correctly', async () => {
@@ -50,4 +50,16 @@ it('Register : renders correctly', async () => {
 
 it('Create Location : renders correctly', async () => {
   renderer.create(<CreateLocation />);
+});
+
+it('Home : renders correctly', async () => {
+  renderer.create(<Home />);
+});
+
+it('Test : renders correctly', async () => {
+  // ALL FAIL ON GETPARAM for navigation
+  //renderer.create(<PurchaseService />);
+  //renderer.create(<CreateAccount />);
+  //renderer.create(<ContinueWithPassword />);
+  //renderer.create(<ViewService />);
 });

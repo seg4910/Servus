@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { View, Text, Button, AsyncStorage } from "react-native";
+import ServiceView from "./views/appViews/ServiceView.js";
 
-class ViewService extends Component {
+const fetch = require("node-fetch");
+
+class Service extends Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -58,17 +61,12 @@ class ViewService extends Component {
     render() {
         const { navigation } = this.props;
         return (
-          <View style={st.container}>
-              <Text style={st.heading1}>{this.state.serviceName}</Text>
-              <Text style={st.heading2}>Seller: {this.state.sellerName}</Text>
-              <Text style={st.heading2}>Description: {this.state.serviceDescription}</Text>
-              <Text style={st.heading2}>Price Range: {this.state.minPrice} - {this.state.maxPrice}</Text>
-    
-              <Button title='Order Service' onPress={() => this.purchaseService()}/>
-          </View>
+          <ServiceView
+            purchaseService = {this.purchaseService}
+          />
         );
       }
 }
       
 const st = require('../styles/style.js');
-export default ViewService;
+export default Service;

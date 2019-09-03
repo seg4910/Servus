@@ -1,0 +1,8 @@
+
+
+Components:
+
+    split Service and ServiceView, don't know if ServiceView needs the state initiator if it references state objects from Service.
+    Tests pass without adding it but need to test on compile
+
+    ... maybe the solution to this is to use redux

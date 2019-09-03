@@ -26,14 +26,14 @@ import {
 } from "react-navigation";
 
 import Home from './components/Home.js';
-import ViewAccount from './components/ViewAccount.js';
+import Account from './components/Account.js';
 import ViewOrders from './components/ViewOrders.js';
 import ServicePreview from './components/ServicePreview.js';
-import Register from './components/Register.js';
-import ViewService from './components/ViewService.js';
-import ContinueWithPassword from './components/ContinueWithPassword.js';
+import Register from './components/EnterEmail.js';
+import Service from './components/Service.js';
+import SignIn from './components/SignIn.js';
 import NavigationService from './components/NavigationService.js';
-import CreateAccount from './components/CreateAccount.js';
+import CreateAccount from './components/Register.js';
 import CreateLocation from './components/CreateLocation.js';
 import PurchaseService from './components/PurchaseService.js';
 import AuthLoadingScreen from './components/AuthLoadingScreen.js';
@@ -73,8 +73,8 @@ const DrawerNavigatorExample = createDrawerNavigator(
         drawerLabel: "Home"
       }
     },
-    ViewAccount: {
-      screen: ViewAccount,
+    Account: {
+      screen: Account,
       navigationOptions: {
         drawerLabel: "My Account"
       }
@@ -150,8 +150,8 @@ const AuthStack = createStackNavigator({
       headerTintColor: "#000000"
     })
   },
-  ContinueWithPassword: {
-    screen: ContinueWithPassword,
+  SignIn: {
+    screen: SignIn,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -209,8 +209,8 @@ const AppStack = createStackNavigator({
       headerTintColor: "#000000"
     })
   },
-  ViewAccount: {
-    screen: ViewAccount,
+  Account: {
+    screen: Account,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -231,8 +231,8 @@ const AppStack = createStackNavigator({
       headerTintColor: "#000000"
     })
   },
-  ViewService: {
-    screen: ViewService,
+  Service: {
+    screen: Service,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -266,7 +266,7 @@ const switchNavigator = createSwitchNavigator(
     AuthLoading: AuthLoadingScreen
   },
   {
-    initialRouteName: "AuthLoading"
+    initialRouteName: "Auth"
   }
 );
 

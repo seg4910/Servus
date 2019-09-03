@@ -1,91 +1,81 @@
+
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, ImageBackground, Image, TextInput } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import {
+  Text,
+  View,
+  Image,
+  TextInput,
+  ImageBackground,
+  AsyncStorage,
+  TouchableOpacity
+} from "react-native";
+import Icon from "react-native-vector-icons/AntDesign";
+import Icon1 from "react-native-vector-icons/MaterialIcons";
+import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+
+const fetch = require("node-fetch");
 
 class Register extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        username: "",
-        password: "",
-        email: "",
-        type: 0,
-        accountExists: "",
-        firstName: ""
-      };      
+  constructor(props) {
+    super(props);
+    const email = this.props.navigation.getParam("email", "NO-EMAIL");
+    this.state = {
+      email: email,
+      name: "",
+      password: "",
+      type: 0,
+      showPass: true,
+      press: false
     };
+  }
 
-    continueWithEmail = () => {
-      fetch("http://localhost:8080/api/getEmailExists/?email=" + this.state.email)
+  createAccount = () => {
+    fetch(
+      "http://localhost:8080/api/createUser/?email=" +
+        this.state.email +
+        "&name=" +
+        this.state.name +
+        "&password=" +
+        this.state.password +
+        "&type=" +
+        this.state.type.toString()
+    )
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
           {
-            accountExists: responseJson.accountExists,
-            firstName: responseJson.firstName
+            userId: responseJson.userId
           },
           function() {
-            if (this.state.accountExists) {
-              this.props.navigation.navigate("ContinueWithPassword", {
-                firstName: this.state.firstName,
-                email: this.state.email
-              });
-            } else {
-              //navigate to Create Account
-              this.props.navigation.navigate("CreateAccount", {
-                firstName: this.state.firstName,
-                email: this.state.email
-              });
-            }
+            AsyncStorage.setItem("userId", "" + this.state.userId);
+            this.props.navigation.navigate("CreateLocation");
           }
         );
       })
       .catch(error => {
         console.error(error);
       });
-    };   
+  };
 
-    render() {
-        return (
-            <ImageBackground
-            source={require("../image/back.jpg")}
-            style={st.authContainer}
-          >
-            <View style={st.logoContainer}>
-              <Image
-                source={require("../image/React.js_logo-512.png")}
-                style={st.logo}
-              />
-              <Text style={st.servus}>SERVUS</Text>
-            </View>
-    
-            <View style={st.inputContainer}>
-              <Icon
-                name={"email-outline"}
-                size={28}
-                color={"rgba(255,255,255,0.7)"}
-                style={st.inputIcon}
-              />
-              <TextInput
-                style={st.input}
-                type="text"
-                placeholder="E-mail"
-                placeholderTextColor={"rgba(255,255,255,0.7)"}
-                onChangeText={text => this.setState({ email: text })}
-                underlineColorAndroid="transparent"
-              />
-            </View>
-    
-            <TouchableOpacity
-              style={st.btn}
-              onPress={this.continueWithEmail.bind()}
-            >
-              <Text style={st.btnText}>CONTINUE</Text>
-            </TouchableOpacity>
-          </ImageBackground>
-        )
+  showPass = () => {
+    if (this.state.press == false) {
+      this.setState({ showPass: false, press: true });
+    } else {
+      this.setState({ showPass: true, press: false });
     }
+  };
+
+  render() {
+    const { navigation } = this.props;
+    return (
+      // create a new account
+      <RegisterView 
+        showPass = {this.showPass}
+        createAccount = {this.createAccount}
+      />
+    );
+  }
 }
-      
+
 const st = require("../styles/style.js");
 export default Register;
