@@ -40,10 +40,10 @@ class ServicePreview extends Component {
         });
     }    
 
-      selectService = data => {
-        if (data !== 0) {
-          this.props.navigation.navigate("ViewService", {
-            selectedService: data
+      selectService = (id) => {
+        if (id !== 0) {
+          this.props.navigation.navigate("Service", {
+            selectedService: id
           });
         }
       };
@@ -79,5 +79,5 @@ class ServicePreview extends Component {
       }
 }
       
-const st = require("../styles/style.js");
+const st = require("./../styles/style.js");
 export default ServicePreview;

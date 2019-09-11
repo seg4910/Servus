@@ -12,6 +12,7 @@ import {
 import Icon from "react-native-vector-icons/AntDesign";
 import Icon1 from "react-native-vector-icons/MaterialIcons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+import RegisterView from './views/authViews/RegisterView.js';
 
 const fetch = require("node-fetch");
 
@@ -29,14 +30,14 @@ class Register extends Component {
     };
   }
 
-  createAccount = () => {
+  createAccount = (email, name, password) => {
     fetch(
       "http://localhost:8080/api/createUser/?email=" +
-        this.state.email +
+        email +
         "&name=" +
-        this.state.name +
+        name +
         "&password=" +
-        this.state.password +
+        password +
         "&type=" +
         this.state.type.toString()
     )
@@ -67,11 +68,15 @@ class Register extends Component {
 
   render() {
     const { navigation } = this.props;
+    const email = JSON.parse(JSON.stringify(navigation.getParam('email', 'NO-EMAIL')));
+
     return (
       // create a new account
       <RegisterView 
         showPass = {this.showPass}
         createAccount = {this.createAccount}
+        press = {this.state.press}
+        email = {email}
       />
     );
   }

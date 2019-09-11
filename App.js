@@ -29,14 +29,16 @@ import Home from './components/Home.js';
 import Account from './components/Account.js';
 import ViewOrders from './components/ViewOrders.js';
 import ServicePreview from './components/ServicePreview.js';
-import Register from './components/EnterEmail.js';
+import EnterEmail from './components/EnterEmail.js';
 import Service from './components/Service.js';
 import SignIn from './components/SignIn.js';
 import NavigationService from './components/NavigationService.js';
-import CreateAccount from './components/Register.js';
+import Register from './components/Register.js';
 import CreateLocation from './components/CreateLocation.js';
 import PurchaseService from './components/PurchaseService.js';
 import AuthLoadingScreen from './components/AuthLoadingScreen.js';
+import EditAccountInfo from './components/EditAcountInfo.js';
+import CheckoutServiceLawnMowing from './components/CheckoutServiceLawnMowing.js';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigation Drawer
@@ -139,8 +141,8 @@ const DrawerNavigatorExample = createDrawerNavigator(
 
 // stack of components for authentication navigation
 const AuthStack = createStackNavigator({
-  Register: {
-    screen: Register,
+  EnterEmail: {
+    screen: EnterEmail,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -161,8 +163,8 @@ const AuthStack = createStackNavigator({
       headerTintColor: "#000000"
     })
   },  
-  CreateAccount: {
-    screen: CreateAccount,
+  Register: {
+    screen: Register,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -252,7 +254,29 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },   
+  },
+  EditAccountInfo: {
+    screen: EditAccountInfo,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  CheckoutServiceLawnMowing: {
+    screen: CheckoutServiceLawnMowing,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },      
 });
 
 
@@ -266,7 +290,7 @@ const switchNavigator = createSwitchNavigator(
     AuthLoading: AuthLoadingScreen
   },
   {
-    initialRouteName: "Auth"
+    initialRouteName: "App"
   }
 );
 

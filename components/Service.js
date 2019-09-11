@@ -52,9 +52,9 @@ class Service extends Component {
 
     //navigate to purchase service screen
     purchaseService = () => {
-        var serviceCategory = 'CheckoutService'+this.state.serviceCategory;
-        this.props.navigation.navigate(serviceCategory, {
-        serviceInfo: this.state.serviceInfo
+        //var serviceCategory = 'CheckoutService'+this.state.serviceCategory;
+        this.props.navigation.navigate('CheckoutServiceLawnMowing', {
+          serviceInfo: this.state.serviceInfo
         });
     }
 
@@ -63,9 +63,14 @@ class Service extends Component {
         return (
           <ServiceView
             purchaseService = {this.purchaseService}
+            serviceName = {this.state.serviceName}
+            sellerName = {this.state.sellerName}
+            serviceDescription = {this.state.serviceDescription}
+            minPrice = {this.state.minPrice}
+            maxPrice = {this.state.maxPrice}
           />
         );
-      }
+    }
 }
       
 const st = require('../styles/style.js');

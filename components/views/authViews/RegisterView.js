@@ -3,19 +3,25 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
+  Image,
   TextInput,
   Platform,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground
 } from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
-import CategoryCard from './CategoryCard';
-import ServicePreview from '../ServicePreview';
+import Icon from "react-native-vector-icons/AntDesign";
+import Icon1 from "react-native-vector-icons/MaterialIcons";
+import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 
 class Register extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: this.props.email,
+      name: "",
+      password: ""
+    }
   }
 
   render() {
@@ -23,12 +29,12 @@ class Register extends Component {
     return (
     // create a new account
     <ImageBackground
-    source={require("../image/back.jpg")}
+    source={require("./../../../image/back.jpg")}
     style={st.authContainer}
     >
     <View style={st.logoContainer}>
     <Image
-        source={require("../image/React.js_logo-512.png")}
+        source={require("./../../../image/React.js_logo-512.png")}
         style={st.logo}
     />
     <Text style={st.servus}>Welome to Servus!</Text>
@@ -44,7 +50,7 @@ class Register extends Component {
     <TextInput
         style={st.input}
         type="text"
-        placeholder="Email"
+        placeholder={this.props.email}
         placeholderTextColor={"rgba(255,255,255,0.7)"}
         onChangeText={text => this.setState({ email: text })}
     />
@@ -62,7 +68,7 @@ class Register extends Component {
         type="text"
         placeholder="Name"
         placeholderTextColor={"rgba(255,255,255,0.7)"}
-        onChangeText={text => this.setState({ username: text })}
+        onChangeText={text => this.setState({ name: text })}
         underlineColorAndroid="transparent"
     />
     </View>
@@ -81,24 +87,26 @@ class Register extends Component {
         placeholderTextColor={"rgba(255,255,255,0.7)"}
         onChangeText={text => this.setState({ password: text })}
         underlineColorAndroid="transparent"
-        secureTextEntry={this.state.showPass}
+        secureTextEntry={this.props.showPass}
     />
     <TouchableOpacity style={st.btnEye} onPress={this.props.showPass}>
         <Icon2
-        name={this.state.press == false ? "eye" : "eye-off"}
+        name={this.props.press == false ? "eye" : "eye-off"}
         size={28}
         color={"rgba(255,255,255,0.7)"}
         />
     </TouchableOpacity>
     </View>
 
-    <TouchableOpacity style={st.btn} onPress={this.props.createAccount}>
-    <Text style={st.btnText}>SUBMIT</Text>
+    <TouchableOpacity 
+      style={st.btn} 
+      onPress={() => this.props.createAccount(this.state.email, this.state.name, this.state.password)}>
+      <Text style={st.btnText}>SUBMIT</Text>
     </TouchableOpacity>
     </ImageBackground>
     );
   }
 }
 
-const st = require("../../styles/style.js");
+const st = require("./../../../styles/style.js");
 export default Register;

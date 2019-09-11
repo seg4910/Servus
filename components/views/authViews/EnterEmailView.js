@@ -18,6 +18,9 @@ import ServicePreview from '../../ServicePreview.js';
 class EnterEmail extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: ""
+    };    
   }
 
   render() {
@@ -55,7 +58,7 @@ class EnterEmail extends Component {
 
         <TouchableOpacity
         style={st.btn}
-        onPress={this.props.continueWithEmail}
+        onPress={() => this.props.continueWithEmail(this.state.email)}
         >
         <Text style={st.btnText}>CONTINUE</Text>
         </TouchableOpacity>

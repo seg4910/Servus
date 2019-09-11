@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+import SignInView from "./views/authViews/SignInView.js";
 
 const fetch = require("node-fetch");
 
@@ -29,7 +30,6 @@ class SignIn extends Component {
     title: "Servus"
   };
 
-  
 
   showPass = () => {
     if (this.state.press == false) {
@@ -39,13 +39,13 @@ class SignIn extends Component {
     }
   };
 
-  signIn = () => {
+  signIn = (password) => {
     const email = this.props.navigation.getParam("email", "NO-EMAIL");
     fetch(
       "http://localhost:8080/api/signIn/?email=" +
         email +
         "&password=" +
-        this.state.password
+        password
     )
       .then(response => response.json())
       .then(responseJson => {
@@ -86,6 +86,8 @@ class SignIn extends Component {
       <SignInView
         signIn = {this.signIn}
         showPass = {this.showPass}
+        press = {this.state.press}
+        firstName = {firstName}   // this is being passed from jsonResponse from EnterEmail
       />
     );
   }

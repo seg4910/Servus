@@ -32,7 +32,7 @@ beforeAll((done) => {
 
 jest.setTimeout(30000);
 
-it('ViewOrders : renders correctly', async () => {
+ it('ViewOrders : renders correctly', async () => {
   renderer.create(<ViewOrders />);
 });
 
@@ -54,7 +54,7 @@ it('Create Location : renders correctly', async () => {
 
 it('Home : renders correctly', async () => {
   renderer.create(<Home />);
-});
+}); 
 
 it('Test : renders correctly', async () => {
   // ALL FAIL ON GETPARAM for navigation

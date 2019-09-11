@@ -3,22 +3,31 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  Button
 } from "react-native";
 
 class ServiceView extends Component {
-  render() {
-    return (
-        <View style={st.container}>
-        <Text style={st.heading1}>{this.state.serviceName}</Text>
-        <Text style={st.heading2}>Seller: {this.state.sellerName}</Text>
-        <Text style={st.heading2}>Description: {this.state.serviceDescription}</Text>
-        <Text style={st.heading2}>Price Range: {this.state.minPrice} - {this.state.maxPrice}</Text>
+  constructor(props) {
+    super(props);
+  };
 
-        <Button title='Order Service' onPress={this.props.purchaseService}/>
-    </View>
-    );
+  render() {
+
+      return (
+          <View style={st.container}>
+          <Text style={st.heading1}>{this.props.serviceName}</Text>
+          <Text style={st.heading2}>Seller: {this.props.sellerName}</Text>
+          <Text style={st.heading2}>Description: {this.props.serviceDescription}</Text>
+          <Text style={st.heading2}>Price Range: {this.props.minPrice} - {this.props.maxPrice}</Text>
+
+          <Button title='Order Service' onPress={this.props.purchaseService}/>
+      </View>
+      );
+   
   }
 }
+
+const st = require("./../../../styles/style.js");
 
 export default ServiceView;

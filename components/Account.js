@@ -75,10 +75,12 @@ class Account extends Component {
         const { photo } = this.state;
         return (
           <AccountView
+            navigation = {this.props.navigation}
             paymentInfo = {this.paymentInfo}
             editAccountInfo = {this.editAccountInfo}
             handleChoosePhoto = {this.handleChoosePhoto}
-            
+            name = {this.state.name}
+            email = {this.state.email}
           />
         );
     }

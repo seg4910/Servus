@@ -184,7 +184,7 @@ class HomeView extends Component {
                 style={{ height: 230, marginTop: 10, flexDirection: "row" }}
               >
                 <ScrollView
-                  horizontal={true}
+                  horizontal={false}
                   showsHorizontalScrollIndicator={false}
                   style={{ flex: 1 }}
                 >

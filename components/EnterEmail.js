@@ -18,8 +18,8 @@ class EnterEmail extends Component {
       };      
     };
 
-    continueWithEmail = () => {
-      fetch("http://localhost:8080/api/getEmailExists/?email=" + this.state.email)
+    continueWithEmail = (email) => {
+      fetch("http://localhost:8080/api/getEmailExists/?email=" + email)
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -29,15 +29,15 @@ class EnterEmail extends Component {
           },
           function() {
             if (this.state.accountExists) {
-              this.props.navigation.navigate("ContinueWithPassword", {
+              this.props.navigation.navigate("SignIn", {
                 firstName: this.state.firstName,
-                email: this.state.email
+                email: email
               });
             } else {
               //navigate to Create Account
-              this.props.navigation.navigate("CreateAccount", {
+              this.props.navigation.navigate("Register", {
                 firstName: this.state.firstName,
-                email: this.state.email
+                email: email
               });
             }
           }

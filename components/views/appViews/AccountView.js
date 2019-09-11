@@ -13,43 +13,30 @@ import {
 import Icon from "react-native-vector-icons/EvilIcons";
 import CategoryCard from './CategoryCard';
 import ServicePreview from '../../ServicePreview';
-
+import NavigationService from './../../NavigationService.js';
 class AccountView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          name: '',
-          email: '',
-          password: '',
           edit: false,
           photo: null
         }      
     };
 
-  render() {
-
-    var style;
-    
-    if (this.state.edit) {
-      style = {
-        display: 'none'
-      }
-    } else {
-      style = {
-        display: 'flex'
-      }
+    editAccountInfo = () => {
+      this.props.navigation.navigate("EditAccountInfo");   
     }
+
+  render() {
 
     const { photo } = this.state;
 
     return (
         <View style={st.container}>
             <Text style={st.heading1}>Your Account</Text>
-            <Text style={st.heading2}>{this.state.name}</Text>
-            <TextInput style={style}></TextInput> 
-            <Text style={st.heading2}>{this.state.email}</Text>
-            <TextInput style={style}></TextInput>  
-            <Button title='Edit Info' onPress={this.props.editAccountInfo}/>
+            <Text style={st.heading2}>{this.props.name}</Text>
+            <Text style={st.heading2}>{this.props.email}</Text>
+            <Button title='Edit Info' onPress={() => this.editAccountInfo()}/>
             <Button title='Payment Info' onPress={this.props.paymentInfo}/> 
 
             {photo && (
