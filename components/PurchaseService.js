@@ -5,7 +5,7 @@ import {
   ScrollView,
   RefreshControl
 } from "react-native";
-import { SelectPayment } from 'react-native-checkout';
+//import { SelectPayment } from 'react-native-checkout';
 
 const fetch = require("node-fetch");
 
@@ -97,13 +97,13 @@ class PurchaseService extends Component {
             onRefresh={this._onRefresh}
           />
         }>
-         <SelectPayment
+{/*          <SelectPayment
           enableApplePay={true} // optional, default: false
           applePayHandler={() => console.log('apple pay happened')} // optional
           paymentSources={this.state.stripeCustomer} // mandatory, See: [Customer Object](https://stripe.com/docs/api/node#customer_object) -> sources -> data for Stripe format.
           addCardHandler={() => this.addNewCard()}
           selectPaymentHandler={() => this.confirmPurchase()}
-        /> 
+        />  */}
       </ScrollView>
     );
   }

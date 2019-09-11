@@ -35,7 +35,7 @@
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-navigation|rn-viewpager|react-navigation-redux-helpers|@react-navigation/.*)"
+      "node_modules/(?!(jest-)?react-native|react-navigation|rn-viewpager|react-native-checkout|react-native-awesome-card-io|react-navigation-redux-helpers|@react-navigation/.*)"
     ],
     "setupFiles": [
       "./jest.setup.js",

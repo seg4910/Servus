@@ -31,3 +31,9 @@ jest.mock('react-native-gesture-handler', () => {
       Directions: {},
     };
   });
+
+  jest.mock('react-native-awesome-card-io', () => ({
+    CardIOUtilities: {
+      preload: jest.fn(() => Promise.resolve('the response')),
+    },
+  }));
