@@ -17,7 +17,9 @@ class PurchaseService extends Component {
       username: "",
       stripeCustomer: [],
       refreshing: false,
-      serviceInfo: []
+      serviceInfo: [],
+      isAvailable: null,
+      text: ''
     };
   }
 
@@ -97,6 +99,30 @@ class PurchaseService extends Component {
             onRefresh={this._onRefresh}
           />
         }>
+
+<TouchableOpacity
+          onPress={this.onPressCheck}
+          style={[
+            {
+              marginTop: 10,
+              backgroundColor: 'blue',
+              padding: 10
+            },
+            styles.button
+          ]}>
+          <Text style={{ color: 'white' }}>
+            Check if Google Pay is available
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={isAvailable !== true}
+          onPress={this.onPressPay}
+          style={{ marginTop: 50 }}>
+          <GooglePayImage
+            style={[styles.button, { opacity: isAvailable === true ? 1 : 0.3 }]}
+          />
+        </TouchableOpacity>
+
 {/*          <SelectPayment
           enableApplePay={true} // optional, default: false
           applePayHandler={() => console.log('apple pay happened')} // optional
