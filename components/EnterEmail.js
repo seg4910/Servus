@@ -12,14 +12,14 @@ class EnterEmail extends Component {
         username: "",
         password: "",
         email: "",
-        type: 0,
+        type: 'users',
         accountExists: "",
         firstName: ""
-      };      
+      };
     };
 
     continueWithEmail = (email) => {
-      fetch("http://localhost:8080/api/getEmailExists/?email=" + email)
+      fetch(`http://localhost:8080/api/getEmailExists/?email=${email}&type=${this.state.type}`)
       .then(response => response.json())
       .then(responseJson => {
         this.setState(

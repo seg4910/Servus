@@ -17,12 +17,6 @@ class CreateLocation extends Component{
           postalCode: '',
         }
       }
-
-    createLocation = () => {
-      alert("here!");
-  
-    }
-
     render(){
         return(
             <GooglePlacesAutocomplete
@@ -42,7 +36,7 @@ class CreateLocation extends Component{
               this.state.postalCode = details.address_components[7].short_name;
               AsyncStorage.getItem('userId', (err, result) => {
                 this.state.userId = result;
-                var cmd = 'http://localhost:8080/api/createLocation/?userId=' + this.state.userId + '&streetNumber=' + this.state.streetNumber + '&streetName=' + this.state.streetName + '&city=' + this.state.city + '&province=' + this.state.province + '&postalCode=' + this.state.postalCode
+                var cmd = `http://localhost:8080/api/createLocation/?userId=${this.state.userId}&streetNumber=${this.state.streetNumber}&streetName=${this.state.streetName}&city=${this.state.city}&province=${this.state.province}&postalCode=${this.state.postalCode}`
                 fetch(cmd)
                 .then((response) => response.json())
                 .then((responseJson) => {

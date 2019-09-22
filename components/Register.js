@@ -1,17 +1,8 @@
 
 import React, { Component } from "react";
 import {
-  Text,
-  View,
-  Image,
-  TextInput,
-  ImageBackground,
   AsyncStorage,
-  TouchableOpacity
 } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
-import Icon1 from "react-native-vector-icons/MaterialIcons";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import RegisterView from './views/authViews/RegisterView.js';
 
 const fetch = require("node-fetch");
@@ -24,7 +15,7 @@ class Register extends Component {
       email: email,
       name: "",
       password: "",
-      type: 0,
+      type: 'users',
       showPass: true,
       press: false
     };
@@ -32,14 +23,7 @@ class Register extends Component {
 
   createAccount = (email, name, password) => {
     fetch(
-      "http://localhost:8080/api/createUser/?email=" +
-        email +
-        "&name=" +
-        name +
-        "&password=" +
-        password +
-        "&type=" +
-        this.state.type.toString()
+      `http://localhost:8080/api/createAccount/?email=${email}&name=${name}&password=${password}&type=${this.state.type}`
     )
       .then(response => response.json())
       .then(responseJson => {
