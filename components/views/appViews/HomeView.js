@@ -169,7 +169,7 @@ class HomeView extends Component {
               </View>
             </View>
           </ScrollView>
-          <ScrollView scrollEventThrottle={16}>
+           <ScrollView scrollEventThrottle={16}>
             <View style={{ flex: 1, paddingTop: 20 }}>
               <Text
                 style={{
@@ -195,7 +195,7 @@ class HomeView extends Component {
                 </ScrollView>
               </View>
             </View>
-          </ScrollView>
+          </ScrollView> 
         </View>
       </SafeAreaView>
     );

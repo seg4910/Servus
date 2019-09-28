@@ -35,10 +35,15 @@ import SignIn from './components/SignIn.js';
 import NavigationService from './components/NavigationService.js';
 import Register from './components/Register.js';
 import CreateLocation from './components/CreateLocation.js';
-import PurchaseService from './components/PurchaseService.js';
+import PaymentInfo from './components/PaymentInfo.js';
 import AuthLoadingScreen from './components/AuthLoadingScreen.js';
-import EditAccountInfo from './components/EditAcountInfo.js';
-import CheckoutServiceLawnMowing from './components/CheckoutServiceLawnMowing.js';
+import EditAccountInfo from './components/EditAccountInfo.js';
+import OrderDetails from './components/OrderDetails';
+import ScheduleService from './components/ScheduleService.js';
+import ServiceAvailability from './components/ServiceAvailability.js';
+import ReviewOrder from './components/ReviewOrder.js';
+import AddNewCard from './components/AddNewCard.js';
+import ServiceOrdered from './components/ServiceOrdered.js';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigation Drawer
@@ -244,8 +249,8 @@ const AppStack = createStackNavigator({
       headerTintColor: "#000000"
     })
   },
-  PurchaseService: {
-    screen: PurchaseService,
+  PaymentInfo: {
+    screen: PaymentInfo,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -266,8 +271,8 @@ const AppStack = createStackNavigator({
       headerTintColor: "#000000"
     })
   },
-  CheckoutServiceLawnMowing: {
-    screen: CheckoutServiceLawnMowing,
+  OrderDetails: {
+    screen: OrderDetails,
     navigationOptions: ({ navigation }) => ({
       title: "Servus",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
@@ -276,7 +281,62 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },      
+  },
+  ScheduleService: {
+    screen: ScheduleService,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },  
+  ServiceAvailability: {
+    screen: ServiceAvailability,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ReviewOrder: {
+    screen: ReviewOrder,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  }, 
+  AddNewCard: {
+    screen: AddNewCard,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },
+  ServiceOrdered: {
+    screen: ServiceOrdered,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },                     
 });
 
 
@@ -290,7 +350,7 @@ const switchNavigator = createSwitchNavigator(
     AuthLoading: AuthLoadingScreen
   },
   {
-    initialRouteName: "App"
+    initialRouteName: "Auth"
   }
 );
 

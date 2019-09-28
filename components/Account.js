@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TextInput, Button, Image, AsyncStorage } from "react-native";
 import AccountView from "./views/appViews/AccountView.js";
-//import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker';
 const fetch = require("node-fetch");
 
 class Account extends Component {
@@ -37,28 +37,71 @@ class Account extends Component {
       }    
 
       handleChoosePhoto = () => {
+        console.log('handle choose photo');
+
         const options = {
-          noData: true,
-        }
-/*         ImagePicker.launchImageLibrary(options, response => {
-          if (response.uri) {
-            this.setState({ photo: response })
+          noData: true
+        };
+        ImagePicker.launchImageLibrary(options, response => {
+          if (response.didCancel) {
+            console.log('User cancelled image picker');
+          } else if (response.error) {
+            console.log('ImagePicker Error: ', response.error);
+          } else if (response.customButton) {
+            console.log('User tapped custom button: ', response.customButton);
+          } else {
+            const source = { uri: response.uri };          
           }
-        }) */
-      }   
-      
-      editAccountInfo = () => {
-        var style;
-        this.setState({
-          edit: true,
+          if (response.uri) {
+            this.setState({ photo: response });
+          }
         });
-      }
+      };
+  
+    
+      createFormData = (photo, body) => {
+        const data = new FormData();
+    
+        data.append("photo", {
+          name: photo.fileName,
+          type: photo.type,
+          uri:
+            Platform.OS === "android" ? photo.uri : photo.uri.replace("file://", "")
+        });
+    
+        Object.keys(body).forEach(key => {
+          data.append(key, body[key]);
+        });
+    
+        return data;
+      };
+    
+
+      handleUploadPhoto = () => {
+
+        console.log('handle upload  photo');
+
+        fetch("http://localhost:8080/api/uploadImage", {
+          method: "POST",
+          body: this.createFormData(this.state.photo, { userId: 52 })
+        })
+          .then(response => response.json())
+          .then(response => {
+            alert("Upload success!");
+            this.setState({ photo: null });
+          })
+          .catch(error => {
+            alert("Upload failed!");
+          });
+      };
     
       paymentInfo = () => {
         this.props.navigation.navigate('PaymentInfo');
       }      
 
-    render() { 
+
+
+      render() { 
         const { navigation } = this.props;
         var style;
     
@@ -77,10 +120,10 @@ class Account extends Component {
           <AccountView
             navigation = {this.props.navigation}
             paymentInfo = {this.paymentInfo}
-            editAccountInfo = {this.editAccountInfo}
             handleChoosePhoto = {this.handleChoosePhoto}
             name = {this.state.name}
             email = {this.state.email}
+            handleUploadPhoto = {this.handleUploadPhoto}
           />
         );
     }

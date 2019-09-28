@@ -13,6 +13,9 @@ module.exports = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  creditIn: {
+    display: "none"
+  },
   bodyBlack: {
     fontFamily: "Arial",
     fontSize: 15,
@@ -184,6 +187,14 @@ module.exports = StyleSheet.create({
     width: 200,
     height: 45,
     alignItems: "center"
-  }
+  },
   //ViewAccount styles
+
+
+
+  //ViewOrder styles
+  viewOrder: {
+    height: 100,
+
+  }
 });

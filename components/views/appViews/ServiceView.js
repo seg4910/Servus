@@ -21,7 +21,7 @@ class ServiceView extends Component {
           <Text style={st.heading2}>Description: {this.props.serviceDescription}</Text>
           <Text style={st.heading2}>Price Range: {this.props.minPrice} - {this.props.maxPrice}</Text>
 
-          <Button title='Order Service' onPress={this.props.purchaseService}/>
+          <Button title='View Availability' onPress={this.props.viewAvailability}/>
       </View>
       );
    

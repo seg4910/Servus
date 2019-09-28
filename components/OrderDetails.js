@@ -12,26 +12,25 @@ import StarRating from "react-native-star-rating";
 import { IndicatorViewPager, PagerDotIndicator} from "rn-viewpager";
 import StepIndicator from "react-native-step-indicator";
 
-class CheckoutServiceLawnMowing extends Component {
+class OrderDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      password: "",
-      username: "",
-      stripeCustomer: [],
-      refreshing: false,
-      lawnSize: null,
+      taskSize: null,
       serviceInfo: []
     };
-    this.chooseLawnSize = this.chooseLawnSize.bind(this);
+    this.chooseTaskSize = this.chooseTaskSize.bind(this);
     this.continueToPayment = this.continueToPayment.bind(this);
   }
 
   componentDidMount() {
+    // is there a better way to do this when there is more than one item
+    // being passed through navigation?
     const serviceInfo = this.props.navigation.getParam(
-      "serviceInfo",
-      "NO-SERVICE"
+      "serviceInfo", "NO-SERVICE"
     );
+
+
     this.setState({
       sellerName: serviceInfo[0].sellerName,
       serviceCategory: serviceInfo[0].serviceCategory,
@@ -47,19 +46,34 @@ class CheckoutServiceLawnMowing extends Component {
     });
   }
 
-  chooseLawnSize = size => {
+  chooseTaskSize = size => {
     this.setState({
-      lawnSize: size
+      taskSize: size
     });
   };
 
   continueToPayment = () => {
+    // we have this above... should only need to get info once
     const serviceInfo = this.props.navigation.getParam(
-      "serviceInfo",
-      "NO-SERVICE"
+      "serviceInfo", "NO-SERVICE"
     );
-    this.props.navigation.navigate("PurchaseService", {
-      serviceInfo: serviceInfo
+    const selectedDay = this.props.navigation.getParam(
+      "selectedDay", "NO-SELECTEDDAY"
+    );
+    const availableDates = this.props.navigation.getParam(
+      "availableDates", "NO-AVAILABLEDATES"
+    );
+    const shiftDays = this.props.navigation.getParam(
+      "shiftDays", "NO-SHIFTDAYS"
+    );    
+
+
+    this.props.navigation.navigate("ScheduleService", {
+      serviceInfo: serviceInfo,
+      selectedDay: selectedDay,
+      availableDates: availableDates,
+      taskSize: this.state.taskSize,
+      shiftDays: shiftDays
     });
   };
 
@@ -113,90 +127,34 @@ class CheckoutServiceLawnMowing extends Component {
           }}
         />
 
-        <IndicatorViewPager
-          style={{ flex: 1 }}
-          indicator={this._renderDotIndicator()}
-        >
           <View>
-            <View>
-              <StepIndicator
-                stepCount={3}
-                // renderStepIndicator={this.renderStepIndicator}
-                customStyles={secondIndicatorStyles}
-                currentPosition={0}
-                labels={[]}
-              />
-            </View>
-
             <View style={{ alignItems: "center", marginTop: 50 }}>
-              <Text style={{ fontSize: 20 }}>Select your lawn size:</Text>
+              <Text style={{ fontSize: 20 }}>Estimated task length:</Text>
             </View>
 
-            <View style={{ flex: 1, flexDirection: "row", marginTop: 30 }}>
-              <View style={{ flex: 1, height: 100 }}>
-                <View
-                  style={{
-                    width: 110,
-                    height: 110,
-                    alignItems: "center",
-                    justifyContent: "flex-end"
-                  }}
-                >
-                  <Image
-                    source={require("../image/grass.png")}
-                    style={{
-                      width: 80,
-                      height: 80
-                    }}
-                  />
-                </View>
-                <Button title="SM" onPress={() => this.chooseLawnSize("SM")} />
-              </View>
+            <View>
+              <TouchableOpacity
+                style={st.btn}
+                onPress={() => this.chooseTaskSize("SM")}>
+                <Text style={st.btnText}>1 Hour</Text>
+              </TouchableOpacity>
 
-              <View style={{ flex: 1, height: 100 }}>
-                <View
-                  style={{
-                    width: 110,
-                    height: 110,
-                    alignItems: "center",
-                    justifyContent: "flex-end"
-                  }}
-                >
-                  <Image
-                    source={require("../image/grass.png")}
-                    style={{
-                      width: 100,
-                      height: 100
-                    }}
-                  />
-                </View>
-                <Button title="MD" onPress={() => this.chooseLawnSize("MD")} />
-              </View>
+              <TouchableOpacity
+                style={st.btn}
+                onPress={() => this.chooseTaskSize("MD")}>
+                <Text style={st.btnText}>2-3 Hours</Text>
+              </TouchableOpacity>
 
-              <View style={{ flex: 1, height: 100 }}>
-                <View
-                  style={{
-                    width: 110,
-                    height: 110,
-                    alignItems: "center",
-                    justifyContent: "flex-end"
-                  }}
-                >
-                  <Image
-                    source={require("../image/grass.png")}
-                    style={{
-                      width: 130,
-                      height: 130
-                    }}
-                  />
-                </View>
-                <Button title="LG" onPress={() => this.chooseLawnSize("LG")} />
-              </View>
+              <TouchableOpacity
+                style={st.btn}
+                onPress={() => this.chooseTaskSize("LG")}>
+                <Text style={st.btnText}>4+ Hours</Text>
+              </TouchableOpacity>
             </View>
 
-            <View style={{ flex: 1, alignItems: "center" }}>
+            <View>
               <Text style={st.heading2}>
-                Selected Size: {this.state.lawnSize}
+                Selected Size: {this.state.taskSize}
               </Text>
               <TouchableOpacity
                 style={st.btn}
@@ -206,7 +164,7 @@ class CheckoutServiceLawnMowing extends Component {
               </TouchableOpacity>
             </View>
           </View>
-        </IndicatorViewPager>
+
       </View>
     );
   }
@@ -227,7 +185,7 @@ class CheckoutServiceLawnMowing extends Component {
   );
 }
 
-const st = require("./../styles/style.js");
+const st = require("../styles/style.js");
 const styles = StyleSheet.create({});
 const secondIndicatorStyles = {
   stepIndicatorSize: 30,
@@ -253,4 +211,4 @@ const secondIndicatorStyles = {
   labelSize: 13,
   currentStepLabelColor: "#fe7013"
 };
-export default CheckoutServiceLawnMowing;
+export default OrderDetails;

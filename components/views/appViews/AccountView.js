@@ -10,10 +10,7 @@ import {
   TouchableOpacity,
   Button
 } from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
-import CategoryCard from './CategoryCard';
-import ServicePreview from '../../ServicePreview';
-import NavigationService from './../../NavigationService.js';
+
 class AccountView extends Component {
     constructor(props) {
         super(props);
@@ -46,6 +43,7 @@ class AccountView extends Component {
             />
             )} 
             <Button title="Choose Photo" onPress={this.props.handleChoosePhoto} />  
+            <Button title="Upload Photo" onPress={this.props.handleUploadPhoto} />             
         </View>
     );
   }
