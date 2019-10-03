@@ -14,6 +14,7 @@ import {
 import Icon from "react-native-vector-icons/EvilIcons";
 import CategoryCard from '../appViews/CategoryCard';
 import ServicePreview from '../../ServicePreview.js';
+import IconFA from "react-native-vector-icons/FontAwesome";
 
 class EnterEmail extends Component {
   constructor(props) {
@@ -40,9 +41,9 @@ class EnterEmail extends Component {
         </View>
 
         <View style={st.inputContainer}>
-        <Icon
-            name={"email-outline"}
-            size={28}
+        <IconFA
+            name={"at"}
+            size={25}
             color={"rgba(255,255,255,0.7)"}
             style={st.inputIcon}
         />
@@ -60,7 +61,7 @@ class EnterEmail extends Component {
         style={st.btn}
         onPress={() => this.props.continueWithEmail(this.state.email)}
         >
-        <Text style={st.btnText}>CONTINUE</Text>
+        <Text style={st.btnText2}>CONTINUE</Text>
         </TouchableOpacity>
         </ImageBackground>
     );

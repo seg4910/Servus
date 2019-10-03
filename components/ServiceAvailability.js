@@ -5,7 +5,8 @@ import {
   View,
   Image,
   Button,
-  AsyncStorage
+  AsyncStorage,
+  TouchableOpacity
 } from "react-native";
 import {Agenda} from 'react-native-calendars';
 import Moment from 'moment';
@@ -28,7 +29,7 @@ class ServiceAvailability extends Component {
     const serviceInfo = JSON.parse(JSON.stringify(navigation.getParam('serviceInfo', 'NO-NAME')));
   
     AsyncStorage.getItem('userId', (err, result) => {        
-        fetch('http://localhost:8080/api/getSellerAvailability?seller=' + serviceInfo[0].sellerID)
+        fetch(`http://localhost:8080/api/getSellerAvailability?sellerId=${serviceInfo[0].sellerID}&serviceId=${serviceInfo[0].id}`)
         .then((response) => response.json())
         .then((responseJson) => {
             this.setState({
@@ -89,7 +90,13 @@ selectDay = (day) => {
             // callback that gets called when day changed while scrolling through agenda
             onDayChange={(day)=>{this.selectDay(day)}}
             />
-        <Button title='Book Service' onPress={this.bookService}/>
+            <View style={{alignItems:'center'}}>
+                <TouchableOpacity
+                    style={st.btn}
+                    onPress={this.bookService}>
+                    <Text style={st.btnText}>BOOK SERVICE</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );  
   }
@@ -122,13 +129,18 @@ selectDay = (day) => {
     // the view that each agenda card will take
     renderItem(item) {
         return (
-            <View style={[styles.item, {height: 80}]}><Text>{item.startHour}</Text></View>
+            <View style={styles.item}>
+                <Text style={{fontSize: 15}}>{this.state.serviceInfo[0].serviceName}</Text>
+                <Text style={{justifyContent: 'center', fontSize:27, fontWeight: '200', color:'#636e72'}}>
+                    {Moment(item.startHour).format('hh:mm A')} - {Moment(item.endHour).format('hh:mm A')}
+                </Text>
+            </View>
         );
     }
 
     renderEmptyDate() {
         return (
-        <View><Text>No Availabilities</Text></View>
+        <View><Text style={{justifyContent: 'center'}}>No Availabilities</Text></View>
         );
     }
     
@@ -141,11 +153,13 @@ selectDay = (day) => {
 const styles = StyleSheet.create({
     item: {
       backgroundColor: 'white',
+      justifyContent: 'center',
       flex: 1,
       borderRadius: 5,
       padding: 10,
       marginRight: 10,
-      marginTop: 17
+      marginTop: 17,
+      height: 100
     },
     emptyDate: {
       height: 15,

@@ -121,7 +121,7 @@ class ScheduleService extends Component {
         </View>
         <View
           style={{
-            borderBottomColor: "#E88D72",
+            borderBottomColor: "#dfe6e9",
             borderBottomWidth: 2,
             marginTop: 20,
             marginBottom: 20
@@ -134,22 +134,29 @@ class ScheduleService extends Component {
             onDayLongPress={(day) => {this.getShiftsSelectedDay(day)}}            
           />
           
-          <Text>Available Times for {this.state.selectedDay.dateString}</Text>
-          <Picker
-            selectedTime={this.state.selectedTime}
-            style={{height: 50, width: 100}}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({selectedTime: itemValue})
-            }>
-            {this.state.shifts}
-          </Picker>
+          <View style={{alignItems:'center', borderTopColor:'#dfe6e9', borderTopWidth:2, paddingTop:20,marginTop:20}}>
+            <Text style={{fontSize:20, marginBottom:10}}>
+              Available Times for {Moment(this.state.selectedDay.dateString).format("LL")}
+            </Text>
+            <View style={{borderWidth:1,borderColor:'#dfe6e9'}}>
+              <Picker
+              selectedTime={this.state.selectedTime}
+              style={{height: 50, width:250}}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({selectedTime: itemValue})
+              }>
+              {this.state.shifts}
+              </Picker>
+            </View>
+          </View>
 
-          <TouchableOpacity
-                style={st.btn}
-                onPress={() => this.reviewOrder()}>
-                <Text style={st.btnText}>Review Order</Text>
-          </TouchableOpacity>
-
+          <View style={{flex:1,justifyContent:'flex-end', alignItems:'center', marginBottom:10}}>
+            <TouchableOpacity
+                  style={st.btn}
+                  onPress={() => this.reviewOrder()}>
+                  <Text style={st.btnText}>Review Order</Text>
+            </TouchableOpacity>
+          </View>
       </View>
     );
   }

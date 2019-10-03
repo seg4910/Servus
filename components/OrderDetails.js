@@ -11,16 +11,17 @@ import {
 import StarRating from "react-native-star-rating";
 import { IndicatorViewPager, PagerDotIndicator} from "rn-viewpager";
 import StepIndicator from "react-native-step-indicator";
+import SmoothPicker from 'react-native-smooth-picker';
 
 class OrderDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       taskSize: null,
-      serviceInfo: []
-    };
-    this.chooseTaskSize = this.chooseTaskSize.bind(this);
-    this.continueToPayment = this.continueToPayment.bind(this);
+      serviceInfo: [],
+    }
+    this.selectSize = this.selectSize.bind(this);
+    this.scheduleService = this.scheduleService.bind(this);
   }
 
   componentDidMount() {
@@ -46,13 +47,27 @@ class OrderDetails extends Component {
     });
   }
 
-  chooseTaskSize = size => {
+  selectSize = size => {
     this.setState({
       taskSize: size
     });
   };
 
-  continueToPayment = () => {
+  getSelectedSize = size => {
+    if (size == this.state.taskSize) {
+      return {
+        flex:.5,backgroundColor:'#E88D72',margin:10, height:100, borderRadius:15,borderWidth:2,borderColor:'#f1b8a7',
+        alignItems:'center', justifyContent:'center'
+      }
+    } else {
+      return {
+        flex:.5,backgroundColor:'white',margin:10, height:100, borderRadius:15,borderWidth:2,borderColor:'#E88D72',
+        alignItems:'center', justifyContent:'center', elevation:1
+      }
+    }
+  }
+
+  scheduleService = () => {
     // we have this above... should only need to get info once
     const serviceInfo = this.props.navigation.getParam(
       "serviceInfo", "NO-SERVICE"
@@ -120,73 +135,67 @@ class OrderDetails extends Component {
         </View>
         <View
           style={{
-            borderBottomColor: "#E88D72",
+            borderBottomColor: "#dfe6e9",
             borderBottomWidth: 2,
             marginTop: 20,
             marginBottom: 20
           }}
         />
 
-          <View>
-            <View style={{ alignItems: "center", marginTop: 50 }}>
-              <Text style={{ fontSize: 20 }}>Estimated task length:</Text>
-            </View>
-
-            <View>
-              <TouchableOpacity
-                style={st.btn}
-                onPress={() => this.chooseTaskSize("SM")}>
-                <Text style={st.btnText}>1 Hour</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={st.btn}
-                onPress={() => this.chooseTaskSize("MD")}>
-                <Text style={st.btnText}>2-3 Hours</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={st.btn}
-                onPress={() => this.chooseTaskSize("LG")}>
-                <Text style={st.btnText}>4+ Hours</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <Text style={st.heading2}>
-                Selected Size: {this.state.taskSize}
-              </Text>
-              <TouchableOpacity
-                style={st.btn}
-                onPress={() => this.continueToPayment()}
-              >
-                <Text style={st.btnText}>Continue To Payment</Text>
-              </TouchableOpacity>
-            </View>
+        <Text style={{fontSize:25,marginLeft:10}}>Task Size:</Text>
+        <View>
+          <View style={{flexDirection:'row', marginTop:20}}>
+            <TouchableOpacity
+              style={this.getSelectedSize('SM')}
+              onPress={() => this.selectSize('SM')}
+            >
+              <Text style={{margin:10,fontSize:20,fontWeight:'bold',alignSelf:'flex-start'}}>SMALL</Text>
+              <Text style={{margin:10,fontSize:18,alignSelf:'flex-start'}}>0-1 Hour</Text>              
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={this.getSelectedSize('MD')}
+              onPress={() => this.selectSize('MD')}
+            >
+              <Text style={{margin:10,fontSize:20,fontWeight:'bold',alignSelf:'flex-start'}}>MEDIUM</Text>
+              <Text style={{margin:10,fontSize:18,alignSelf:'flex-start'}}>1-2 Hours</Text>              
+            </TouchableOpacity>       
           </View>
+          <View style={{flexDirection:'row', marginTop:20}}>
+          <TouchableOpacity
+              style={this.getSelectedSize('LG')}
+              onPress={() => this.selectSize('LG')}
+            >
+              <Text style={{margin:10,fontSize:20,fontWeight:'bold',alignSelf:'flex-start'}}>LARGE</Text>
+              <Text style={{margin:10,fontSize:18,alignSelf:'flex-start'}}>2-3 Hours</Text>              
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={this.getSelectedSize('XL')}
+              onPress={() => this.selectSize('XL')}
+            >
+              <Text style={{margin:10,fontSize:20,fontWeight:'bold',alignSelf:'flex-start'}}>X-LARGE</Text>
+              <Text style={{margin:10,fontSize:18,alignSelf:'flex-start'}}>4+ Hours</Text>              
+            </TouchableOpacity>     
+          </View>          
+          <View>
 
+          </View>
+        </View>
+
+        <View style={{flex:1,justifyContent:'flex-end', alignItems:'center', marginBottom:10}}>
+          <TouchableOpacity
+            style={st.btn}
+            onPress={() => this.scheduleService()}
+          >
+            <Text style={st.btnText}>SCHEDULE SERVICE</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
-  _renderDotIndicator() {
-    return <PagerDotIndicator pageCount={3} style={{ paddingBottom: 3 }} />;
-  }
-
-  renderViewPagerPage = data => {
-    return (
-      <View style={styles.page}>
-        <Text>{data}</Text>
-      </View>
-    );
-  };
-
-  renderStepIndicator = params => (
-    <MaterialIcon {...getStepIndicatorIconConfig(params)} />
-  );
 }
 
 const st = require("../styles/style.js");
-const styles = StyleSheet.create({});
+
 const secondIndicatorStyles = {
   stepIndicatorSize: 30,
   currentStepIndicatorSize: 40,

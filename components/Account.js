@@ -12,7 +12,10 @@ class Account extends Component {
         email: '',
         password: '',
         edit: false,
-        photo: null
+        photo: null,
+        imgPath: '',
+        img: '',
+        phone: ''
       }      
     };
 
@@ -22,11 +25,12 @@ class Account extends Component {
           fetch('http://localhost:8080/api/getAccountInfo/?id=' + result)
           .then((response) => response.json())
           .then((responseJson) => {
-    
             this.setState({
               name: responseJson.name,
               email: responseJson.email,
               password: responseJson.password,
+              img: responseJson.img,
+              phone: responseJson.phone
             });
           })
           .catch((error) =>{
@@ -54,6 +58,7 @@ class Account extends Component {
           }
           if (response.uri) {
             this.setState({ photo: response });
+            //console.log(response);
           }
         });
       };
@@ -80,26 +85,27 @@ class Account extends Component {
       handleUploadPhoto = () => {
 
         console.log('handle upload  photo');
+        AsyncStorage.getItem('userId', (err, result) => {
 
-        fetch("http://localhost:8080/api/uploadImage", {
-          method: "POST",
-          body: this.createFormData(this.state.photo, { userId: 52 })
-        })
-          .then(response => response.json())
-          .then(response => {
-            alert("Upload success!");
-            this.setState({ photo: null });
+          fetch(`http://localhost:8080/api/uploadImage?id=${encodeURIComponent(result)}`, {
+            method: "POST",
+            body: this.createFormData(this.state.photo, { userId: 52 })
           })
-          .catch(error => {
-            alert("Upload failed!");
-          });
+            .then(response => response.json())
+            .then(responseJson => {
+              this.setState({ 
+                img: responseJson.imgPath
+               });
+            })
+            .catch(error => {
+              alert("Upload failed!");
+            });
+        });
       };
     
       paymentInfo = () => {
         this.props.navigation.navigate('PaymentInfo');
       }      
-
-
 
       render() { 
         const { navigation } = this.props;
@@ -115,7 +121,8 @@ class Account extends Component {
           }
         }
     
-        const { photo } = this.state;
+
+
         return (
           <AccountView
             navigation = {this.props.navigation}
@@ -124,6 +131,8 @@ class Account extends Component {
             name = {this.state.name}
             email = {this.state.email}
             handleUploadPhoto = {this.handleUploadPhoto}
+            phone = {this.state.phone}
+            //img = {`./../../../../ServusBackend/images/${this.state.img}`}
           />
         );
     }

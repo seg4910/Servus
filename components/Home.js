@@ -6,8 +6,11 @@ class Home extends Component {
       super(props);
     };
 
-    selectServiceCategory = () => {
-        this.props.navigation.navigate("ServicePreview");
+    selectServiceCategory = (cat) => {
+        console.log(cat);
+        this.props.navigation.navigate("ServicePreview", {
+          serviceCat: cat
+        });
     };    
 
     render() {

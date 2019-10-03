@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import StarRating from "react-native-star-rating";
 import PaymentInfo from "./PaymentInfo";
+import Moment from 'moment';
 
 class ReviewOrder extends Component {
   constructor(props) {
@@ -38,19 +39,22 @@ class ReviewOrder extends Component {
         "selectedDay", "NO-SELECTEDDAY"
     );    
 
-    let taskSizeH = "";
+    let taskSizeHr = 0;
     if (taskSize == 'SM') {
-        taskSizeH = "1";
+        taskSizeHr = 1;
     } else if (taskSize == 'MD') {
-        taskSizeH = "2-3";
+        taskSizeHr = 2;
     } else if (taskSize == 'LG') {
-        taskSizeH = "4+";
+        taskSizeHr = 3;
+    } else if (taskSize == 'XL') {
+      taskSizeHr = 4;
     }
 
     this.setState({
         serviceInfo: serviceInfo,
         selectedTime: selectedTime,
-        taskSize: taskSizeH,
+        taskSize: taskSizeHr,
+        serviceName: serviceInfo[0].serviceName,
         sellerName: serviceInfo[0].sellerName,
         serviceCategory: serviceInfo[0].serviceCategory,
         minPrice: serviceInfo[0].minPrice,
@@ -141,7 +145,7 @@ class ReviewOrder extends Component {
         </View>
         <View
           style={{
-            borderBottomColor: "#E88D72",
+            borderBottomColor: "#dfe6e9",
             borderBottomWidth: 2,
             marginTop: 20,
             marginBottom: 20
@@ -150,30 +154,51 @@ class ReviewOrder extends Component {
 
 
         <View>
+          <Text style={{fontSize:20,fontWeight:'bold'}}>Review Your Order</Text>
 
-            <Text>Review Your Order</Text>
-            <View>
-                <Text>Your Task Request</Text>
-                <Text>{this.state.serviceCategory}</Text>
-                <Text>{this.state.selectedDay.dateString} at {this.state.selectedTime}</Text>
-                <Text>Estimated: {this.state.taskSize} hours</Text>
-            </View>
-            <View>
-                <Text>Payment Method: {this.state.paymentInfo.brand}</Text>
-                <TouchableOpacity
-                style={st.btn}
-                onPress={() => this.getPaymentInfo()}>
-                    <Text style={st.btnText}>Select Payment Method</Text>
-                </TouchableOpacity>
+          <View style={{marginLeft:20}}>
+
+            <View style={{paddingBottom:15,borderBottomWidth:2,borderBottomColor:'#dfe6e9'}}>
+              <Text style={{fontSize:20}}>SERVICE</Text>
+              <View style={{marginLeft:30}}>
+                <Text style={{fontSize:18}}>{this.state.serviceName}</Text>
+                <Text style={{fontSize:18}}>{this.state.serviceCategory}</Text>
+              </View>
             </View>
 
-            <TouchableOpacity
-                style={st.btn}
-                onPress={() => this.placeOrder()}>
-                    <Text style={st.btnText}>Place Order</Text>
-            </TouchableOpacity>
+            <View style={{paddingBottom:15,borderBottomWidth:2,borderBottomColor:'#dfe6e9'}}>
+              <Text style={{fontSize:20}}>DATE</Text>
+              <View style={{marginLeft:30}}>
+                <Text style={{fontSize:18}}>{Moment(this.state.selectedDay.dateString).format('LL')}</Text>
+                <Text style={{fontSize:18}}>{this.state.selectedTime}</Text>
+              </View>
+            </View>
+
+            <View style={{paddingBottom:15,borderBottomWidth:2,borderBottomColor:'#dfe6e9'}}>
+              <Text style={{fontSize:20}}>PAYMENT</Text>
+              <View style={{marginLeft:30}}>
+              {this.state.paymentInfo != '' &&<Text style={{fontSize:18}}>{this.state.paymentInfo.brand}</Text>}
+              {this.state.paymentInfo == '' &&<Text onPress={() => this.getPaymentInfo()}style={{fontSize:18}}>Select Payment Info</Text>}
+              </View>
+            </View>
+
+            <View style={{marginTop:40,paddingBottom:15}}>
+              <Text style={{fontSize:20}}>Estimated Duration: {this.state.taskSize} hours</Text>
+              <Text style={{fontSize:20}}>Estimated Cost: {this.state.taskSize}</Text>
+            </View>
+          </View>
 
         </View>
+
+
+        <View style={{flex:1,justifyContent:'flex-end', alignItems:'center', marginBottom:10}}>
+          <TouchableOpacity
+              style={st.btn}
+              onPress={() => this.placeOrder()}>
+                  <Text style={st.btnText}>PLACE ORDER</Text>
+          </TouchableOpacity>
+        </View>
+      
 
 
       </View>

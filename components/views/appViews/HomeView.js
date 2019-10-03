@@ -78,7 +78,7 @@ class HomeView extends Component {
                   showsHorizontalScrollIndicator={false}
                 >
                   <TouchableOpacity
-                    onPress={this.props.selectServiceCategory}
+                    onPress={() => this.props.selectServiceCategory('LM')}
                   >
                     <View
                       style={{
@@ -100,7 +100,7 @@ class HomeView extends Component {
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => this.props.selectServiceCategory}
+                    onPress={() => this.props.selectServiceCategory('SR')}
                   >
                     <View
                       style={{
@@ -122,7 +122,7 @@ class HomeView extends Component {
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => this.props.selectServiceCategory}
+                    onPress={() => this.props.selectServiceCategory('CL')}
                   >
                     <View
                       style={{
@@ -144,7 +144,7 @@ class HomeView extends Component {
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => this.props.selectServiceCategory}
+                    onPress={() => this.props.selectServiceCategory('HM')}
                   >
                     <View
                       style={{

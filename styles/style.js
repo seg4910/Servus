@@ -79,7 +79,7 @@ module.exports = StyleSheet.create({
   btn: {
     width: WIDTH - 55,
     height: 45,
-    borderRadius: 25,
+    borderRadius: 15,
     backgroundColor: "#E88D72",
     justifyContent: "center",
     marginTop: 20
@@ -93,11 +93,17 @@ module.exports = StyleSheet.create({
     marginTop: 20
   },
   btnText: {
-    color: "#543855",
+    color: "#fff",
     fontSize: 19,
     textAlign: "center",
     fontWeight: "bold"
   },
+  btnText2: {
+    color: "#2f3640",
+    fontSize: 19,
+    textAlign: "center",
+    fontWeight: "bold"
+  },  
   btnEye: { position: "absolute", top: 8, right: 37 },
   btnSignOut: {
     width: 200,

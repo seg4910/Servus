@@ -1,8 +1,18 @@
 
 
-Components:
+SERVICECATEGORY CODES:
+    LM: Lawn Mowing
+    SR: Snow Removal
+    CL: Cleaning
+    HM: Handy Man
 
-    split Service and ServiceView, don't know if ServiceView needs the state initiator if it references state objects from Service.
-    Tests pass without adding it but need to test on compile
 
-    ... maybe the solution to this is to use redux
+COLORS:
+    Secondary line color: dfe6e9
+    Primary color: E88D72
+
+
+ICONS:
+    import Icon from "react-native-vector-icons/FontAwesome";
+    import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+    import Icon from "react-native-vector-icons/EvilIcons";

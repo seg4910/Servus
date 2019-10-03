@@ -67,7 +67,7 @@ class SignIn extends Component {
       </View>
 
       <TouchableOpacity style={st.btn} onPress={() => this.props.signIn(this.state.password)}>
-        <Text style={st.btnText}>LOGIN</Text>
+        <Text style={st.btnText2}>LOGIN</Text>
       </TouchableOpacity>
     </ImageBackground>
     );

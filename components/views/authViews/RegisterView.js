@@ -101,7 +101,7 @@ class Register extends Component {
     <TouchableOpacity 
       style={st.btn} 
       onPress={() => this.props.createAccount(this.state.email, this.state.name, this.state.password)}>
-      <Text style={st.btnText}>SUBMIT</Text>
+      <Text style={st.btnText2}>SUBMIT</Text>
     </TouchableOpacity>
     </ImageBackground>
     );

@@ -25,20 +25,23 @@ class ServiceOrdered extends Component {
     return (
       <View style={{
         flex:1,
-        justifyContent: 'flex-start',
+       // justifyContent: 'flex-start',
         backgroundColor: '#f2f2f2',
         alignItems: 'center'
 
       }}>
-
-      <LottieView style={{position:'absolute',top:50}}source={require('../image/orderComplete.json')} autoPlay loop={false} />
+         
         <Text style={{fontSize: 25, fontWeight: 'bold', color: '#000', marginTop:200}}>Your Order Has Been Placed!</Text>
-        <TouchableOpacity
-          style={st.btn}
-          onPress={() => this.backToHome()}
-        >
-          <Text style={st.btnText}>Home</Text>
-        </TouchableOpacity>
+        <LottieView style={{flex:1}}source={require('../image/orderComplete.json')} autoPlay loop={false} />
+        
+        <View style={{flex:1,justifyContent:'flex-end', alignItems:'center', marginBottom:10}}>
+          <TouchableOpacity
+            style={st.btn}
+            onPress={() => this.backToHome()}
+          >
+            <Text style={st.btnText}>Home</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

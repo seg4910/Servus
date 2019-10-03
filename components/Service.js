@@ -71,6 +71,7 @@ class Service extends Component {
             serviceDescription = {this.state.serviceDescription}
             minPrice = {this.state.minPrice}
             maxPrice = {this.state.maxPrice}
+            serviceCategory = {this.state.serviceCategory}
           />
         );
     }

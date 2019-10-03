@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView, AsyncStorage } from "react-native";
+import { View, Text, ScrollView, AsyncStorage, TouchableOpacity, Image } from "react-native";
 import { Button, Card } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+import StarRating from "react-native-star-rating";
+import ServiceCard from './views/appViews/ServiceCard.js';
 
 const fetch = require("node-fetch");
 
@@ -10,14 +13,19 @@ class ServicePreview extends Component {
       super(props);
       this.state = {
         servicePreviews: [],
-        username: "",
-        selectedService: 0
+        username: '',
+        selectedService: 0,
+        serviceCat: ''
       };
     };
 
     componentDidMount() {
+
+      const serviceCat = this.props.navigation.getParam("serviceCat","ALL");
+      this.setState({serviceCat: serviceCat});
+
         AsyncStorage.getItem('userId', (err, result) => {        
-            fetch("http://localhost:8080/api/getServicePreviews")
+            fetch(`http://localhost:8080/api/getServicePreviews/?serviceCat=${serviceCat}`)
             .then(response => response.json())
             .then(responseJson => {
                 this.setState(
@@ -51,22 +59,15 @@ class ServicePreview extends Component {
       servicePreviewList() {
         return this.state.servicePreviews.map(data => {
           return (
-            <Card style={{ height: 30, width: 30 }} key={data.id}>
-              <Text style={{ fontSize: 30 }}>{data.serviceName}</Text>
-              <Text style={{ marginBottom: 10 }}>{data.serviceDescription}</Text>
-              <Button
-                icon={<Icon name="code" color="#ffffff" />}
-                backgroundColor="#03A9F4"
-                buttonStyle={{
-                  borderRadius: 0,
-                  marginLeft: 0,
-                  marginRight: 0,
-                  marginBottom: 0
-                }}
-                title="VIEW NOW"
-                onPress={() => this.selectService(data.id)}
-              />
-            </Card>
+           <ServiceCard 
+              id = {data.id}
+              sellerName = {data.sellerName}
+              serviceName = {data.serviceName}
+              serviceDescription = {data.serviceDescription}
+              priceHr = {data.priceHr}
+              selectService = {this.selectService}
+              serviceCat = {data.serviceCategory}
+           />
           );
         });
       }
