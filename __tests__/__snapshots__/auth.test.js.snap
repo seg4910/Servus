@@ -1,0 +1,691 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI Test: EnterEmailView: snapshot renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "height": null,
+      "justifyContent": "center",
+      "width": null,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../image/back.jpg",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": null,
+          "width": null,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginBottom": 50,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../image/React.js_logo-512.png",
+        }
+      }
+      style={
+        Object {
+          "height": 120,
+          "width": 120,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#FF8882",
+          "fontSize": 40,
+          "fontWeight": "500",
+          "marginTop": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      SERVUS
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "marginTop": 10,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "rgba(255,255,255,0.7)",
+            "fontSize": 25,
+          },
+          Object {
+            "left": 37,
+            "position": "absolute",
+            "top": 8,
+          },
+          Object {
+            "fontFamily": "FontAwesome",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="E-mail"
+      placeholderTextColor="rgba(255,255,255,0.7)"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "rgba(0,0,0,0.35)",
+          "borderRadius": 25,
+          "color": "rgba(255,255,255,0.7)",
+          "fontSize": 16,
+          "height": 45,
+          "marginHorizontal": 25,
+          "paddingLeft": 45,
+          "width": 695,
+        }
+      }
+      type="text"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <View
+    accessible={true}
+    clickable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#E88D72",
+        "borderRadius": 15,
+        "height": 45,
+        "justifyContent": "center",
+        "marginTop": 20,
+        "opacity": 1,
+        "width": 695,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#2f3640",
+          "fontSize": 19,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      CONTINUE
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`UI Test: RegisterView: snapshot renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "height": null,
+      "justifyContent": "center",
+      "width": null,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../image/back.jpg",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": null,
+          "width": null,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginBottom": 50,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../image/React.js_logo-512.png",
+        }
+      }
+      style={
+        Object {
+          "height": 120,
+          "width": 120,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#FF8882",
+          "fontSize": 40,
+          "fontWeight": "500",
+          "marginTop": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      Welome to Servus!
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "marginTop": 10,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "rgba(255,255,255,0.7)",
+            "fontSize": 28,
+          },
+          Object {
+            "left": 37,
+            "position": "absolute",
+            "top": 8,
+          },
+          Object {
+            "fontFamily": "Material Design Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholderTextColor="rgba(255,255,255,0.7)"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "rgba(0,0,0,0.35)",
+          "borderRadius": 25,
+          "color": "rgba(255,255,255,0.7)",
+          "fontSize": 16,
+          "height": 45,
+          "marginHorizontal": 25,
+          "paddingLeft": 45,
+          "width": 695,
+        }
+      }
+      type="text"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "marginTop": 10,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "rgba(255,255,255,0.7)",
+            "fontSize": 28,
+          },
+          Object {
+            "left": 37,
+            "position": "absolute",
+            "top": 8,
+          },
+          Object {
+            "fontFamily": "anticon",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Name"
+      placeholderTextColor="rgba(255,255,255,0.7)"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "rgba(0,0,0,0.35)",
+          "borderRadius": 25,
+          "color": "rgba(255,255,255,0.7)",
+          "fontSize": 16,
+          "height": 45,
+          "marginHorizontal": 25,
+          "paddingLeft": 45,
+          "width": 695,
+        }
+      }
+      type="text"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "marginTop": 10,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "rgba(255,255,255,0.7)",
+            "fontSize": 28,
+          },
+          Object {
+            "left": 37,
+            "position": "absolute",
+            "top": 8,
+          },
+          Object {
+            "fontFamily": "Material Icons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Password"
+      placeholderTextColor="rgba(255,255,255,0.7)"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "rgba(0,0,0,0.35)",
+          "borderRadius": 25,
+          "color": "rgba(255,255,255,0.7)",
+          "fontSize": 16,
+          "height": 45,
+          "marginHorizontal": 25,
+          "paddingLeft": 45,
+          "width": 695,
+        }
+      }
+      type="text"
+      underlineColorAndroid="transparent"
+    />
+    <View
+      accessible={true}
+      clickable={false}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+          "position": "absolute",
+          "right": 37,
+          "top": 8,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": "rgba(255,255,255,0.7)",
+              "fontSize": 28,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Material Design Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    clickable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#E88D72",
+        "borderRadius": 15,
+        "height": 45,
+        "justifyContent": "center",
+        "marginTop": 20,
+        "opacity": 1,
+        "width": 695,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#2f3640",
+          "fontSize": 19,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      SUBMIT
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`UI Test: SignInView: snapshot renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "height": null,
+      "justifyContent": "center",
+      "width": null,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../image/back.jpg",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": null,
+          "width": null,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginBottom": 50,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../image/React.js_logo-512.png",
+        }
+      }
+      style={
+        Object {
+          "height": 120,
+          "width": 120,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#FF8882",
+          "fontSize": 40,
+          "fontWeight": "500",
+          "marginTop": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      Welcome back, 
+      !
+    </Text>
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontFamily": "Arial",
+        "fontSize": 20,
+        "margin": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+     To continue, please verify it's you 
+  </Text>
+  <View
+    style={
+      Object {
+        "marginTop": 10,
+      }
+    }
+  >
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": "rgba(255,255,255,0.7)",
+            "fontSize": 28,
+          },
+          Object {
+            "left": 37,
+            "position": "absolute",
+            "top": 8,
+          },
+          Object {
+            "fontFamily": "EvilIcons",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      ?
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      placeholder="Password"
+      placeholderTextColor="rgba(255,255,255,0.7)"
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "backgroundColor": "rgba(0,0,0,0.35)",
+          "borderRadius": 25,
+          "color": "rgba(255,255,255,0.7)",
+          "fontSize": 16,
+          "height": 45,
+          "marginHorizontal": 25,
+          "paddingLeft": 45,
+          "width": 695,
+        }
+      }
+      type="text"
+      underlineColorAndroid="transparent"
+    />
+    <View
+      accessible={true}
+      clickable={false}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+          "position": "absolute",
+          "right": 37,
+          "top": 8,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": "rgba(255,255,255,0.7)",
+              "fontSize": 28,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Material Design Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+  <View
+    accessible={true}
+    clickable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#E88D72",
+        "borderRadius": 15,
+        "height": 45,
+        "justifyContent": "center",
+        "marginTop": 20,
+        "opacity": 1,
+        "width": 695,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#2f3640",
+          "fontSize": 19,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      LOGIN
+    </Text>
+  </View>
+</View>
+`;

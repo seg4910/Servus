@@ -8,7 +8,7 @@ SERVICECATEGORY CODES:
 
 
 COLORS:
-    Secondary line color: dfe6e9
+    Secondary line color: dfe6e9 2px
     Primary color: E88D72
 
 

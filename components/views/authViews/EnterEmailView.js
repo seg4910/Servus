@@ -1,19 +1,12 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
   Text,
   View,
-  SafeAreaView,
   TextInput,
-  Platform,
-  ScrollView,
   TouchableOpacity,
   ImageBackground,
   Image
 } from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
-import CategoryCard from '../appViews/CategoryCard';
-import ServicePreview from '../../ServicePreview.js';
 import IconFA from "react-native-vector-icons/FontAwesome";
 
 class EnterEmail extends Component {

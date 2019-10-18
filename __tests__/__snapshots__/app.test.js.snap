@@ -1,0 +1,1353 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI Test: AccountView: snapshot renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#dfe6e9",
+        "borderBottomWidth": 2,
+        "marginBottom": 40,
+        "padding": 20,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 25,
+          "fontWeight": "bold",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#7f8c8d",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#7f8c8d",
+        }
+      }
+    />
+  </View>
+  <View
+    accessible={true}
+    clickable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomColor": "#dfe6e9",
+        "borderBottomWidth": 1,
+        "flexDirection": "row",
+        "opacity": 1,
+        "padding": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "marginLeft": 15,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 23,
+            },
+            Object {
+              "alignSelf": "center",
+            },
+            Object {
+              "fontFamily": "FontAwesome",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Edit Account
+      </Text>
+    </View>
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 18,
+          },
+          Object {
+            "alignSelf": "center",
+            "paddingRight": 20,
+          },
+          Object {
+            "fontFamily": "FontAwesome",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    clickable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomColor": "#dfe6e9",
+        "borderBottomWidth": 1,
+        "flexDirection": "row",
+        "opacity": 1,
+        "padding": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "marginLeft": 17,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 23,
+            },
+            Object {
+              "alignSelf": "center",
+            },
+            Object {
+              "fontFamily": "FontAwesome",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Change Password
+      </Text>
+    </View>
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 18,
+          },
+          Object {
+            "alignSelf": "center",
+            "paddingRight": 20,
+          },
+          Object {
+            "fontFamily": "FontAwesome",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    clickable={false}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomColor": "#dfe6e9",
+        "borderBottomWidth": 1,
+        "flexDirection": "row",
+        "opacity": 1,
+        "padding": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "marginLeft": 12,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 23,
+            },
+            Object {
+              "alignSelf": "center",
+            },
+            Object {
+              "fontFamily": "FontAwesome",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Payment Info
+      </Text>
+    </View>
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 18,
+          },
+          Object {
+            "alignSelf": "center",
+            "paddingRight": 20,
+          },
+          Object {
+            "fontFamily": "FontAwesome",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    clickable={false}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "borderBottomColor": "#dfe6e9",
+        "borderBottomWidth": 1,
+        "flexDirection": "row",
+        "opacity": 1,
+        "padding": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "marginLeft": 17,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        style={
+          Array [
+            Object {
+              "color": undefined,
+              "fontSize": 23,
+            },
+            Object {
+              "alignSelf": "center",
+            },
+            Object {
+              "fontFamily": "FontAwesome",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "paddingLeft": 20,
+          }
+        }
+      >
+        Account Photo
+      </Text>
+    </View>
+    <Text
+      allowFontScaling={false}
+      style={
+        Array [
+          Object {
+            "color": undefined,
+            "fontSize": 18,
+          },
+          Object {
+            "alignSelf": "center",
+            "paddingRight": 20,
+          },
+          Object {
+            "fontFamily": "FontAwesome",
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`UI Test: CategoryCard: snapshot renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderColor": "#dddddd",
+      "borderRadius": 10,
+      "borderWidth": 0.5,
+      "height": 130,
+      "overflow": "hidden",
+      "width": 130,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 3,
+      }
+    }
+  >
+    <Image
+      style={
+        Object {
+          "flex": 1,
+          "height": null,
+          "resizeMode": "cover",
+          "width": null,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingLeft": 10,
+        "paddingTop": 10,
+      }
+    }
+  >
+    <Text />
+  </View>
+</View>
+`;
+
+exports[`UI Test: ServiceCard: snapshot renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderRadius": 5,
+      "height": 200,
+      "margin": 10,
+      "marginBottom": 10,
+      "width": 350,
+    }
+  }
+>
+  <View
+    accessible={true}
+    clickable={true}
+    isTVSelectable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "borderColor": "#dddddd",
+          "borderRadius": 5,
+          "borderWidth": 0.5,
+          "flexDirection": "row",
+          "height": 200,
+          "overflow": "hidden",
+          "width": 350,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 4,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 7,
+            "flexDirection": "column",
+            "margin": 5,
+            "marginBottom": 0,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderBottomColor": "#dfe6e9",
+              "borderBottomWidth": 2,
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 10,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 2,
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "column",
+                  "paddingLeft": 10,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontSize": 18,
+                  }
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "width": 100,
+                  }
+                }
+              >
+                <View
+                  pointerEvents="none"
+                  style={
+                    Object {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <View
+                    style={Object {}}
+                  >
+                    <View
+                      accessibilityRole="button"
+                      accessible={true}
+                      clickable={false}
+                      isTVSelectable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "orange",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "transform": Array [
+                                Object {
+                                  "scaleX": 1,
+                                },
+                              ],
+                            },
+                            Object {
+                              "fontFamily": "FontAwesome",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={Object {}}
+                  >
+                    <View
+                      accessibilityRole="button"
+                      accessible={true}
+                      clickable={false}
+                      isTVSelectable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "orange",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "transform": Array [
+                                Object {
+                                  "scaleX": 1,
+                                },
+                              ],
+                            },
+                            Object {
+                              "fontFamily": "FontAwesome",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={Object {}}
+                  >
+                    <View
+                      accessibilityRole="button"
+                      accessible={true}
+                      clickable={false}
+                      isTVSelectable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "orange",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "transform": Array [
+                                Object {
+                                  "scaleX": 1,
+                                },
+                              ],
+                            },
+                            Object {
+                              "fontFamily": "FontAwesome",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={Object {}}
+                  >
+                    <View
+                      accessibilityRole="button"
+                      accessible={true}
+                      clickable={false}
+                      isTVSelectable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "orange",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "transform": Array [
+                                Object {
+                                  "scaleX": 1,
+                                },
+                              ],
+                            },
+                            Object {
+                              "fontFamily": "FontAwesome",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={Object {}}
+                  >
+                    <View
+                      accessibilityRole="button"
+                      accessible={true}
+                      clickable={false}
+                      isTVSelectable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "orange",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "transform": Array [
+                                Object {
+                                  "scaleX": 1,
+                                },
+                              ],
+                            },
+                            Object {
+                              "fontFamily": "FontAwesome",
+                              "fontStyle": "normal",
+                              "fontWeight": "normal",
+                            },
+                          ]
+                        }
+                      >
+                        
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 2,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000",
+                "fontSize": 20,
+                "overflow": "hidden",
+                "textAlign": "center",
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "fontSize": 15,
+                "marginTop": 3,
+                "overflow": "hidden",
+                "textAlign": "center",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderTopColor": "#dfe6e9",
+              "borderTopWidth": 2,
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-evenly",
+              "margin": 5,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 35,
+                "justifyContent": "space-evenly",
+                "width": 75,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 20,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              
+            </Text>
+            <Text
+              style={
+                Object {
+                  "fontSize": 13,
+                }
+              }
+            >
+               / Hr
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 35,
+                "justifyContent": "space-evenly",
+                "width": 82,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 25,
+                  },
+                  undefined,
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+            >
+              
+            </Text>
+            <Text
+              style={
+                Object {
+                  "fontSize": 13,
+                }
+              }
+            >
+              10 km
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`UI Test: ServiceView: snapshot renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "padding": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../image/LawnMowing.jpg",
+        }
+      }
+      style={
+        Object {
+          "borderRadius": 55,
+          "height": 110,
+          "width": 110,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "marginLeft": 20,
+          "marginTop": 20,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontSize": 30,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "fontSize": 15,
+          }
+        }
+      >
+         Service
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginRight": 15,
+          "marginTop": 15,
+        }
+      }
+    >
+      <View
+        pointerEvents="none"
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <View
+          style={Object {}}
+        >
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            clickable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "orange",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={Object {}}
+        >
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            clickable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "orange",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={Object {}}
+        >
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            clickable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "orange",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={Object {}}
+        >
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            clickable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "orange",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+        <View
+          style={Object {}}
+        >
+          <View
+            accessibilityRole="button"
+            accessible={true}
+            clickable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "orange",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scaleX": 1,
+                      },
+                    ],
+                  },
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                ]
+              }
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "#dfe6e9",
+        "borderBottomWidth": 2,
+        "marginBottom": 20,
+        "marginTop": 20,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontFamily": "Arial",
+        "fontSize": 40,
+        "fontWeight": "500",
+        "margin": 40,
+        "textAlign": "center",
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontFamily": "Arial",
+        "fontSize": 20,
+        "margin": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    Seller: 
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontFamily": "Arial",
+        "fontSize": 20,
+        "margin": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    Description: 
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#000000",
+        "fontFamily": "Arial",
+        "fontSize": 20,
+        "margin": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    Price Range: 
+     - 
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "flex-end",
+        "marginBottom": 10,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      clickable={false}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#E88D72",
+          "borderRadius": 15,
+          "height": 45,
+          "justifyContent": "center",
+          "marginTop": 20,
+          "opacity": 1,
+          "width": 695,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 19,
+            "fontWeight": "bold",
+            "textAlign": "center",
+          }
+        }
+      >
+        VIEW AVAILABILITY
+      </Text>
+    </View>
+  </View>
+</View>
+`;
