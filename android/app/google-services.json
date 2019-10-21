@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "912560089653",
-    "firebase_url": "https://servus-b797d.firebaseio.com",
-    "project_id": "servus-b797d",
-    "storage_bucket": "servus-b797d.appspot.com"
+    "project_number": "133882058888",
+    "firebase_url": "https://servus-6d8fb.firebaseio.com",
+    "project_id": "servus-6d8fb",
+    "storage_bucket": "servus-6d8fb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:912560089653:android:6f6ccc807d16f4321b9f7c",
+        "mobilesdk_app_id": "1:133882058888:android:810cd2f577cf1d42d0a73d",
         "android_client_info": {
           "package_name": "com.servus"
         }
       },
       "oauth_client": [
         {
-          "client_id": "912560089653-cqmb287jsktest01ks5g463q6uksej4a.apps.googleusercontent.com",
+          "client_id": "133882058888-tmfrr560t5irejhporgmuvl7361dguig.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBhreHFiMCy1Ih3bGNW7kolmR9iBTF6rDo"
+          "current_key": "AIzaSyDvHQOkB0iGv8uKrpzVe8_lHcEn-19gv_A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "912560089653-cqmb287jsktest01ks5g463q6uksej4a.apps.googleusercontent.com",
+              "client_id": "133882058888-tmfrr560t5irejhporgmuvl7361dguig.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

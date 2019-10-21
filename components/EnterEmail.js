@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, ImageBackground, Image, TextInput } from 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import EnterEmailView from "./views/authViews/EnterEmailView.js";
 
+
 const fetch = require("node-fetch");
 
 class EnterEmail extends Component {
@@ -17,6 +18,7 @@ class EnterEmail extends Component {
         firstName: ""
       };
     };
+
 
     continueWithEmail = (email) => {
       fetch(`http://localhost:8080/api/getEmailExists/?email=${email}&type=${this.state.type}`)
