@@ -20,9 +20,10 @@ class Account extends Component {
     };
 
     componentDidMount() {
+        type = 'users'
         AsyncStorage.getItem('userId', (err, result) => {
     
-          fetch(`http://localhost:8080/api/getAccountInfo/?id=${result}&type=${"users"}`)
+          fetch(`http://localhost:8080/api/getAccountInfo/?id=${result}&type=${type}`)
           .then((response) => response.json())
           .then((responseJson) => {
             this.setState({
