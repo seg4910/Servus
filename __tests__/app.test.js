@@ -10,11 +10,13 @@ import ServiceView from '../components/views/appViews/ServiceView';
 
 // UI Tests
 it('UI Test: AccountView: snapshot renders correctly', () => {
-    const tree = renderer
+  // TODO: react-native-image-picker is making this fail
+       const tree = renderer
       .create(<AccountView/>)
       .toJSON();
-    expect(tree).toMatchSnapshot();
-});
+    expect(tree).toMatchSnapshot(); 
+}); 
+
 it('UI Test: CategoryCard: snapshot renders correctly', () => {
     const tree = renderer
       .create(<CategoryCard/>)

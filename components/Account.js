@@ -12,7 +12,7 @@ class Account extends Component {
         email: '',
         password: '',
         edit: false,
-        photo: null,
+        photo: '',
         imgPath: '',
         img: '',
         phone: ''
@@ -39,30 +39,6 @@ class Account extends Component {
     
         });
       }    
-
-      handleChoosePhoto = () => {
-        console.log('handle choose photo');
-
-        const options = {
-          noData: true
-        };
-        ImagePicker.launchImageLibrary(options, response => {
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.error) {
-            console.log('ImagePicker Error: ', response.error);
-          } else if (response.customButton) {
-            console.log('User tapped custom button: ', response.customButton);
-          } else {
-            const source = { uri: response.uri };          
-          }
-          if (response.uri) {
-            this.setState({ photo: response });
-            //console.log(response);
-          }
-        });
-      };
-  
     
       createFormData = (photo, body) => {
         const data = new FormData();
@@ -127,7 +103,6 @@ class Account extends Component {
           <AccountView
             navigation = {this.props.navigation}
             paymentInfo = {this.paymentInfo}
-            handleChoosePhoto = {this.handleChoosePhoto}
             name = {this.state.name}
             email = {this.state.email}
             handleUploadPhoto = {this.handleUploadPhoto}

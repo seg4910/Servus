@@ -38,7 +38,7 @@ class ReviewOrder extends Component {
     const selectedDay = this.props.navigation.getParam(
         "selectedDay", "NO-SELECTEDDAY"
     );    
-
+      console.log(this.selectedTime);
     let taskSizeHr = 0;
     if (taskSize == 'SM') {
         taskSizeHr = 1;
@@ -92,6 +92,7 @@ class ReviewOrder extends Component {
             serviceDescription: this.state.serviceInfo[0].serviceDescription,
             minPrice: this.state.serviceInfo[0].minPrice,
             maxPrice: this.state.serviceInfo[0].maxPrice,
+            selectedTime: this.state.selectedTime
          }),
       });
     });
@@ -170,7 +171,7 @@ class ReviewOrder extends Component {
               <Text style={{fontSize:20}}>DATE</Text>
               <View style={{marginLeft:30}}>
                 <Text style={{fontSize:18}}>{Moment(this.state.selectedDay.dateString).format('LL')}</Text>
-                <Text style={{fontSize:18}}>{this.state.selectedTime}</Text>
+                <Text style={{fontSize:18}}>{Moment(this.state.selectedTime).format('LT')}</Text>
               </View>
             </View>
 

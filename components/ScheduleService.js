@@ -30,7 +30,9 @@ class ScheduleService extends Component {
       selectedDayAvailableTimes: [],
       taskSize: '',
       shifts: [],
-      availableDates: {}
+      availableDates: {},
+      selectedTime: null,
+      todaysShifts: null
     };
   }
 
@@ -48,7 +50,6 @@ class ScheduleService extends Component {
     const availableDates = this.props.navigation.getParam(
       "availableDates", "NO-AVAILABLEDATES"
     );
-    console.log(availableDates);
 
     this.getShiftsSelectedDay(selectedDay, availableDates);
 
@@ -62,12 +63,11 @@ class ScheduleService extends Component {
       taskSize: taskSize,
       availableDates: availableDates,
     });
-
-   
   }
 
   // navigate to the final review order page
   reviewOrder() {
+    console.log(this.state.selectedTime);
     this.props.navigation.navigate("ReviewOrder", {
       serviceInfo: this.state.serviceInfo,
       selectedTime: this.state.selectedTime,
@@ -80,6 +80,20 @@ class ScheduleService extends Component {
 
   render() {
     const { navigation } = this.props;
+    console.log('selectedTime r: ' + this.state.selectedTime);
+
+    let daShifts = <Picker.Item key={'NA'} label="No available shifts" value="NA" />;
+
+    // TODO - BUG: Serious bug here with choosing different times on different dates. The picker redners the proper items but sometimes does not
+    // render the ValueChange(). Crashes when switching back and forth and choosing different times.
+
+    // loop through all the shifts for the selected day and add them to an array
+    // which will be used for drop down (this can be optimized)
+    if (this.state.todaysShifts != null) {
+        daShifts = this.state.todaysShifts.map((shift) => {
+        return <Picker.Item key={shift.startHour} label={Moment(shift.startHour).format("HH:mm")} value={shift.startHour} />;      
+      });
+    }
 
     return (
       <View style={{ flex: 1, padding: 10 }}>
@@ -130,7 +144,10 @@ class ScheduleService extends Component {
 
           <Calendar
             markedDates={{[this.state.selectedDay.dateString]: {selected: true}}}
-            onDayPress={(day) => {this.getShiftsSelectedDay(day, this.state.availableDates)}}
+            onDayPress={(day) => {
+              console.log('CLICKED DAY:' + JSON.stringify(day));
+              this.getShiftsSelectedDay(day, this.state.availableDates);
+          }}
             onDayLongPress={(day) => {this.getShiftsSelectedDay(day)}}            
           />
           
@@ -140,18 +157,20 @@ class ScheduleService extends Component {
             </Text>
             <View style={{borderWidth:1,borderColor:'#dfe6e9'}}>
               <Picker
-              selectedTime={this.state.selectedTime}
+              selectedValue={this.state.selectedTime}
               style={{height: 50, width:250}}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({selectedTime: itemValue})
+              onValueChange={(itemValue) =>{ 
+                console.log('got value change!');             
+                this.updateSelectedTime(itemValue);
+              }
               }>
-              {this.state.shifts}
-              </Picker>
+              {daShifts}
+              </Picker> 
             </View>
           </View>
 
           <View style={{flex:1,justifyContent:'flex-end', alignItems:'center', marginBottom:10}}>
-            <TouchableOpacity
+          <TouchableOpacity
                   style={st.btn}
                   onPress={() => this.reviewOrder()}>
                   <Text style={st.btnText}>Review Order</Text>
@@ -161,6 +180,10 @@ class ScheduleService extends Component {
     );
   }
 
+  updateSelectedTime = (value) => {
+    console.log('in function' + value);
+    this.setState({selectedTime: value});
+  }
 
   getShiftsSelectedDay = (day, availableDates) => {
 
@@ -176,17 +199,8 @@ class ScheduleService extends Component {
       }
     });
 
-    // loop through all the shifts for the selected day and add them to an array
-    // which will be used for drop down (this can be optimized)
-    this.state.shifts = [];
-    if (todaysShifts != null) {
-      todaysShifts.map((shift) => {
-        //this.state.selectedDayAvailableTimes.push(shift);
-        this.state.shifts.push(<Picker.Item label={Moment(shift.startHour).format("HH:mm")} value={Moment(shift.startHour).format("HH:mm")} />);      
-      });
-    } else {
-      this.state.shifts.push(<Picker.Item label="No available shifts" value="java" />);
-    }
+    this.setState({todaysShifts: todaysShifts});
+
   }
 
 
