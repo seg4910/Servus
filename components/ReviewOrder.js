@@ -73,6 +73,39 @@ class ReviewOrder extends Component {
     });
   }
 
+  sendNotificationToSeller(orderId) {
+    fetch(`https://fcm.googleapis.com/fcm/send`, {
+      method: "POST",
+      headers: {
+        'Content-Type':'application/json',
+        'Authorization':'key=AAAAHyv-GIg:APA91bFcrY4DEMCl5SyfH4V8kjehp20BVYo7Ly5CQj5D5IJUSEQ6TKOl0cvlywN5wFdxgXBCTfCkxrR0z0iBCyhrdMnjYurwcAyu2MJU5Eq-BuX7gHojKCMb1TsQlJIYfx8_oDI5YND5'
+      },
+      body: JSON.stringify({
+        "to" : "eS0ItdmSsSs:APA91bEwkBvvHY_a_ed4pfA2cnVRpzXl--ld8QbLpSrdP1lJyoE7lRmOjmmJqymRag9K4YBP3JwWXgNmmAkiLkk6_G8PM21-0F65dh0OylWSGlK0WUeNIJD1V8qmTyrxlQKQXbSf-V0W",
+         "notification" : {
+            "title" : "You have a new order request!",
+            "body" : "Head to your orders to review it",
+            "content_available" : true,
+            "priority" : "high"
+        }, 
+        "data" : {
+            "title" : "You have a new order request!",
+            "body" : "Head to your orders to review it",
+            "orderId" : orderId,
+            "content_available" : true,
+            "priority" : "high"
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(responseJson => {
+      console.log(responseJson);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
   placeOrder() {
     // place stripe order
     // figure out where to navigate and what to do
@@ -94,7 +127,14 @@ class ReviewOrder extends Component {
             maxPrice: this.state.serviceInfo[0].maxPrice,
             selectedTime: this.state.selectedTime
          }),
-      });
+      })      
+      .then(response => response.json())
+      .then(responseJson => {
+        this.sendNotificationToSeller(responseJson.orderId);
+      })
+      .catch(error => {
+        console.log(error);
+      });;
     });
     
     // do a check to make sure the order was processed?

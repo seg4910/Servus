@@ -69,16 +69,17 @@ class AccountView extends Component {
           'Authorization':'key=AAAAHyv-GIg:APA91bFcrY4DEMCl5SyfH4V8kjehp20BVYo7Ly5CQj5D5IJUSEQ6TKOl0cvlywN5wFdxgXBCTfCkxrR0z0iBCyhrdMnjYurwcAyu2MJU5Eq-BuX7gHojKCMb1TsQlJIYfx8_oDI5YND5'
         },
         body: JSON.stringify({
-          "to" : "dQ3b55wI2Ig:APA91bGJOURBVczUQtnDvkI3uO7F3HV_0sVs8QGtYijCSCQGb5SX_TLcNGgB47APxh8yaKCVDXLF8sCz0pLZ7YkBtcNkz9-5d-pFw9tx2uTQUhBHFolRg1WnRepc0gKibAig7AR-h_IB",
-          "notification" : {
-              "body" : "The first message from the React Native and Firebase",
+          "to" : "eS0ItdmSsSs:APA91bEwkBvvHY_a_ed4pfA2cnVRpzXl--ld8QbLpSrdP1lJyoE7lRmOjmmJqymRag9K4YBP3JwWXgNmmAkiLkk6_G8PM21-0F65dh0OylWSGlK0WUeNIJD1V8qmTyrxlQKQXbSf-V0W",
+           "notification" : {
+              "body" : "The message from the React Native and Firebase",
               "title" : "React Native Firebase",
               "content_available" : true,
               "priority" : "high"
-          },
+          }, 
           "data" : {
               "body" : "The first message from the React Native and Firebase",
               "title" : "React Native Firebase",
+              "orderId" : "yeet",
               "content_available" : true,
               "priority" : "high"
           }
@@ -231,7 +232,7 @@ class AccountView extends Component {
                   onPress={this.testNotification}>
                   <View style={{flexDirection:'row', flex:1, marginLeft:17}}>
                     <Icon style={{alignSelf:'center'}} name="user" size={23} />                  
-                    <Text style={{fontSize:20,paddingLeft:20}}>Notification</Text>
+                    <Text style={{fontSize:20,paddingLeft:20}}>NotificationTest</Text>
                   </View>
                   <Icon style={{alignSelf:'center', paddingRight:20}} name="chevron-right" size={18} />                  
           </TouchableOpacity>                           
