@@ -23,7 +23,7 @@ class Account extends Component {
         type = 'users'
         AsyncStorage.getItem('userId', (err, result) => {
     
-          fetch(`http://localhost:8080/api/getAccountInfo/?id=${result}&type=${type}`)
+          fetch(`http://localhost:8080/api/getAccountInfo/?id=${result}&account_type=${"users"}`)
           .then((response) => response.json())
           .then((responseJson) => {
             this.setState({
