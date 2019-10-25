@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, AsyncStorage, TextInput} from 'react-native';
-
 import {Button} from 'react-native-elements';
+const fetch = require("node-fetch");
 
 
 class ChangePassword extends Component {

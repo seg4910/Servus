@@ -26,10 +26,10 @@ class EnterEmail extends Component {
         style={st.authContainer}
         >
         <View style={st.logoContainer}>
-        <Image
+{/*         <Image
             source={require("../../../image/React.js_logo-512.png")}
             style={st.logo}
-        />
+        /> */}
         <Text style={st.servus}>SERVUS</Text>
         </View>
 

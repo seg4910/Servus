@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, AsyncStorage, ScrollView, RefreshControl } from "react-native";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import Moment from 'moment';
+const fetch = require("node-fetch");
 
 
 class ViewOrders extends Component {

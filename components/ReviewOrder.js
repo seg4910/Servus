@@ -9,8 +9,9 @@ import {
   TouchableOpacity
 } from "react-native";
 import StarRating from "react-native-star-rating";
-import PaymentInfo from "./PaymentInfo";
 import Moment from 'moment';
+const fetch = require("node-fetch");
+
 
 class ReviewOrder extends Component {
   constructor(props) {
