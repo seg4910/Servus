@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import {Agenda} from 'react-native-calendars';
 import Moment from 'moment';
+const fetch = require("node-fetch");
 
 class ServiceAvailability extends Component {
   constructor(props) {

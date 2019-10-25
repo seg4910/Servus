@@ -37,3 +37,17 @@ jest.mock('react-native-gesture-handler', () => {
       preload: jest.fn(() => Promise.resolve('the response')),
     },
   }));
+
+  jest.mock('react-native-image-picker', () => ({
+    ImagePicker: {
+      preload: jest.fn(() => Promise.resolve('the response')),
+    },
+  }));
+
+  jest.mock('react-native-firebase', () => ({
+    firebase: {
+      preload: jest.fn(() => Promise.resolve('the response')),
+    },
+  }));
+
+  //jest.mock('node-fetch', ()=>jest.fn())

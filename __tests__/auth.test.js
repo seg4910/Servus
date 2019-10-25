@@ -30,15 +30,57 @@ it('UI Test: SignInView: snapshot renders correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
+
+
+
 // Component Tests
+// Enter Email
 it('Component Test: EnterEmail: renders correctly', () => {
   renderer.create(<EnterEmail/>);
 });
-it('Component Test: SignIn: renders correctly', () => {
-  // TODO: Figure out how to pass navigation instance for testing
-  //renderer.create(<SignIn/>);
+
+describe("SignIn Test", () => {
+  const navigation = {
+    navigate: Function.prototype,
+    setParams: Function.prototype,
+    dispatch: Function.prototype,
+    getParam: (param, defaultValue) => {
+      return defaultValue
+    },
+  }
+  it ('Component Test: SignIn: renders correctly', () => {
+    renderer.create(<SignIn navigation={navigation} />);   // no compile-time error
+  });
 });
-it('Component Test: Regsiter: renders correctly', () => {
-  // TODO: Figure out how to pass navigation instance for testing
-  //renderer.create(<Register/>);
+
+
+// Register
+describe("Register Test", () => {
+  const navigation = {
+    navigate: Function.prototype,
+    setParams: Function.prototype,
+    dispatch: Function.prototype,
+    getParam: (param, defaultValue) => {
+      return defaultValue
+    },
+  }
+  it ('Component Test: Register: renders correctly', () => {
+    renderer.create(<Register navigation={navigation} />);   // no compile-time error
+  });
+});
+
+
+// EnterEmail
+describe("EnterEmail Test", () => {
+  const navigation = {
+    navigate: Function.prototype,
+    setParams: Function.prototype,
+    dispatch: Function.prototype,
+    getParam: (param, defaultValue) => {
+      return defaultValue
+    },
+  }
+  it ('Component Test: EnterEmail: renders correctly', () => {
+    renderer.create(<EnterEmail navigation={navigation} />);   // no compile-time error
+  });
 });

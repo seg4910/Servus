@@ -30,17 +30,17 @@ class SignIn extends Component {
       style={st.authContainer}
     >
       <View style={st.logoContainer}>
-        <Image
+{/*         <Image
           source={require("../../../image/React.js_logo-512.png")}
           style={st.logo}
-        />
+        /> */}
         <Text style={st.servus}>Welcome back, {this.props.firstName}!</Text>
       </View>
       <Text style={st.heading2}> To continue, please verify it's you </Text>
 
       <View style={st.inputContainer}>
-        <Icon
-          name={"lock-outline"}
+        <Icon2
+          name={"lock-open-outline"}
           size={28}
           color={"rgba(255,255,255,0.7)"}
           style={st.inputIcon}

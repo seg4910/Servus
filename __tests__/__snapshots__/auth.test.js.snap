@@ -44,19 +44,6 @@ exports[`UI Test: EnterEmailView: snapshot renders correctly 1`] = `
       }
     }
   >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../image/React.js_logo-512.png",
-        }
-      }
-      style={
-        Object {
-          "height": 120,
-          "width": 120,
-        }
-      }
-    />
     <Text
       style={
         Object {
@@ -516,19 +503,6 @@ exports[`UI Test: SignInView: snapshot renders correctly 1`] = `
       }
     }
   >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../image/React.js_logo-512.png",
-        }
-      }
-      style={
-        Object {
-          "height": 120,
-          "width": 120,
-        }
-      }
-    />
     <Text
       style={
         Object {
@@ -578,7 +552,7 @@ exports[`UI Test: SignInView: snapshot renders correctly 1`] = `
             "top": 8,
           },
           Object {
-            "fontFamily": "EvilIcons",
+            "fontFamily": "Material Design Icons",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
@@ -586,7 +560,7 @@ exports[`UI Test: SignInView: snapshot renders correctly 1`] = `
         ]
       }
     >
-      ?
+      
     </Text>
     <TextInput
       allowFontScaling={true}
