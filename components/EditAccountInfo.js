@@ -53,6 +53,7 @@ class EditAccountInfo extends Component {
              'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+             type: "users",
              userId: this.state.userId,
              fieldType: "name",
              fieldValue: this.state.name,
@@ -81,6 +82,7 @@ class EditAccountInfo extends Component {
              'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+             type: "users",
              userId: this.state.userId,
              fieldType: "email",
              fieldValue: this.state.email,
@@ -109,6 +111,7 @@ class EditAccountInfo extends Component {
              'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+             type: "users",
              userId: this.state.userId,
              fieldType: "password",
              fieldValue: this.state.password,

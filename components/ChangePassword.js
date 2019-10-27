@@ -48,6 +48,7 @@ class ChangePassword extends Component {
              'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+             type: "users",
              userId: this.state.userId,
              fieldType: "password",
              fieldValue: this.state.password,
