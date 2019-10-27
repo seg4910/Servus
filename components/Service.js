@@ -25,7 +25,7 @@ class Service extends Component {
         
         AsyncStorage.getItem('userId', (err, result) => {   
             // retrieve the current service based on the id that was passed from ServicePreview     
-            fetch('http://localhost:8080/api/getServiceInfo?service=' + id)
+            fetch('http://localhost:8080/api/getServiceInfo?id=' + id)
             .then((response) => response.json())
             .then((responseJson) => {
             this.setState({
