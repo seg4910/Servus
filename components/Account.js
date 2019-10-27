@@ -20,10 +20,10 @@ class Account extends Component {
     };
 
     componentDidMount() {
-        type = 'users'
+        var type = 'users'
         AsyncStorage.getItem('userId', (err, result) => {
     
-          fetch(`http://localhost:8080/api/getAccountInfo/?id=${result}&account_type=${"users"}`)
+          fetch(`http://localhost:8080/api/getAccountInfo/?id=${result}&account_type=${type}`)
           .then((response) => response.json())
           .then((responseJson) => {
             this.setState({
@@ -40,45 +40,6 @@ class Account extends Component {
     
         });
       }    
-    
-      createFormData = (photo, body) => {
-        const data = new FormData();
-    
-        data.append("photo", {
-          name: photo.fileName,
-          type: photo.type,
-          uri:
-            Platform.OS === "android" ? photo.uri : photo.uri.replace("file://", "")
-        });
-    
-        Object.keys(body).forEach(key => {
-          data.append(key, body[key]);
-        });
-    
-        return data;
-      };
-    
-
-      handleUploadPhoto = () => {
-
-        console.log('handle upload  photo');
-        AsyncStorage.getItem('userId', (err, result) => {
-
-          fetch(`http://localhost:8080/api/uploadImage?id=${encodeURIComponent(result)}`, {
-            method: "POST",
-            body: this.createFormData(this.state.photo, { userId: 52 })
-          })
-            .then(response => response.json())
-            .then(responseJson => {
-              this.setState({ 
-                img: responseJson.imgPath
-               });
-            })
-            .catch(error => {
-              alert("Upload failed!");
-            });
-        });
-      };
     
       paymentInfo = () => {
         this.props.navigation.navigate('PaymentInfo');
@@ -97,8 +58,6 @@ class Account extends Component {
             display: 'flex'
           }
         }
-    
-
 
         return (
           <AccountView

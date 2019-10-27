@@ -41,8 +41,11 @@
     "@babel/runtime": "^7.5.0",
     "@react-native-community/eslint-config": "^0.0.3",
     "babel-jest": "^24.1.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.54.1",
+    "react-dom": "^16.11.0",
     "react-test-renderer": "16.8.6"
   },
   "jest": {

@@ -1,6 +1,7 @@
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {shallow, mount} from 'enzyme';
 
 import AccountView from '../components/views/appViews/AccountView';
 import CategoryCard from '../components/views/appViews/CategoryCard';
@@ -20,6 +21,7 @@ import ServiceOrdered from '../components/ServiceOrdered';
 import ServicePreview from '../components/ServicePreview';
 import SignIn from '../components/SignIn';
 import ViewOrders from '../components/ViewOrders';
+import { JestEnvironment } from '@jest/environment';
 
 const navigation = {
   navigate: Function.prototype,
@@ -65,11 +67,15 @@ it('UI Test: ServiceView: snapshot renders correctly', () => {
     expect(tree).toMatchSnapshot();
 });
 
+
+
 // COMPONENT Tests
 describe("Account Test", () => {
   it ('Component Test: SignIn: renders correctly', () => {
     renderer.create(<Account navigation={navigation} />);   // no compile-time error
   }); 
+
+  const wrapper = shallow(<Account />);
 });
 
 describe("Change Password", () => {
@@ -88,6 +94,11 @@ describe("Order Details", () => {
   it ('Component Test: OrderDetails: renders correctly', () => {
     renderer.create(<OrderDetails navigation={navigation}/>); 
   });
+
+  const wrapper = shallow(<OrderDetails navigation={navigation}/>);
+  
+
+
 });
 
 describe("Review Order", () => {
