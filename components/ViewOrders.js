@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, AsyncStorage, ScrollView, RefreshControl } from "react-native";
+import { View, Text, AsyncStorage, ScrollView, RefreshControl, TouchableOpacity } from "react-native";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import Moment from 'moment';
+
 const fetch = require("node-fetch");
 
 
@@ -12,6 +13,7 @@ class ViewOrders extends Component {
           orders: null,
           refreshing: false
       }
+      this.viewOrder = this.viewOrder.bind(this);
     };
 
     componentDidMount() {
@@ -49,9 +51,15 @@ class ViewOrders extends Component {
         this.setState({refreshing: false});
       }    
 
-      retrieveOrders() {
-        var serviceCategory = null;
-        return this.state.orders.map(data => {
+      viewOrder(id) {
+          this.props.navigation.navigate('Order', {
+              id: id
+          });
+      }
+
+      retrieveOrders = (status) => {
+        if (this.state.orders) {
+          return this.state.orders.map((data) => {
             if (data.serviceCategory == 'LM') {
                 serviceCategory = 'Lawn Services'
             } else if (data.serviceCategory == 'SR') {
@@ -62,8 +70,9 @@ class ViewOrders extends Component {
                 serviceCategory = 'Handy Man Services'
             }
 
-            return (
-                <View elevation={2} style={{height:150, margin: 20, marginBottom:5, borderRadius:8, backgroundColor: '#fff',
+            if(data.status == status) {
+              return (
+                <TouchableOpacity onPress={() => this.viewOrder(data.id)} elevation={2} style={{height:150, margin: 20, marginBottom:5, borderRadius:8, backgroundColor: '#fff',
                 shadowColor:'black',
                 shadowOffset: {
                   width: 0,
@@ -74,7 +83,7 @@ class ViewOrders extends Component {
                 elevation: 5,
                 }}>
                     <View style={{marginLeft: 20, marginTop: 10}}>
-                        <Text style={{fontWeight:'bold', fontSize:23}}>{data.sellerName}</Text>
+                        <Text style={{fontWeight:'bold', fontSize:23}}>{data.serviceName}</Text>
                         <View style={{padding:5, marginLeft:20}}>
                             <View style={{flexDirection:'row'}}>
                                 <Icon2 style={{paddingRight:10, color:'#7f8c8d'}} name="clock-outline" size={25} />
@@ -82,13 +91,24 @@ class ViewOrders extends Component {
                             </View>
                             <Text style={{fontSize:16, color:'#7f8c8d', paddingBottom:5}}>{serviceCategory}</Text>                                   
 
-                            <Text style={{marginTop:10,fontSize:16, color:'green', paddingBottom:5}}>ACTIVE</Text>                                   
+                            {data.status=='PENDING' && (
+                                <Text style={{marginTop:10,fontSize:16, color:'grey', paddingBottom:5}}>{data.status}</Text>  
+                            )}
+                            {data.status=='CONFIRMED' && (
+                                <Text style={{marginTop:10,fontSize:16, color:'green', paddingBottom:5}}>{data.status}</Text>  
+                            )}  
+                            {data.status=='COMPLETE' && (
+                                <Text style={{marginTop:10,fontSize:16, color:'black', paddingBottom:5}}>{data.status}</Text>  
+                            )}                                                                                         
                         </View>
                     </View>
-                </View>
-            );
-        });
-    }   
+                </TouchableOpacity>
+              );
+            }
+          })
+        }
+      }
+   
 
     render() {
         console.log(this.state.orders);
@@ -102,7 +122,9 @@ class ViewOrders extends Component {
             }>
                 {this.state.orders && (
                 <ScrollView>
-                    {this.retrieveOrders()}
+                    {this.retrieveOrders('PENDING')}
+                    {this.retrieveOrders('CONFIRMED')}
+                    {this.retrieveOrders('COMPLETE')}                    
                 </ScrollView>
                 )}
             </ScrollView>

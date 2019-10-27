@@ -126,7 +126,7 @@ class ReviewOrder extends Component {
             serviceDescription: this.state.serviceInfo[0].serviceDescription,
             minPrice: this.state.serviceInfo[0].minPrice,
             maxPrice: this.state.serviceInfo[0].maxPrice,
-            selectedTime: this.state.selectedTime
+            selectedTime: this.state.selectedTime,
          }),
       })      
       .then(response => response.json())
