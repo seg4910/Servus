@@ -18,7 +18,7 @@ class ChangePassword extends Component {
   componentDidMount() {
     AsyncStorage.getItem('userId', (err, result) => {
 
-      fetch('http://localhost:8080/api/getAccountInfo/?id=' + result)
+      fetch('http://localhost:8080/api/getAccountInfo/?id=' + result + '&type=users')
       .then((response) => response.json())
       .then((responseJson) => {
 
