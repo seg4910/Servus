@@ -68,25 +68,57 @@ class ChangePassword extends Component {
 
   render() {
     return (
-      <View style={st.container}>
-          <Text style={st.heading1}>Change Password</Text>
-          <Text style={styles.heading}>Password:</Text>
-          <TextInput
-            ref="_password"
-            style={styles.subHeading}
-            onChangeText={(text) => this.setState({password: text})}
-            editable = {this.state.passEdit}
-            value={this.state.password}
-            blurOnSubmit={false}
-          />
-          {
-            !this.state.passEdit && <Button title="Edit" type="outline" onPress={() => this.editPassword()}/>
-          }
-          {
-            this.state.passEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editPassword()}/>
-          }
 
+      <View style={{flex:1}}>
+      {/* <KeyboardAvoidingView KeyboardAvoidingView={-500}> */}
+        <View style={{marginBottom:0, padding:20, borderBottomColor:'#dfe6e9', borderBottomWidth:2}}>       
+          <Text style={{fontSize:25, fontWeight:'bold'}}>Change Password</Text>
+        </View>   
+            
+        <View style={{borderBottomWidth:1,borderBottomColor:'#dfe6e9',padding:20}}>
+          <Text style={{color:'#7f8c8d', fontSize:20}}>Password</Text>              
+          <View style={{flexDirection:'row'}}>
+            <View style={{flex:3}}>
+              { this.state.passEdit && (
+                <TextInput
+                ref="_password"
+                style={{fontSize:17, paddingLeft:10, color:'#000'}}
+                onChangeText={(text) => this.setState({password: text})}
+                editable = {this.state.passEdit}
+                value={this.state.password}
+                secureTextEntry={false}
+                blurOnSubmit={false}
+                />
+              )}
+              
+              { !this.state.passEdit && (
+                <TextInput
+                ref="_password"
+                style={{fontSize:17, paddingLeft:10, color:'#000'}}
+                onChangeText={(text) => this.setState({password: text})}
+                editable = {this.state.passEdit}
+                value={this.state.password}
+                secureTextEntry={true}
+                blurOnSubmit={false}
+                />
+              )}
+
+            </View>
+            <View style={{flex:1}}>
+              {
+                !this.state.passEdit && <Button icon={{name: "edit", color: "#E88D72" }} type="outline" onPress={() => this.editPassword()}/>
+              }
+              {
+                this.state.passEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editPassword()}/>
+              }
+            </View>
+          </View>
+        </View>
+      {/* </KeyboardAvoidingView> */}
       </View>
+
+
+
     );
   }
 }

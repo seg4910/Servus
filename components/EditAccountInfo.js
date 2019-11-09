@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, AsyncStorage, TextInput} from 'react-native';
-
+import {StyleSheet, Text, View, AsyncStorage, TextInput, KeyboardAvoidingView} from 'react-native';
+import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import {Button} from 'react-native-elements';
+
 const fetch = require("node-fetch");
 
 
@@ -13,10 +14,10 @@ class EditAccountInfo extends Component {
       userId: '',
       name: '',
       email: '',
-      password: '',
+      phone: '',
       nameEdit: false,
       emailEdit: false,
-      passEdit: false,
+      phoneEdit: false
     }
   }
 
@@ -32,6 +33,7 @@ class EditAccountInfo extends Component {
           name: responseJson.name,
           email: responseJson.email,
           password: responseJson.password,
+          phone: responseJson.phone
         });
       })
       .catch((error) =>{
@@ -45,7 +47,7 @@ class EditAccountInfo extends Component {
     if(this.state.nameEdit){
       this.setState({
         nameEdit: false
-      }, () =>{
+      }, () => {
         fetch('http://localhost:8080/api/editField', {
           method: 'POST',
           headers: {
@@ -99,10 +101,10 @@ class EditAccountInfo extends Component {
     }
   }
 
-  editPassword = () => {
-    if(this.state.passEdit){
+  editPhone = () => {
+    if(this.state.phoneEdit){
       this.setState({
-        passEdit: false
+        phoneEdit: false
       }, () =>{
         fetch('http://localhost:8080/api/editField', {
           method: 'POST',
@@ -113,17 +115,17 @@ class EditAccountInfo extends Component {
           body: JSON.stringify({
              type: "users",
              userId: this.state.userId,
-             fieldType: "password",
-             fieldValue: this.state.password,
+             fieldType: "phone",
+             fieldValue: this.state.phone,
           }),
          });
        })
     }
     else{
       this.setState({
-        passEdit: true
+        phoneEdit: true
       }, () =>{
-        this.refs._password.focus()
+        this.refs._phone.focus()
       });  
     }
   }
@@ -131,57 +133,85 @@ class EditAccountInfo extends Component {
 
   render() {
     return (
-      <View style={st.container}>
-          <Text style={st.heading1}>Login & Security</Text>
-          <Text style={styles.heading}>Name:</Text>
-          <TextInput
-            ref="_name"
-            style={styles.subHeading}
-            onChangeText={(text) => this.setState({name: text})}
-            editable = {this.state.nameEdit}
-            value={this.state.name}
-            blurOnSubmit={false}
-          />
-          {
-            !this.state.nameEdit && <Button title="Edit" type="outline" onPress={() => this.editName()}/>
-          }
-          {
-            this.state.nameEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editName()}/>
-          }
+      <View style={{flex:1}}>
+        {/* <KeyboardAvoidingView KeyboardAvoidingView={-500}> */}
+          <View style={{marginBottom:0, padding:20, borderBottomColor:'#dfe6e9', borderBottomWidth:2}}>       
+            <Text style={{fontSize:25, fontWeight:'bold'}}>Edit Info</Text>
+          </View>   
+              
+          <View style={{borderBottomWidth:1,borderBottomColor:'#dfe6e9',padding:20}}>
+            <Text style={{color:'#7f8c8d', fontSize:20}}>Name</Text>              
+            <View style={{flexDirection:'row'}}>
+              <View style={{flex:3}}>
+                  <TextInput
+                  ref="_name"
+                  style={{fontSize:17, paddingLeft:10, color:'#000'}}
+                  onChangeText={(text) => this.setState({name: text})}
+                  editable = {this.state.nameEdit}
+                  value={this.state.name}
+                  blurOnSubmit={false}
+                />
+              </View>
+              <View style={{flex:1}}>
+                {
+                  !this.state.nameEdit && <Button icon={{name: "edit", color: "#E88D72" }} type="outline" onPress={() => this.editName()}/>
+                }
+                {
+                  this.state.nameEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editName()}/>
+                }
+              </View>
+            </View>
+          </View>
 
+          <View style={{borderBottomWidth:1,borderBottomColor:'#dfe6e9',padding:20}}>
+            <Text style={{color:'#7f8c8d', fontSize:20}}>E-mail:</Text>
+            <View style={{flexDirection:'row'}}>
+              <View style={{flex:3}}>
+                <TextInput
+                  ref="_email"
+                  style={{fontSize:17, paddingLeft:10, color:'#000'}}
+                  onChangeText={(text) => this.setState({email: text})}
+                  editable = {this.state.emailEdit}
+                  value={this.state.email}
+                  blurOnSubmit={false}
+                />
+              </View>
+              <View style={{flex:1}}>                
+                {
+                  !this.state.emailEdit && <Button icon={{name: "edit", color: "#E88D72" }} type="outline" onPress={() => this.editEmail()}/>
+                }
+                {
+                  this.state.emailEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editEmail()}/>
+                }
+              </View>
+            </View>
+          </View>
 
-          <Text style={styles.heading}>E-mail:</Text>
-          <TextInput
-            ref="_email"
-            style={styles.subHeading}
-            onChangeText={(text) => this.setState({email: text})}
-            editable = {this.state.emailEdit}
-            value={this.state.email}
-            blurOnSubmit={false}
-          />
-          {
-            !this.state.emailEdit && <Button title="Edit" type="outline" onPress={() => this.editEmail()}/>
-          }
-          {
-            this.state.emailEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editEmail()}/>
-          }
+          <View style={{borderBottomWidth:1,borderBottomColor:'#dfe6e9',padding:20}}>
+           <Text style={{color:'#7f8c8d', fontSize:20}}>Phone:</Text>              
+            <View style={{flexDirection:'row'}}>
+              <View style={{flex:3}}>
+                <TextInput
+                  ref="_phone"
+                  style={{fontSize:17, paddingLeft:10, color: '#000'}}
+                  onChangeText={(text) => this.setState({phone: text})}
+                  editable = {this.state.phoneEdit}
+                  value={this.state.phone}
+                  blurOnSubmit={false}
+                />
+              </View>
+              <View style={{flex:1}}>  
+                {
+                  !this.state.phoneEdit && <Button icon={{name: "edit", color: "#E88D72" }} type="outline" onPress={() => this.editPhone()}/>
+                }
+                {
+                  this.state.phoneEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editPhone()}/>
+                }
+              </View>
+            </View>
+         </View>
 
-          <Text style={styles.heading}>Password:</Text>
-          <TextInput
-            ref="_password"
-            style={styles.subHeading}
-            onChangeText={(text) => this.setState({password: text})}
-            editable = {this.state.passEdit}
-            value={this.state.password}
-            blurOnSubmit={false}
-          />
-          {
-            !this.state.passEdit && <Button title="Edit" type="outline" onPress={() => this.editPassword()}/>
-          }
-          {
-            this.state.passEdit && <Button icon={{name: "check", color: "white"}} onPress={() => this.editPassword()}/>
-          }
-
+        {/* </KeyboardAvoidingView> */}
       </View>
     );
   }
