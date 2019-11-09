@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import {Agenda} from 'react-native-calendars';
 import Moment from 'moment';
+import StarRating from "react-native-star-rating";
+
 const fetch = require("node-fetch");
 
 class ServiceAvailability extends Component {
@@ -78,8 +80,55 @@ selectDay = (day) => {
 }
 
   render() {
+    const { navigation } = this.props;
+    const serviceInfo = JSON.parse(JSON.stringify(navigation.getParam('serviceInfo', 'NO-NAME')));
+
     return (
-        <View style={{height: 600}}>
+        <View style={{height: 680}}>
+          <View style={{
+              flexDirection: "row",
+              padding:10, 
+              paddingBottom:5,             
+              borderBottomColor: "#dfe6e9",
+              borderBottomWidth: 2,
+              }}>
+            
+            <View
+                style={{
+                  flex: 1,
+                  flexDirection: "column",
+                  marginLeft: 20,
+                  paddingBottom:10
+                }}
+              >
+                <Text style={{ fontSize: 30, color: "#000" }}>
+                  {serviceInfo[0].sellerName}
+                </Text>
+                <Text style={{ fontSize: 15 }}>
+                  {serviceInfo[0].serviceCategory} Service
+                </Text>
+                <View style={{width:100, paddingTop:10}}>
+                  <StarRating
+                  disabled={true}
+                  maxStars={5}
+                  rating={4.5}
+                  starSize={16}
+                  fullStarColor="orange"
+                  emptyStarColor="orange"
+                  style={{}}
+                />    
+              </View>          
+            </View>  
+            <Image
+              source={require("../image/LawnMowing.jpg")}
+              style={{
+                width: 90,
+                height: 90,
+                borderRadius: 55
+              }}
+            />
+          </View>
+            
             <Agenda
             items={this.state.availableDates}
             loadItemsForMonth={this.getDailyShifts.bind(this)}

@@ -90,6 +90,7 @@ class ViewOrders extends Component {
       }
 
       retrieveOrders = (status) => {
+        var total = 0;
         if (this.state.orders) {
           return this.state.orders.map((data) => {
             if (data.serviceCategory == 'LM') {
@@ -103,6 +104,8 @@ class ViewOrders extends Component {
             }
 
             if(data.status == status) {
+                 
+                total++;
 
                 if (data.size == 'SM') {
                     duration = '0-1 Hours'
@@ -159,8 +162,16 @@ class ViewOrders extends Component {
             }
           })
         }
+        if (total == 0) {
+            return (
+                <Text>You do not currently have any  </Text>
+            )
+        }
       }
    
+    isUndefined = (currentIndex) => {
+        return currentIndex == undefined;
+    }
 
     render() {
         console.log(this.state.orders);
@@ -176,10 +187,18 @@ class ViewOrders extends Component {
                 <ScrollView>
                     <Text style={{margin:20,marginBottom:10,fontWeight:'bold', fontSize:25}}>Requests</Text>
                     {this.retrieveOrders('PENDING')}
+                    {this.retrieveOrders('PENDING').every(this.isUndefined) && (
+                        <Text style={{marginLeft:20}}>You have no active order requests</Text>)}
+
                     <Text style={{margin:20,marginBottom:10,fontWeight:'bold', fontSize:25}}>Upcoming Orders</Text>
-                    {this.retrieveOrders('CONFIRMED')}
+                    {this.retrieveOrders('ACCEPTED')}
+                    {this.retrieveOrders('ACCEPTED').every(this.isUndefined) && (
+                        <Text style={{marginLeft:20}}>You have no active orders</Text>)}
+
                     <Text style={{margin:20,marginBottom:10,fontWeight:'bold', fontSize:25}}>Past Orders</Text>
-                    {this.retrieveOrders('COMPLETE')}                    
+                    {this.retrieveOrders('COMPLETE')}      
+                    {this.retrieveOrders('COMPLETE').every(this.isUndefined) && (
+                        <Text style={{marginLeft:20}}>You have no previous orders</Text>)}
                 </ScrollView>
                 )}
             </ScrollView>
