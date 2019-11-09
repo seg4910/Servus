@@ -16,3 +16,13 @@ ICONS:
     import Icon from "react-native-vector-icons/FontAwesome";
     import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
     import Icon from "react-native-vector-icons/EvilIcons";
+
+SERVICE STATES:
+    PENDING
+
+    ACCEPTED
+    DECLINED
+
+    COMPLETE
+    CANCELLED
+    

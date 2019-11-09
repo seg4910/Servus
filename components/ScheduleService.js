@@ -96,51 +96,50 @@ class ScheduleService extends Component {
     }
 
     return (
-      <View style={{ flex: 1, padding: 10 }}>
-        <View style={{ flexDirection: "row" }}>
-          <Image
-            source={require("../image/LawnMowing.jpg")}
-            style={{
-              width: 110,
-              height: 110,
-              borderRadius: 55
-            }}
-          />
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "column",
-              marginLeft: 20,
-              marginTop: 20
-            }}
-          >
-            <Text style={{ fontSize: 30, color: "#000" }}>
-              {this.state.sellerName}
-            </Text>
-            <Text style={{ fontSize: 15 }}>
-              {this.state.serviceCategory} Service
-            </Text>
-          </View>
-          <View style={{ marginTop: 15, marginRight: 15 }}>
-            <StarRating
-              disabled={true}
-              maxStars={5}
-              rating={4.5}
-              starSize={16}
-              fullStarColor="orange"
-              emptyStarColor="orange"
-              style={{ padding: 8 }}
+      <View style={{ flex: 1 }}>
+          <View style={{
+              flexDirection: "row",
+              padding:10, 
+              paddingBottom:5,             
+              borderBottomColor: "#dfe6e9",
+              borderBottomWidth: 2,
+              }}>
+            
+            <View
+                style={{
+                  flex: 1,
+                  flexDirection: "column",
+                  marginLeft: 20,
+                  paddingBottom:10
+                }}
+              >
+                <Text style={{ fontSize: 30, color: "#000" }}>
+                  {this.state.sellerName}
+                </Text>
+                <Text style={{ fontSize: 15 }}>
+                  {this.state.serviceCategory} Service
+                </Text>
+                <View style={{width:100, paddingTop:10}}>
+                  <StarRating
+                  disabled={true}
+                  maxStars={5}
+                  rating={4.5}
+                  starSize={16}
+                  fullStarColor="orange"
+                  emptyStarColor="orange"
+                  style={{}}
+                />    
+              </View>          
+            </View>  
+            <Image
+              source={require("../image/LawnMowing.jpg")}
+              style={{
+                width: 90,
+                height: 90,
+                borderRadius: 55
+              }}
             />
           </View>
-        </View>
-        <View
-          style={{
-            borderBottomColor: "#dfe6e9",
-            borderBottomWidth: 2,
-            marginTop: 20,
-            marginBottom: 20
-          }}
-        />
 
           <Calendar
             markedDates={{[this.state.selectedDay.dateString]: {selected: true}}}
