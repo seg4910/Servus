@@ -16,7 +16,8 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
-  Alert
+  Alert,
+  AsyncStorage
 } from 'react-native';
 import {
   createSwitchNavigator,
@@ -131,6 +132,7 @@ const DrawerNavigatorExample = createDrawerNavigator(
             style={st.btnSignOut}
             onPress={async () => {
               try {
+                AsyncStorage.removeItem('userId');
                 NavigationService.navigate("Auth");
               } catch (error) {
                 console.log(error);

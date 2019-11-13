@@ -21,6 +21,12 @@ class ViewOrders extends Component {
         this.retrieveOrderInfo();
     }
 
+    _onRefresh = () => {
+        //this.setState({refreshing: true});
+        this.retrieveOrderInfo();
+        //this.setState({refreshing: false});
+      }   
+
     retrieveOrderInfo = () => {
         function contains(a, obj) {
             var i = a.length;
@@ -64,28 +70,10 @@ class ViewOrders extends Component {
         });         
     }
      
-
-    _onRefresh = () => {
-        this.setState({refreshing: true});
-        AsyncStorage.getItem('userId', (err, result) => {        
-            fetch('http://localhost:8080/api/getMyOrders?id=' + result)
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(responseJson.orders);
-                this.setState({
-                    orders: responseJson.orders
-                });
-            })
-            .catch((error) =>{
-                console.error(error);
-            });
-        });
-        this.setState({refreshing: false});
-      }    
-
       viewOrder(id) {
           this.props.navigation.navigate('Order', {
-              id: id
+              id: id,
+              goBack: () => this._onRefresh()
           });
       }
 
@@ -185,15 +173,24 @@ class ViewOrders extends Component {
             }>
                 {this.state.orders && (
                 <ScrollView>
-                    <Text style={{margin:20,marginBottom:10,fontWeight:'bold', fontSize:25}}>Requests</Text>
-                    {this.retrieveOrders('PENDING')}
-                    {this.retrieveOrders('PENDING').every(this.isUndefined) && (
-                        <Text style={{marginLeft:20}}>You have no active order requests</Text>)}
+
+                    {!this.retrieveOrders('ACTIVE').every(this.isUndefined) && (
+                        <View style={{backgroundColor: '#E88D72', paddingBottom:20}}>
+                            <Text style={{ margin: 20, marginBottom: 5, fontWeight: 'bold', fontSize: 25 }}>Active</Text>
+                            {this.retrieveOrders('ACTIVE')}
+                        </View>    
+                        
+                    )}
 
                     <Text style={{margin:20,marginBottom:10,fontWeight:'bold', fontSize:25}}>Upcoming Orders</Text>
                     {this.retrieveOrders('ACCEPTED')}
                     {this.retrieveOrders('ACCEPTED').every(this.isUndefined) && (
                         <Text style={{marginLeft:20}}>You have no active orders</Text>)}
+
+                    <Text style={{margin:20,marginBottom:10,fontWeight:'bold', fontSize:25}}>Requests</Text>
+                    {this.retrieveOrders('PENDING')}
+                    {this.retrieveOrders('PENDING').every(this.isUndefined) && (
+                        <Text style={{marginLeft:20}}>You have no active order requests</Text>)}
 
                     <Text style={{margin:20,marginBottom:10,fontWeight:'bold', fontSize:25}}>Past Orders</Text>
                     {this.retrieveOrders('COMPLETE')}      

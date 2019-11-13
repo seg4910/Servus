@@ -72,7 +72,7 @@ class AccountView extends Component {
           'Authorization':'key=AAAAHyv-GIg:APA91bFcrY4DEMCl5SyfH4V8kjehp20BVYo7Ly5CQj5D5IJUSEQ6TKOl0cvlywN5wFdxgXBCTfCkxrR0z0iBCyhrdMnjYurwcAyu2MJU5Eq-BuX7gHojKCMb1TsQlJIYfx8_oDI5YND5'
         },
         body: JSON.stringify({
-          "to" : "eS0ItdmSsSs:APA91bEwkBvvHY_a_ed4pfA2cnVRpzXl--ld8QbLpSrdP1lJyoE7lRmOjmmJqymRag9K4YBP3JwWXgNmmAkiLkk6_G8PM21-0F65dh0OylWSGlK0WUeNIJD1V8qmTyrxlQKQXbSf-V0W",
+          "to" : "eRQTvuQsmlQ:APA91bFtUeZe0qmfrfaFHqsYdiSUASd4OrZiPrvtwu9OnJ9iAa75eUQh6HhIdax2n_hNBTUzc6n-xeQTb4Egfy_B3JschMSOeW651NWlFpvGc3zz4eziJZrr_hzj1jb-ip85DJ9zaYBZ",
            "notification" : {
               "body" : "The message from the React Native and Firebase",
               "title" : "React Native Firebase",
