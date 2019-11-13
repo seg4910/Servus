@@ -57,7 +57,7 @@ class PaymentInfo extends Component {
     this.setState({refreshing: true});
     AsyncStorage.getItem('userId', (err, result) => {
       var encodedID = encodeURIComponent(result);
-      fetch(`http://localhost:8080/api/getStripeCustomer?type=usersid=${encodeURIComponent(encodedID)}`, {
+      fetch(`http://localhost:8080/api/getStripeCustomer?type=users&id=${encodeURIComponent(encodedID)}`, {
         method: "GET",
         headers: {
            Accept: 'application/json',
