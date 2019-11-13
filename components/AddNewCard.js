@@ -70,12 +70,12 @@ class AddNewCard extends Component {
        {/* <CreditCardInput onChange={this._onChange} />  */}
 
        <StripeAddCard
-        publicStripeKey="pk_test_vMOZ5SXjEAYKWtziGo0RcWrr00PMOjAND1"
+        publicStripeKey="sk_test_fTlfHnvlI6jfS34mU7Prokqq00X4ultmWL"
         addCardTokenHandler={(stripeCardToken) => {
-          //alert(JSON.stringify(stripeCardToken));
+          alert(JSON.stringify(stripeCardToken));
           AsyncStorage.getItem("userId", (err, result) => {
             //alert(err);
-            fetch('http://localhost:8080/api/newCardStripe?id=' + result + '&token=' + stripeCardToken, {
+            fetch('http://localhost:8080/api/newCardStripe?type=users&id=' + result + '&token=' + stripeCardToken, {
                method: 'POST',
                headers: {
                   Accept: 'application/json',

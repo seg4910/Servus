@@ -39,7 +39,7 @@ class CreateLocation extends Component{
                 var cmd = `http://localhost:8080/api/createLocation/?type=users&userId=${this.state.userId}&streetNumber=${this.state.streetNumber}&streetName=${this.state.streetName}&city=${this.state.city}&province=${this.state.province}&postalCode=${this.state.postalCode}`
                 fetch(cmd)
                 .then((responseJson) => {
-                  alert("Location Added!");
+                  console.log("Location Added!");
                 })
                 .catch((error) =>{
                   console.error(error);

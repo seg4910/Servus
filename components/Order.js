@@ -79,6 +79,7 @@ class Order extends Component {
           console.error(error);
        });
        
+       this.props.navigation.state.params.onGoBack();
        this.props.navigation.goBack();
 
     }
