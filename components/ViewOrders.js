@@ -45,23 +45,25 @@ class ViewOrders extends Component {
                     this.setState({
                         orders: responseJson.orders
                     }, () => {
-                        this.state.orders.map((order) => {
-                            fetch(`http://localhost:8080/api/getAccountInfo?id=${order.buyerId}&type=users`)
-                                .then((response) => response.json())
-                                .then((responseJson) => {
-                                    const temporay_name = {
-                                        buyerId: responseJson.id,
-                                        buyerName: responseJson.name,
-                                    }
-                                    const newBuyerNames = contains(this.state.buyerNames, temporay_name) ? this.state.buyerNames : this.state.buyerNames.push(temporay_name);
-                                    this.setState({
-                                        buyernames: newBuyerNames,
+                        if (this.state.orders) {
+                            this.state.orders.map((order) => {
+                                fetch(`http://localhost:8080/api/getAccountInfo?id=${order.buyerId}&type=users`)
+                                    .then((response) => response.json())
+                                    .then((responseJson) => {
+                                        const temporay_name = {
+                                            buyerId: responseJson.id,
+                                            buyerName: responseJson.name,
+                                        }
+                                        const newBuyerNames = contains(this.state.buyerNames, temporay_name) ? this.state.buyerNames : this.state.buyerNames.push(temporay_name);
+                                        this.setState({
+                                            buyernames: newBuyerNames,
+                                        })
                                     })
-                                })
-                                .catch((error) => {
-                                    console.error(error);
-                                });
-                        })
+                                    .catch((error) => {
+                                        console.error(error);
+                                    });
+                            })
+                        }
                     });
                 })
                 .catch((error) => {

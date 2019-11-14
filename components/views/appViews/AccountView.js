@@ -65,36 +65,7 @@ class AccountView extends Component {
     };
 
     testNotification = () => {
-      fetch(`https://fcm.googleapis.com/fcm/send`, {
-        method: "POST",
-        headers: {
-          'Content-Type':'application/json',
-          'Authorization':'key=AAAAHyv-GIg:APA91bFcrY4DEMCl5SyfH4V8kjehp20BVYo7Ly5CQj5D5IJUSEQ6TKOl0cvlywN5wFdxgXBCTfCkxrR0z0iBCyhrdMnjYurwcAyu2MJU5Eq-BuX7gHojKCMb1TsQlJIYfx8_oDI5YND5'
-        },
-        body: JSON.stringify({
-          "to" : "eRQTvuQsmlQ:APA91bFtUeZe0qmfrfaFHqsYdiSUASd4OrZiPrvtwu9OnJ9iAa75eUQh6HhIdax2n_hNBTUzc6n-xeQTb4Egfy_B3JschMSOeW651NWlFpvGc3zz4eziJZrr_hzj1jb-ip85DJ9zaYBZ",
-           "notification" : {
-              "body" : "The message from the React Native and Firebase",
-              "title" : "React Native Firebase",
-              "content_available" : true,
-              "priority" : "high"
-          }, 
-          "data" : {
-              "body" : "The first message from the React Native and Firebase",
-              "title" : "React Native Firebase",
-              "orderId" : "yeet",
-              "content_available" : true,
-              "priority" : "high"
-          }
-        })
-      })
-      .then(response => response.json())
-      .then(responseJson => {
-        console.log(responseJson);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      this.props.navigation.navigate('RateSeller');
     }
 
 
@@ -235,7 +206,7 @@ class AccountView extends Component {
                   onPress={this.testNotification}>
                   <View style={{flexDirection:'row', flex:1, marginLeft:17}}>
                     <Icon style={{alignSelf:'center'}} name="user" size={23} />                  
-                    <Text style={{fontSize:20,paddingLeft:20}}>NotificationTest</Text>
+                    <Text style={{fontSize:20,paddingLeft:20}}>Test</Text>
                   </View>
                   <Icon style={{alignSelf:'center', paddingRight:20}} name="chevron-right" size={18} />                  
           </TouchableOpacity>                           

@@ -109,7 +109,9 @@ class Order extends Component {
 
             // go to review seller page
             this.props.navigation.state.params.onGoBack();
-            this.props.navigation.goBack();
+            this.props.navigation.navigate('RateSeller', {
+                orderId: this.state.orderId
+            });
         }
     }
 
@@ -243,7 +245,7 @@ class Order extends Component {
                         <View style={{ height: 200, width: 350, backgroundColor: '#fff', borderRadius: 20, padding: 10 }}>
                             <Icon2 onPress={() => this.toggleRequestModal('COMPLETE')} style={{ alignSelf: 'flex-end', paddingRight: 10, color: '#7f8c8d' }} name="close" size={30} />
                             <View style={{ flex: 1, flexDirection: 'column', padding: 10 }}>
-                                <Text style={{ fontSize: 20 }}>Please confirm this service has been completed. Please note that your account will be charged after accepting completion</Text>
+                                <Text style={{ fontSize: 20 }}>Please confirm this service has been completed.</Text>
                                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-end' }}>
                                     <TouchableOpacity
                                         style={{ flex: 1, backgroundColor: '#E88D72', justifyContent: 'center', alignItems: 'center', height: 45, borderRadius: 25, }}
