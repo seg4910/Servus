@@ -15,15 +15,16 @@ class Register extends Component {
       email: email,
       name: "",
       password: "",
+      phone: "",
       type: 'users',
       showPass: true,
       press: false
     };
   }
 
-  createAccount = (email, name, password) => {
+  createAccount = (email, name, password, phone) => {
     fetch(
-      `http://localhost:8080/api/createAccount/?email=${email}&name=${name}&password=${password}&type=${this.state.type}`
+      `http://localhost:8080/api/createAccount/?email=${email}&name=${name}&password=${password}&phone=${phone}&type=${'users'}`
     )
       .then(response => response.json())
       .then(responseJson => {
