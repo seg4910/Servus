@@ -49,6 +49,7 @@ import ServiceOrdered from './components/ServiceOrdered.js';
 import firebase from 'react-native-firebase';
 import Order from './components/Order.js';
 import ChangePassword from './components/ChangePassword.js';
+import RateSeller from './components/RateSeller.js';
 
 class NavigationDrawerStructure extends Component {
   //Structure for the navigation Drawer
@@ -364,7 +365,18 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },                      
+  }, 
+  RateSeller: {
+    screen: RateSeller,
+    navigationOptions: ({ navigation }) => ({
+      title: "Servus",
+      //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: "#ffffff"
+      },
+      headerTintColor: "#000000"
+    })
+  },                         
 });
 
 

@@ -170,7 +170,7 @@ class ReviewOrder extends Component {
             </Text>
             <Text style={{ fontSize: 15 }}>
               {this.state.serviceCategory} Service
-                </Text>
+            </Text>
             <View style={{ width: 100, paddingTop: 10 }}>
               <StarRating
                 disabled={true}
@@ -194,7 +194,7 @@ class ReviewOrder extends Component {
         </View>
 
 
-        <View style={{margin:20}}>
+        <View style={{ margin: 20 }}>
           <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Review Your Order</Text>
 
           <View style={{ marginLeft: 20 }}>
