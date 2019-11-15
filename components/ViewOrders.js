@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, AsyncStorage, ScrollView, RefreshControl, TouchableOpacity } from "react-native";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import Moment from 'moment';
+import LottieView from 'lottie-react-native';
 
 const fetch = require("node-fetch");
 
@@ -10,9 +11,10 @@ class ViewOrders extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orders: null,
+            orders: undefined,
             refreshing: false,
             buyerNames: [],
+            isLoading: true
         }
         this.viewOrder = this.viewOrder.bind(this);
     };
@@ -41,7 +43,6 @@ class ViewOrders extends Component {
             fetch('http://localhost:8080/api/getMyOrders?id=' + result)
                 .then((response) => response.json())
                 .then((responseJson) => {
-                    console.log(responseJson.orders);
                     this.setState({
                         orders: responseJson.orders
                     }, () => {
@@ -160,6 +161,9 @@ class ViewOrders extends Component {
     }
 
     render() {
+
+        console.log('ORDERS: ' + this.state.orders)
+
         if (this.state.orders) {
 
             var checkCompletep = !this.retrieveOrders('COMPLETEP').every(this.isUndefined);
@@ -221,7 +225,7 @@ class ViewOrders extends Component {
                     )}
                 </ScrollView>
             )
-        } else {
+        } else if (this.state.orders === null){
             return (
                 <ScrollView contentContainerStyle={{ flex: 1 }} refreshControl={
                     <RefreshControl
@@ -235,6 +239,12 @@ class ViewOrders extends Component {
                         <Text style={{ fontSize: 16, paddingTop: 10 }}>You don't have any orders in your history</Text>
                     </View>
                 </ScrollView>
+            )
+        } else if (this.state.orders === undefined) {
+            return (
+                <View style={{flex:1}}>
+                     <LottieView style={{flex:1}}source={require('../image/loading.json')} autoPlay loop={false} />
+                </View>
             )
         }
 
