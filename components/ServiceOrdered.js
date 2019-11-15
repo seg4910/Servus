@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import LottieView from 'lottie-react-native';
 
@@ -24,17 +24,16 @@ class ServiceOrdered extends Component {
     const { photo } = this.state;
     return (
       <View style={{
-        flex:1,
-       // justifyContent: 'flex-start',
-        backgroundColor: '#f2f2f2',
+        flex: 1,
+        // justifyContent: 'flex-start',
+        backgroundColor: '#E88D72',
         alignItems: 'center'
 
       }}>
-         
-        <Text style={{fontSize: 25, fontWeight: 'bold', color: '#000', marginTop:200}}>Your Order Has Been Placed!</Text>
-        <LottieView style={{flex:1}}source={require('../image/orderComplete.json')} autoPlay loop={false} />
-        
-        <View style={{flex:1,justifyContent:'flex-end', alignItems:'center', marginBottom:10}}>
+
+        <Text style={{ fontSize: 25, fontWeight: 'bold', color: '#f2f2f2', marginTop: 200 }}>Your Order Has Been Placed!</Text>
+          <LottieView style={{ flex: 1, width:50, height:50 }} source={require('../image/orderComplete.json')} autoPlay loop={false} />
+        <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
           <TouchableOpacity
             style={st.btn}
             onPress={() => this.backToHome()}

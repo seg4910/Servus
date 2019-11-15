@@ -6,7 +6,8 @@ import {
   AsyncStorage,
   Image,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from "react-native";
 import StarRating from "react-native-star-rating";
 import Moment from 'moment';
@@ -20,7 +21,8 @@ class ReviewOrder extends Component {
       taskSize: null,
       serviceInfo: [],
       selectedDay: '',
-      paymentInfo: ''
+      paymentInfo: '',
+      noteToSeller: null
     };
   }
 
@@ -127,6 +129,7 @@ class ReviewOrder extends Component {
           minPrice: this.state.serviceInfo[0].minPrice,
           maxPrice: this.state.serviceInfo[0].maxPrice,
           selectedTime: this.state.selectedTime,
+          note: this.state.noteToSeller
         }),
       })
         .then(response => response.json())
@@ -227,6 +230,8 @@ class ReviewOrder extends Component {
               <Text style={{ fontSize: 20 }}>Estimated Duration: {this.state.taskSize} hours</Text>
               <Text style={{ fontSize: 20 }}>Estimated Cost: {this.state.taskSize}</Text>
             </View>
+
+            <TextInput onChangeText={(text) => this.setState({noteToSeller: text})} placeholder="Add a note.."/>
           </View>
 
         </View>
