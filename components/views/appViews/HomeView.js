@@ -22,13 +22,14 @@ class HomeView extends Component {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-        <View style={st.container}>
+        <View>
           <View
             style={{
               height: this.startHeaderHeight,
               backgroundColor: "white",
               borderBottomWidth: 1,
-              borderBottomColor: "#dddddd"
+              borderBottomColor: "#dddddd",
+              backgroundColor:'#E88D72'              
             }}
           >
             <View
@@ -41,9 +42,10 @@ class HomeView extends Component {
                 borderWidth: 0.75,
                 elevation: 1,
                 marginTop: Platform.OS == "android" ? 25 : null,
+                marginBottom: 15,
                 borderRadius: 30,
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               <Icon name="search" size={40} />
@@ -61,140 +63,142 @@ class HomeView extends Component {
               />
             </View>
           </View>
-          <ScrollView scrollEventThrottle={16}>
-            <View style={{ flex: 1, paddingTop: 20 }}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "300",
-                  paddingHorizontal: 20
-                }}
-              >
-                What service are you looking for?
-              </Text>
-              <View style={{ height: 130, marginTop: 20 }}>
-                <ScrollView
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
+          <ScrollView>
+            <ScrollView scrollEventThrottle={16}>
+              <View style={{ flex: 1, paddingTop: 20 }}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "300",
+                    paddingHorizontal: 20
+                  }}
                 >
-                  <TouchableOpacity
-                    onPress={() => this.props.selectServiceCategory('LM')}
+                  What service are you looking for?
+                </Text>
+                <View style={{ height: 150, marginTop: 20 }}>
+                  <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                   >
-                    <View
-                      style={{
-                        overflow: "hidden",
-                        height: 130,
-                        width: 130,
-                        marginLeft: 20,
-                        borderWidth: 0.5,
-                        borderColor: "#dddddd",
-                        borderRadius: 10,
-                        borderBottomColor: "#43B14B",
-                        borderBottomWidth: 3
-                      }}
+                    <TouchableOpacity
+                      onPress={() => this.props.selectServiceCategory('LM')}
                     >
-                      <CategoryCard
-                        imageUri={require("../../../image/LawnMowing.jpg")}
-                        name="Lawn Mowing"
-                      />
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.props.selectServiceCategory('SR')}
-                  >
-                    <View
-                      style={{
-                        overflow: "hidden",
-                        height: 130,
-                        width: 130,
-                        marginLeft: 20,
-                        borderWidth: 0.5,
-                        borderColor: "#dddddd",
-                        borderRadius: 10,
-                        borderBottomColor: "#398FC7",
-                        borderBottomWidth: 3
-                      }}
+                      <View
+                        style={{
+                          overflow: "hidden",
+                          height: 130,
+                          width: 130,
+                          marginLeft: 20,
+                          borderWidth: 0.5,
+                          borderColor: "#dddddd",
+                          borderRadius: 10,
+                          borderBottomColor: "#43B14B",
+                          borderBottomWidth: 3
+                        }}
+                      >
+                        <CategoryCard
+                          imageUri={require("../../../image/LawnMowing.jpg")}
+                          name="Lawn Mowing"
+                        />
+                      </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => this.props.selectServiceCategory('SR')}
                     >
-                      <CategoryCard
-                        imageUri={require("../../../image/SnowRemoval.jpg")}
-                        name="Snow Removal"
-                      />
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.props.selectServiceCategory('CL')}
-                  >
-                    <View
-                      style={{
-                        overflow: "hidden",
-                        height: 130,
-                        width: 130,
-                        marginLeft: 20,
-                        borderWidth: 0.5,
-                        borderColor: "#dddddd",
-                        borderRadius: 10,
-                        borderBottomColor: "#FFDB15",
-                        borderBottomWidth: 3
-                      }}
+                      <View
+                        style={{
+                          overflow: "hidden",
+                          height: 130,
+                          width: 130,
+                          marginLeft: 20,
+                          borderWidth: 0.5,
+                          borderColor: "#dddddd",
+                          borderRadius: 10,
+                          borderBottomColor: "#398FC7",
+                          borderBottomWidth: 3
+                        }}
+                      >
+                        <CategoryCard
+                          imageUri={require("../../../image/SnowRemoval.jpg")}
+                          name="Snow Removal"
+                        />
+                      </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => this.props.selectServiceCategory('CL')}
                     >
-                      <CategoryCard
-                        imageUri={require("../../../image/CleaningServices.jpg")}
-                        name="Cleaning Services"
-                      />
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.props.selectServiceCategory('HM')}
-                  >
-                    <View
-                      style={{
-                        overflow: "hidden",
-                        height: 130,
-                        width: 130,
-                        marginLeft: 20,
-                        borderWidth: 0.5,
-                        borderColor: "#dddddd",
-                        borderRadius: 10,
-                        borderBottomColor: "#AB202A",
-                        borderBottomWidth: 3
-                      }}
+                      <View
+                        style={{
+                          overflow: "hidden",
+                          height: 130,
+                          width: 130,
+                          marginLeft: 20,
+                          borderWidth: 0.5,
+                          borderColor: "#dddddd",
+                          borderRadius: 10,
+                          borderBottomColor: "#FFDB15",
+                          borderBottomWidth: 3
+                        }}
+                      >
+                        <CategoryCard
+                          imageUri={require("../../../image/CleaningServices.jpg")}
+                          name="Cleaning Services"
+                        />
+                      </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => this.props.selectServiceCategory('HM')}
                     >
-                      <CategoryCard
-                        imageUri={require("../../../image/HandymanServices.jpg")}
-                        name="Handyman"
-                      />
-                    </View>
-                  </TouchableOpacity>
-                </ScrollView>
+                      <View
+                        style={{
+                          overflow: "hidden",
+                          height: 130,
+                          width: 130,
+                          marginLeft: 20,
+                          borderWidth: 0.5,
+                          borderColor: "#dddddd",
+                          borderRadius: 10,
+                          borderBottomColor: "#AB202A",
+                          borderBottomWidth: 3
+                        }}
+                      >
+                        <CategoryCard
+                          imageUri={require("../../../image/HandymanServices.jpg")}
+                          name="Handyman"
+                        />
+                      </View>
+                    </TouchableOpacity>
+                  </ScrollView>
+                </View>
               </View>
-            </View>
-          </ScrollView>
-           <ScrollView scrollEventThrottle={16}>
-            <View style={{ flex: 1, paddingTop: 20 }}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "300",
-                  paddingHorizontal: 20
-                }}
-              >
-                Top services
-              </Text>
-              <View
-                style={{ height: 230, marginTop: 10, flexDirection: "row" }}
-              >
-                <ScrollView
-                  horizontal={false}
-                  showsHorizontalScrollIndicator={false}
-                  style={{ flex: 1 }}
+            </ScrollView>
+            <ScrollView scrollEventThrottle={16} style={{marginBottom:155}}>
+              <View style={{ flex: 1, paddingTop: 20 }}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "300",
+                    paddingHorizontal: 20
+                  }}
                 >
-                  <ServicePreview
-                    style={{ flexDirection: "row" }}
-                    navigation={this.props.navigation}
-                  />
-                </ScrollView>
+                  Top services
+                </Text>
+                <View
+                  style={{marginTop: 10, flexDirection: "row" }}
+                >
+                  <ScrollView
+                    horizontal={false}
+                    showsHorizontalScrollIndicator={false}
+                    style={{ flex: 1 }}
+                  >
+                    <ServicePreview
+                      style={{ flexDirection: "row" }}
+                      navigation={this.props.navigation}
+                    />
+                  </ScrollView>
+                </View>
               </View>
-            </View>
+            </ScrollView>
           </ScrollView> 
         </View>
       </SafeAreaView>
