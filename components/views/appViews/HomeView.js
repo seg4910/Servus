@@ -21,49 +21,50 @@ class HomeView extends Component {
   render() {
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View>
-          <View
-            style={{
-              height: this.startHeaderHeight,
-              backgroundColor: "white",
-              borderBottomWidth: 1,
-              borderBottomColor: "#dddddd",
-              backgroundColor:'#E88D72'              
-            }}
-          >
+          <ScrollView>
             <View
               style={{
-                flexDirection: "row",
-                padding: 8,
+                height: this.startHeaderHeight,
                 backgroundColor: "white",
-                marginHorizontal: 20,
-                borderColor: "lightgrey",
-                borderWidth: 0.75,
-                elevation: 1,
-                marginTop: Platform.OS == "android" ? 25 : null,
-                marginBottom: 15,
-                borderRadius: 30,
-                justifyContent: "center",
-                alignItems: "center",
+                borderBottomWidth: 1,
+                borderBottomColor: "#dddddd",
+                backgroundColor: '#E88D72'
               }}
             >
-              <Icon name="search" size={40} />
-              <TextInput
-                underlineColorAndroid="transparent"
-                placeholder="Try 'Lawn'"
-                placeholderTextColor="lightgrey"
+              <View
                 style={{
-                  flex: 1,
-                  fontWeight: "300",
-                  fontSize: 20,
+                  flexDirection: "row",
+                  padding: 8,
                   backgroundColor: "white",
-                  borderRadius: 30
+                  marginHorizontal: 20,
+                  borderColor: "lightgrey",
+                  borderWidth: 0.75,
+                  elevation: 1,
+                  marginTop: Platform.OS == "android" ? 25 : null,
+                  marginBottom: 15,
+                  borderRadius: 30,
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
-              />
+              >
+                <Icon name="search" size={40} />
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  placeholder="Try 'Lawn'"
+                  placeholderTextColor="lightgrey"
+                  style={{
+                    flex: 1,
+                    fontWeight: "300",
+                    fontSize: 20,
+                    backgroundColor: "white",
+                    borderRadius: 30
+                  }}
+                />
+              </View>
             </View>
-          </View>
-          <ScrollView>
+
             <ScrollView scrollEventThrottle={16}>
               <View style={{ flex: 1, paddingTop: 20 }}>
                 <Text
@@ -172,7 +173,7 @@ class HomeView extends Component {
                 </View>
               </View>
             </ScrollView>
-            <ScrollView scrollEventThrottle={16} style={{marginBottom:155}}>
+            <ScrollView scrollEventThrottle={16} style={{ marginBottom: 50}}>
               <View style={{ flex: 1, paddingTop: 20 }}>
                 <Text
                   style={{
@@ -184,7 +185,7 @@ class HomeView extends Component {
                   Top services
                 </Text>
                 <View
-                  style={{marginTop: 10, flexDirection: "row" }}
+                  style={{ marginTop: 10, flexDirection: "row" }}
                 >
                   <ScrollView
                     horizontal={false}
@@ -199,7 +200,7 @@ class HomeView extends Component {
                 </View>
               </View>
             </ScrollView>
-          </ScrollView> 
+          </ScrollView>
         </View>
       </SafeAreaView>
     );

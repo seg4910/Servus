@@ -84,7 +84,7 @@ selectDay = (day) => {
     const serviceInfo = JSON.parse(JSON.stringify(navigation.getParam('serviceInfo', 'NO-NAME')));
 
     return (
-        <View style={{height: 680}}>
+        <View style={{flex:1}}>
           <View style={{
               flexDirection: "row",
               padding:10, 
