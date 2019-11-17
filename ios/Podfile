@@ -39,6 +39,8 @@ target 'Servus' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
   target 'ServusTests' do
     inherit! :search_paths
     # Pods for testing

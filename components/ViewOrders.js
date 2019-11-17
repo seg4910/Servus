@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, AsyncStorage, ScrollView, RefreshControl, TouchableOpacity } from "react-native";
+import { View, Text, AsyncStorage, ScrollView, RefreshControl, TouchableOpacity, Dimensions } from "react-native";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import Moment from 'moment';
 import LottieView from 'lottie-react-native';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
 const fetch = require("node-fetch");
 
@@ -14,7 +15,13 @@ class ViewOrders extends Component {
             orders: undefined,
             refreshing: false,
             buyerNames: [],
-            isLoading: true
+            index: 0,
+            routes: [
+                { key: 'first', title: 'Accepted' },
+                { key: 'second', title: 'Pending' },
+                { key: 'third', title: 'Complete' },
+            ],
+            isLoading: true.dateScheduled
         }
         this.viewOrder = this.viewOrder.bind(this);
     };
@@ -24,9 +31,10 @@ class ViewOrders extends Component {
     }
 
     _onRefresh = () => {
-        //this.setState({refreshing: true});
+        this.setState({refreshing: true});
         this.retrieveOrderInfo();
-        //this.setState({refreshing: false});
+        this.setState({refreshing:false});
+        //this.forceUpdate();
     }
 
     retrieveOrderInfo = () => {
@@ -82,6 +90,7 @@ class ViewOrders extends Component {
 
     retrieveOrders = (status) => {
         if (this.state.orders) {
+            console.log('in retrieve orders' + JSON.stringify(this.state.orders));
             return this.state.orders.map((data) => {
                 if (data.serviceCategory == 'LM') {
                     serviceCategory = 'Lawn Services'
@@ -160,72 +169,58 @@ class ViewOrders extends Component {
         return currentIndex == undefined;
     }
 
-    render() {
-
-        console.log('ORDERS: ' + this.state.orders)
-
-        if (this.state.orders) {
-
-            var checkCompletep = !this.retrieveOrders('COMPLETEP').every(this.isUndefined);
-            var checkActive = !this.retrieveOrders('ACTIVE').every(this.isUndefined);
-            var checkActiveOrCompletep = checkCompletep || checkActive;
-
-            return (
-                <ScrollView refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.refreshing}
-                        onRefresh={this._onRefresh}
-                    />
-                }>
-                    {this.state.orders && (
-                        <ScrollView>
-
-                            {checkActiveOrCompletep && (
-                                <View style={{
-                                    backgroundColor: '#E88D72', paddingBottom: 40, shadowColor: 'black',
-                                    shadowOffset: {
-                                        width: 0,
-                                        height: 3
-                                    },
-                                    shadowRadius: 5,
-                                    shadowOpacity: 1.0,
-                                    elevation: 5,
-                                }}>
-                                    {!this.retrieveOrders('COMPLETEP').every(this.isUndefined) && (
-                                        <View>
-                                            <Text style={{ margin: 20, marginBottom: 0, fontWeight: 'bold', fontSize: 25 }}>Pending Completion</Text>
-                                            {this.retrieveOrders('COMPLETEP')}
-                                        </View>
-                                    )}
-                                    {!this.retrieveOrders('ACTIVE').every(this.isUndefined) && (
-                                        <View style={{ backgroundColor: '#E88D72', paddingBottom: 20 }}>
-                                            <Text style={{ margin: 20, marginBottom: 5, fontWeight: 'bold', fontSize: 25 }}>Active</Text>
-                                            {this.retrieveOrders('ACTIVE')}
-                                        </View>
-                                    )}
-                                </View>
-                            )}
+    getAccepted = () => {
+        var checkCompletep = !this.retrieveOrders('COMPLETEP').every(this.isUndefined);
+        var checkActive = !this.retrieveOrders('ACTIVE').every(this.isUndefined);
+        var checkAccepted = !this.retrieveOrders('ACCEPTED').every(this.isUndefined);
+        var checkActiveOrCompletep = checkCompletep || checkActive;
+        var checkAnyAccepted = checkCompletep || checkActive || checkAccepted;
 
 
-                            <Text style={{ margin: 20, marginBottom: 10, fontWeight: 'bold', fontSize: 25 }}>Upcoming Orders</Text>
-                            {this.retrieveOrders('ACCEPTED')}
-                            {this.retrieveOrders('ACCEPTED').every(this.isUndefined) && (
-                                <Text style={{ marginLeft: 20 }}>You have no active orders</Text>)}
+        if (checkAnyAccepted) {
+            return (<ScrollView refreshControl={
+                <RefreshControl
+                    refreshing={this.state.refreshing}
+                    onRefresh={this._onRefresh}
+                />
+            }>
 
-                            <Text style={{ margin: 20, marginBottom: 10, fontWeight: 'bold', fontSize: 25 }}>Requests</Text>
-                            {this.retrieveOrders('PENDING')}
-                            {this.retrieveOrders('PENDING').every(this.isUndefined) && (
-                                <Text style={{ marginLeft: 20 }}>You have no active order requests</Text>)}
+                {checkActiveOrCompletep && (
+                    <View style={{
+                        paddingBottom: 40, shadowColor: 'black',
+                        shadowOffset: {
+                            width: 0,
+                            height: 3
+                        },
+                        shadowRadius: 5,
+                        shadowOpacity: 1.0,
+                        elevation: 5,
 
-                            <Text style={{ margin: 20, marginBottom: 10, fontWeight: 'bold', fontSize: 25 }}>Past Orders</Text>
-                            {this.retrieveOrders('COMPLETE')}
-                            {this.retrieveOrders('COMPLETE').every(this.isUndefined) && (
-                                <Text style={{ marginLeft: 20 }}>You have no previous orders</Text>)}
-                        </ScrollView>
-                    )}
-                </ScrollView>
-            )
-        } else if (this.state.orders === null){
+                    }}>
+                        {!this.retrieveOrders('COMPLETEP').every(this.isUndefined) && (
+                            <View>
+                                <Text style={{ margin: 20, marginBottom: 0, fontWeight: 'bold', fontSize: 25 }}>Pending Completion</Text>
+                                {this.retrieveOrders('COMPLETEP')}
+                            </View>
+                        )}
+                        {!this.retrieveOrders('ACTIVE').every(this.isUndefined) && (
+                            <View style={{paddingBottom: 20 }}>
+                                <Text style={{ margin: 20, marginBottom: 5, fontWeight: 'bold', fontSize: 25 }}>Active</Text>
+                                {this.retrieveOrders('ACTIVE')}
+                            </View>
+                        )}
+                    </View>
+                )}
+
+                {!this.retrieveOrders('ACCEPTED').every(this.isUndefined) && (
+                    <View>
+                        <Text style={{ margin: 20, marginBottom: 10, fontWeight: 'bold', fontSize: 25 }}>Upcoming Orders</Text>
+                        {this.retrieveOrders('ACCEPTED')}
+                    </View>
+                )}
+
+            </ScrollView>)
+        } else {
             return (
                 <ScrollView contentContainerStyle={{ flex: 1 }} refreshControl={
                     <RefreshControl
@@ -235,15 +230,116 @@ class ViewOrders extends Component {
                 }>
                     <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 150 }}>
                         <Icon2 style={{ alignSelf: 'center', color: '#E88D72' }} name="file-alert-outline" size={100} />
-                        <Text style={{ fontSize: 22, paddingTop: 15 }}>NO ORDERS</Text>
+                        <Text style={{ fontSize: 22, paddingTop: 15 }}>NO ACTIVE ORDERS</Text>
+                        <Text style={{ fontSize: 16, paddingTop: 10 }}>You don't have any active orders</Text>
+                    </View>
+                </ScrollView>
+            )
+        };
+    }
+
+    getPending = () => {
+        var checkPending = !this.retrieveOrders('PENDING').every(this.isUndefined);
+        if (checkPending) {
+            return (
+                <ScrollView refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }>
+                    <Text style={{ margin: 20, marginBottom: 10, fontWeight: 'bold', fontSize: 25 }}>Requests</Text>
+                    {this.retrieveOrders('PENDING')}
+                </ScrollView>
+            );
+        } else {
+            return (
+                <ScrollView contentContainerStyle={{ flex: 1 }} refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }>
+                    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 150 }}>
+                        <Icon2 style={{ alignSelf: 'center', color: '#E88D72' }} name="file-alert-outline" size={100} />
+                        <Text style={{ fontSize: 22, paddingTop: 15 }}>NO PENDING ORDERS</Text>
+                        <Text style={{ fontSize: 16, paddingTop: 10 }}>You don't have any pending orders</Text>
+                    </View>
+                </ScrollView>
+            )
+        }
+    }
+
+    getComplete = () => {
+        var checkComplete = !this.retrieveOrders('COMPLETE').every(this.isUndefined);
+        if (checkComplete) {
+            return (
+                <ScrollView refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }>
+                    <Text style={{ margin: 20, marginBottom: 10, fontWeight: 'bold', fontSize: 25 }}>Past Orders</Text>
+                    {this.retrieveOrders('COMPLETE')}
+                </ScrollView>
+            );
+        } else {
+            return (
+                <ScrollView contentContainerStyle={{ flex: 1 }} refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }>
+                    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 150 }}>
+                        <Icon2 style={{ alignSelf: 'center', color: '#E88D72' }} name="file-alert-outline" size={100} />
+                        <Text style={{ fontSize: 22, paddingTop: 15 }}>NO COMPLETE ORDERS</Text>
                         <Text style={{ fontSize: 16, paddingTop: 10 }}>You don't have any orders in your history</Text>
                     </View>
                 </ScrollView>
             )
-        } else if (this.state.orders === undefined) {
+        }
+    }
+
+
+    render() {
+
+        // verify the buyerNames has a length
+        if (this.state.orders && this.state.buyerNames.length && !this.state.refreshing) {
+
             return (
-                <View style={{flex:1}}>
-                     <LottieView style={{flex:1}}source={require('../image/loading.json')} autoPlay loop={false} />
+
+                <TabView
+                    navigationState={this.state}
+                    renderScene={({ route }) => {
+                        switch (route.key) {
+                            case 'first':
+                                return this.getAccepted();
+                            case 'second':
+                                return this.getPending();
+                            case 'third':
+                                return this.getComplete();
+                            default:
+                                return null;
+                        }
+                    }}
+                    onIndexChange={index => this.setState({ index })}
+                    initialLayout={{ width: Dimensions.get('window').width }}
+                    renderTabBar={props =>
+                        <TabBar
+                          {...props}
+                          indicatorStyle={{ backgroundColor: 'white' }}
+                          style={{ backgroundColor: '#E88D72' }}
+                        />
+                      }
+                />
+
+            )
+        } else {
+            return (
+                <View style={{ flex: 1 }}>
+                    <LottieView style={{ flex: 1 }} source={require('../image/loading.json')} autoPlay loop={false} />
                 </View>
             )
         }
