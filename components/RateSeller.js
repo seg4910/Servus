@@ -25,7 +25,8 @@ class RateSeller extends Component {
         this.state = {
             orderInfo: null,
             tip: 3,
-            rating: null
+            rating: null,
+            comment: null
         }
     };
 
@@ -76,7 +77,7 @@ class RateSeller extends Component {
     completeService = () => {
 
         //update ratings table
-        fetch(`http://localhost:8080/api/addRating?sellerId=${this.state.orderInfo.sellerId}&serviceId=${this.state.orderInfo.serviceId}&orderId=${this.state.orderInfo.id}&buyerId=${this.state.orderInfo.buyerId}&rating=${this.state.rating}`, {
+        fetch(`http://localhost:8080/api/addRating?sellerId=${this.state.orderInfo.sellerId}&serviceId=${this.state.orderInfo.serviceId}&orderId=${this.state.orderInfo.id}&buyerId=${this.state.orderInfo.buyerId}&rating=${this.state.rating}&comment=${this.state.comment}`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -94,13 +95,13 @@ class RateSeller extends Component {
     render() {
         if (this.state.orderInfo) {
             return (
-                <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={100}>
+                <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={10}>
 
                     <View>
-                        <Svg height={300} width={WIDTH}>
+                        <Svg height={220} width={WIDTH}>
                             <Circle
                                 cx={WIDTH / 2}
-                                cy={`-${898 - 170 + 2}`}
+                                cy={`-${898 - 150 + 2}`}
                                 r="898.5"
                                 fill="#E88D72"
                                 stroke="#dfe6e9"
@@ -111,14 +112,17 @@ class RateSeller extends Component {
                             source={require("../image/avatar1.jpg")}
                             style={{
                                 position: 'absolute',
-                                top: 100,
+                                top: 80,
                                 left: WIDTH / 2 - 60,
                                 width: 120,
                                 height: 120,
-                                borderRadius: 75
+                                borderRadius: 75,
+                                borderWidth:2,
+                                borderColor:'#E88D72'
+
                             }}
                         />
-                        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', marginTop: 30 }}>
+                        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', marginTop: 20 }}>
                             <Text style={{ fontSize: 30, color: "#000", textAlign: 'center' }}>
                                 {this.state.orderInfo.sellerName}
                             </Text>
@@ -140,6 +144,9 @@ class RateSeller extends Component {
                                     showRating={false}
                                 />
                                 <View style={{ marginRight: 80, paddingTop: 3 }}><Text style={{ fontSize: 20 }}>{this.state.rating} / 5</Text></View>
+                            </View>
+                            <View style={{marginLeft:20, width: WIDTH-40}}>
+                                <TextInput onChangeText={(text) => this.setState({comment:text})} style={{backgroundColor:'#f2f2f2', borderRadius:10, marginTop:20}} placeholder='Leave a comment..'/>
                             </View>
                         </View>
 

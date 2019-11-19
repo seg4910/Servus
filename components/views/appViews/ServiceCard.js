@@ -146,7 +146,7 @@ class ServiceCard extends Component {
                 >
                   {this.props.serviceName}
                 </Text>
-                <Text
+{/*                 <Text
                   style={{
                     fontSize: 15,
                     overflow: "hidden",
@@ -155,7 +155,7 @@ class ServiceCard extends Component {
                   }}
                 >
                   {this.props.serviceDescription}
-                </Text>
+                </Text> */}
               </View>
 
             
