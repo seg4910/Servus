@@ -31,7 +31,8 @@ class Account extends Component {
               email: responseJson.email,
               password: responseJson.password,
               img: responseJson.img,
-              phone: responseJson.phone
+              phone: responseJson.phone,
+              photo: responseJson.photo
             });
           })
           .catch((error) =>{
@@ -67,7 +68,7 @@ class Account extends Component {
             email = {this.state.email}
             handleUploadPhoto = {this.handleUploadPhoto}
             phone = {this.state.phone}
-            //img = {`./../../../../ServusBackend/images/${this.state.img}`}
+            photo = {this.state.photo}
           />
         );
     }
