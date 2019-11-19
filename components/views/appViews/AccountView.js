@@ -92,6 +92,21 @@ class AccountView extends Component {
 
   savePhotoUrl = () => {
     // fetch post image url
+    AsyncStorage.getItem('userId', (err, result) => {
+      fetch('http://localhost:8080/api/editField', {
+        method: 'POST',
+        headers: {
+           Accept: 'application/json',
+           'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+           type: "users",
+           userId: result,
+           fieldType: "photo",
+           fieldValue: this.state.downloadUrl,
+        }),
+       });
+    })
   }
 
   uploadImage = (image) => {
@@ -110,8 +125,7 @@ class AccountView extends Component {
               })
             });
           } catch {
-            console.log('yeerp');
-            
+            // something going wrong here, error being thrown but upload works fine
           }
 
         this.setState({uploading: false});
@@ -134,7 +148,7 @@ class AccountView extends Component {
           />
         </Svg>
         <Image
-          source={require("../../../image/avatar1.jpg")}
+          source={{uri: this.props.photo}}
           style={{
             position: 'absolute',
             top: 20,
