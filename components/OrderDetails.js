@@ -57,7 +57,14 @@ class OrderDetails extends Component {
     if (size == this.state.taskSize) {
       return {
         flex: .5, backgroundColor: '#E88D72', margin: 10, height: 100, borderRadius: 15, borderWidth: 2, borderColor: '#f1b8a7',
-        alignItems: 'center', justifyContent: 'center'
+        alignItems: 'center', justifyContent: 'center',                             shadowColor: 'black',
+        shadowOffset: {
+            width: 0,
+            height: 3
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0,
+        elevation: 5,
       }
     } else {
       return {

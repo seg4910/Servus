@@ -21,7 +21,7 @@ class ViewOrders extends Component {
                 { key: 'second', title: 'Pending' },
                 { key: 'third', title: 'Complete' },
             ],
-            isLoading: true.dateScheduled
+            isLoading: true
         }
         this.viewOrder = this.viewOrder.bind(this);
     };
@@ -306,7 +306,7 @@ class ViewOrders extends Component {
     render() {
 
         // verify the buyerNames has a length
-        if (this.state.orders && this.state.buyerNames.length && !this.state.refreshing) {
+        if (this.state.orders !== undefined) {
 
             return (
 
@@ -339,7 +339,7 @@ class ViewOrders extends Component {
         } else {
             return (
                 <View style={{ flex: 1 }}>
-                    <LottieView style={{ flex: 1 }} source={require('../image/loading.json')} autoPlay loop={false} />
+                    <LottieView style={{ flex: 1 }} source={require('../image/loading.json')} autoPlay loop={true} />
                 </View>
             )
         }
