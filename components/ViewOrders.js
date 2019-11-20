@@ -90,7 +90,6 @@ class ViewOrders extends Component {
 
     retrieveOrders = (status) => {
         if (this.state.orders) {
-            console.log('in retrieve orders' + JSON.stringify(this.state.orders));
             return this.state.orders.map((data) => {
                 if (data.serviceCategory == 'LM') {
                     serviceCategory = 'Lawn Services'
