@@ -23,23 +23,28 @@ class ServiceView extends Component {
   }
 
   getRatings = () => {
-    return (this.props.ratings.map((rating) => {
-      return (
-        <View style={{ backgroundColor: '#f2f2f2', padding: 20, borderRadius: 10, marginBottom: 20 }}>
-          <View style={{ width: 100 }}>
-            <StarRating
-              disabled={true}
-              maxStars={5}
-              rating={rating.rating}
-              starSize={16}
-              fullStarColor="orange"
-              emptyStarColor="orange"
-              style={{}}
-            />
-          </View>
-          <Text>{rating.comment}</Text>
-        </View>);
-    }))
+    if (this.props.ratings !== null) {
+      return (this.props.ratings.map((rating) => {
+        return (
+          <View style={{ backgroundColor: '#f2f2f2', padding: 20, borderRadius: 10, marginBottom: 20 }}>
+            <View style={{ width: 100 }}>
+              <StarRating
+                disabled={true}
+                maxStars={5}
+                rating={rating.rating}
+                starSize={16}
+                fullStarColor="orange"
+                emptyStarColor="orange"
+                style={{}}
+              />
+            </View>
+            <Text>{rating.comment}</Text>
+          </View>);
+      }))
+    } else {
+      console.log('she null');
+      return null;
+    }
 
   }
 
@@ -84,7 +89,7 @@ class ServiceView extends Component {
               </View>
             </View>
             <Image
-              source={require("./../../../image/LawnMowing.jpg")}
+              source={{uri: this.props.sellerPhoto}}
               style={{
                 width: 90,
                 height: 90,

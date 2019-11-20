@@ -51,7 +51,6 @@ class AccountView extends Component {
   }
 
   handleChoosePhoto = () => {
-    console.log('handle choose photo');
 
     const options = {};
     ImagePicker.showImagePicker(options, response => {
@@ -63,9 +62,6 @@ class AccountView extends Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         if (response.uri) {
-          console.log('here' + response.uri);
-          console.log('path ' + response.path);
-          console.log('img base64: ' + response.data);
 
           var imgPath = ('file://' + response.path).toString();
 
@@ -92,6 +88,8 @@ class AccountView extends Component {
 
   savePhotoUrl = () => {
     // fetch post image url
+    console.log('saving photo');
+    console.log('SAVING PHOTO' + this.state.downloadUrl);
     AsyncStorage.getItem('userId', (err, result) => {
       fetch('http://localhost:8080/api/editField', {
         method: 'POST',
@@ -110,17 +108,18 @@ class AccountView extends Component {
   }
 
   uploadImage = (image) => {
-          //const ext = this.state.imageUri.split('.').pop(); // Extract image extension
-          //const filename = `${uuid()}.${ext}`; // Generate unique name
+          let fileName = 'users'+this.props.id+this.props.email;
+
           this.setState({ uploading: true });
     
-          var imgRef = firebase.storage().ref('/images/user/');
+          var imgRef = firebase.storage().ref('images').child('/users').child(fileName);
           try {
             imgRef.putFile(image.path).then((file) => {
-              console.log('here');
-              imgRef.getDownloadURL().then(function(downloadURL) {
-                console.log(downloadURL);
+
+              imgRef.getDownloadURL().then((downloadURL) => {
+                console.log('here');
                 this.setState({downloadUrl: downloadURL});
+                console.log('here');
                 this.savePhotoUrl();
               })
             });

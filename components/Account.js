@@ -27,6 +27,7 @@ class Account extends Component {
           .then((response) => response.json())
           .then((responseJson) => {
             this.setState({
+              id: responseJson.id,
               name: responseJson.name,
               email: responseJson.email,
               password: responseJson.password,
@@ -69,6 +70,7 @@ class Account extends Component {
             handleUploadPhoto = {this.handleUploadPhoto}
             phone = {this.state.phone}
             photo = {this.state.photo}
+            id = {this.state.id}
           />
         );
     }

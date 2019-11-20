@@ -16,7 +16,8 @@ class Service extends Component {
         price: 0,
         serviceCategory: '',
         ratings: undefined,
-        city: ''
+        city: '',
+        sellerPhoto: null
       }      
     };
 
@@ -41,6 +42,14 @@ class Service extends Component {
                 this.setState({price: this.state.serviceInfo[0].priceHr});
                 this.setState({serviceCategory: this.state.serviceInfo[0].serviceCategory});
                 this.setState({city: this.state.serviceInfo[0].city})
+
+                fetch(`http://localhost:8080/api/getAccountInfo?type=${'sellers'}&id=${this.state.serviceInfo[0].sellerID}`)
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    this.setState({
+                        sellerPhoto: responseJson.photo
+                    })
+                })    
 
                 fetch('http://localhost:8080/api/getRatings?id=' + this.state.serviceInfo[0].id)
                 .then((response) => response.json())
@@ -85,6 +94,7 @@ class Service extends Component {
             ratings = {this.state.ratings}
             city = {this.state.city}
             price = {this.state.price}
+            sellerPhoto = {this.state.sellerPhoto}
           />
         );
     }
