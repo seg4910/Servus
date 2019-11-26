@@ -17,18 +17,7 @@ const fetch = require("node-fetch");
 class ReviewOrder extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      taskSize: null,
-      serviceInfo: [],
-      selectedDay: '',
-      paymentInfo: '',
-      noteToSeller: null
-    };
-  }
 
-  componentDidMount() {
-    // is there a better way to do this when there is more than one item
-    // being passed through navigation?
     const serviceInfo = this.props.navigation.getParam(
       "serviceInfo", "NO-SERVICE"
     );
@@ -41,7 +30,6 @@ class ReviewOrder extends Component {
     const selectedDay = this.props.navigation.getParam(
       "selectedDay", "NO-SELECTEDDAY"
     );
-    console.log(this.selectedTime);
     let taskSizeHr = 0;
     if (taskSize == 'SM') {
       taskSizeHr = 1;
@@ -52,18 +40,18 @@ class ReviewOrder extends Component {
     } else if (taskSize == 'XL') {
       taskSizeHr = 4;
     }
-
-    this.setState({
-      serviceInfo: serviceInfo,
-      selectedTime: selectedTime,
+    this.state = {
       taskSize: taskSizeHr,
-      serviceName: serviceInfo[0].serviceName,
-      sellerName: serviceInfo[0].sellerName,
-      serviceCategory: serviceInfo[0].serviceCategory,
-      minPrice: serviceInfo[0].minPrice,
-      maxPrice: serviceInfo[0].maxPrice,
+      selectedTime: selectedTime[0],
+      serviceInfo: serviceInfo,
       selectedDay: selectedDay,
-    });
+      paymentInfo: '',
+      noteToSeller: null
+    };
+  }
+
+  formatTime(shift){
+    return `${Moment(shift.startHour).format("HH:mm")} - ${Moment(shift.endHour).format("HH:mm")}`;
   }
 
   setPaymentInfo(paymentInfo) {
@@ -169,10 +157,10 @@ class ReviewOrder extends Component {
             }}
           >
             <Text style={{ fontSize: 30, color: "#000" }}>
-              {this.state.sellerName}
+              {this.state.serviceInfo[0].sellerName}
             </Text>
             <Text style={{ fontSize: 15 }}>
-              {this.state.serviceCategory} Service
+              {this.state.serviceInfo[0].serviceCategory} Service
             </Text>
             <View style={{ width: 100, paddingTop: 10 }}>
               <StarRating
@@ -205,8 +193,8 @@ class ReviewOrder extends Component {
             <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
               <Text style={{ fontSize: 20 }}>SERVICE</Text>
               <View style={{ marginLeft: 30 }}>
-                <Text style={{ fontSize: 18 }}>{this.state.serviceName}</Text>
-                <Text style={{ fontSize: 18 }}>{this.state.serviceCategory}</Text>
+                <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceName}</Text>
+                <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceCategory}</Text>
               </View>
             </View>
 
@@ -214,7 +202,7 @@ class ReviewOrder extends Component {
               <Text style={{ fontSize: 20 }}>DATE</Text>
               <View style={{ marginLeft: 30 }}>
                 <Text style={{ fontSize: 18 }}>{Moment(this.state.selectedDay.dateString).format('LL')}</Text>
-                <Text style={{ fontSize: 18 }}>{Moment(this.state.selectedTime).format('LT')}</Text>
+                <Text style={{ fontSize: 18 }}>{this.formatTime(this.state.selectedTime)}</Text>
               </View>
             </View>
 

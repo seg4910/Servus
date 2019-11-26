@@ -1,42 +1,18 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
   Text,
   View,
-  AsyncStorage,
   Image,
-  Button,
   TouchableOpacity,
   Picker
 } from "react-native";
 import StarRating from "react-native-star-rating";
-import { IndicatorViewPager, PagerDotIndicator} from "rn-viewpager";
-import StepIndicator from "react-native-step-indicator";
-import DatePicker from 'react-native-datepicker';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
+import { Calendar } from 'react-native-calendars';
 import Moment from 'moment';
 
 class ScheduleService extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      password: "",
-      username: "",
-      stripeCustomer: [],
-      refreshing: false,
-      lawnSize: null,
-      serviceInfo: [],
-      selectedDay: '',
-      selectedDayAvailableTimes: [],
-      taskSize: '',
-      shifts: [],
-      availableDates: {},
-      selectedTime: null,
-      todaysShifts: null
-    };
-  }
-
-  componentDidMount() {
     const serviceInfo = this.props.navigation.getParam(
       "serviceInfo",
       "NO-SERVICE"
@@ -50,24 +26,24 @@ class ScheduleService extends Component {
     const availableDates = this.props.navigation.getParam(
       "availableDates", "NO-AVAILABLEDATES"
     );
-
-    this.getShiftsSelectedDay(selectedDay, availableDates);
-
-    this.setState({
+    this.state = {
+      password: "",
+      username: "",
+      stripeCustomer: [],
+      refreshing: false,
+      lawnSize: null,
       serviceInfo: serviceInfo,
-      sellerName: serviceInfo[0].sellerName,
-      serviceCategory: serviceInfo[0].serviceCategory,
-      minPrice: serviceInfo[0].minPrice,
-      maxPrice: serviceInfo[0].maxPrice,
       selectedDay: selectedDay,
+      selectedDayAvailableTimes: [],
       taskSize: taskSize,
+      shifts: [],
       availableDates: availableDates,
-    });
+      selectedTime: availableDates[selectedDay.dateString],
+    };
   }
 
   // navigate to the final review order page
   reviewOrder() {
-    console.log(this.state.selectedTime);
     this.props.navigation.navigate("ReviewOrder", {
       serviceInfo: this.state.serviceInfo,
       selectedTime: this.state.selectedTime,
@@ -75,25 +51,29 @@ class ScheduleService extends Component {
       selectedDay: this.state.selectedDay
     });
   }
-
-
+  formatTime(shift){
+    return `${Moment(shift.startHour).format("HH:mm")} - ${Moment(shift.endHour).format("HH:mm")}`;
+  }
 
   render() {
-    const { navigation } = this.props;
-    console.log('selectedTime r: ' + this.state.selectedTime);
-
-    let daShifts = <Picker.Item key={'NA'} label="No available shifts" value="NA" />;
-
-    // TODO - BUG: Serious bug here with choosing different times on different dates. The picker redners the proper items but sometimes does not
-    // render the ValueChange(). Crashes when switching back and forth and choosing different times.
-
-    // loop through all the shifts for the selected day and add them to an array
-    // which will be used for drop down (this can be optimized)
-    if (this.state.todaysShifts != null) {
-        daShifts = this.state.todaysShifts.map((shift) => {
-        return <Picker.Item key={shift.startHour} label={Moment(shift.startHour).format("HH:mm")} value={shift.startHour} />;      
-      });
+    const markedDates = {};
+    for (let date_key in this.state.availableDates){
+      if (date_key!=this.state.selectedDay.dateString){
+        markedDates[date_key] = {marked: true}
+      } else{
+        markedDates[date_key] = {marked: true, selected: true}
+      }
     }
+
+    const todaysShifts = this.state.availableDates[this.state.selectedDay.dateString];
+    const selectedShifts = todaysShifts === undefined ?
+        <Picker.Item key={'NA'} label="No available shifts" value="NA" />
+      : todaysShifts.map((shift) => 
+        <Picker.Item
+          label={this.formatTime(shift)}
+          value={this.formatTime(shift)} />
+      );
+    console.log(selectedShifts);
 
     return (
       <View style={{ flex: 1 }}>
@@ -114,10 +94,10 @@ class ScheduleService extends Component {
                 }}
               >
                 <Text style={{ fontSize: 30, color: "#000" }}>
-                  {this.state.sellerName}
+                  {this.state.serviceInfo[0].sellerName}
                 </Text>
                 <Text style={{ fontSize: 15 }}>
-                  {this.state.serviceCategory} Service
+                  {this.state.serviceInfo[0].serviceCategory} Service
                 </Text>
                 <View style={{width:100, paddingTop:10}}>
                   <StarRating
@@ -142,12 +122,14 @@ class ScheduleService extends Component {
           </View>
 
           <Calendar
-            markedDates={{[this.state.selectedDay.dateString]: {selected: true}}}
+            current={this.state.selectedDay.dateString}
+            markedDates={markedDates}
             onDayPress={(day) => {
-              console.log('CLICKED DAY:' + JSON.stringify(day));
-              this.getShiftsSelectedDay(day, this.state.availableDates);
-          }}
-            onDayLongPress={(day) => {this.getShiftsSelectedDay(day)}}            
+              this.setState({
+                selectedDay: day,
+                selectedTime: this.formatTime(todaysShifts[0]),
+              });
+            }}
           />
           
           <View style={{alignItems:'center', borderTopColor:'#dfe6e9', borderTopWidth:2, paddingTop:20,marginTop:20}}>
@@ -158,12 +140,11 @@ class ScheduleService extends Component {
               <Picker
               selectedValue={this.state.selectedTime}
               style={{height: 50, width:250}}
-              onValueChange={(itemValue) =>{ 
-                console.log('got value change!');             
-                this.updateSelectedTime(itemValue);
+              onValueChange={(selectedTime) =>{
+                this.setState({ selectedTime: selectedTime })
               }
               }>
-              {daShifts}
+              {selectedShifts}
               </Picker> 
             </View>
           </View>
@@ -178,34 +159,8 @@ class ScheduleService extends Component {
       </View>
     );
   }
-
-  updateSelectedTime = (value) => {
-    console.log('in function' + value);
-    this.setState({selectedTime: value});
-  }
-
-  getShiftsSelectedDay = (day, availableDates) => {
-
-    this.setState({selectedDay: day});
-
-    // loop through the days the seller is available and find the shift information for the day
-    // that the buyer has selected
-    let todaysShifts = null;
-
-    Object.keys(availableDates).map(function(key) {
-      if (key == day.dateString) {
-        todaysShifts = availableDates[key];
-      }
-    });
-
-    this.setState({todaysShifts: todaysShifts});
-
-  }
-
-
 }
 
 const st = require("./../styles/style.js");
-const styles = StyleSheet.create({});
 
 export default ScheduleService;
