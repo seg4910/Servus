@@ -133,7 +133,7 @@ class ServiceAvailability extends Component {
             items={this.state.availableDates}
             loadItemsForMonth={this.getDailyShifts.bind(this)}
             renderItem={this.renderItem.bind(this)}
-            renderEmptyDate={this.renderEmptyDate.bind(this)}
+            renderEmptyData={this.renderEmptyDate.bind(this)}
             rowHasChanged={this.rowHasChanged.bind(this)}
             // callback that gets called on day press
             onDayPress={(day) => { this.selectDay(day) }}
@@ -152,9 +152,6 @@ class ServiceAvailability extends Component {
     );
   }
 
-  // TODO: If there is no agenda items for the current day, create an empty one so
-  // so that future ones will show up and agenda doesnt get stuck loading
-
   // set all the items for the Agenda based on the days and shifts on those days
   getDailyShifts() {
     let availableDates = {};
@@ -163,7 +160,6 @@ class ServiceAvailability extends Component {
         this.getShiftsForDay(day)
     });
     this.setState({ availableDates: availableDates });
-    console.log('AVAILABLE DATES: ' + availableDates);
   }
 
   // for each day the seller is available, push all the shifts for that day to an array
@@ -192,7 +188,9 @@ class ServiceAvailability extends Component {
 
   renderEmptyDate() {
     return (
-      <View><Text style={{ justifyContent: 'center' }}>No Availabilities</Text></View>
+      <View style={styles.emptyDate}>
+        <Text style={{ fontSize: 20 }}> No Availabilities </Text>
+      </View>
     );
   }
 
@@ -214,9 +212,10 @@ const styles = StyleSheet.create({
     height: 100
   },
   emptyDate: {
-    height: 15,
     flex: 1,
-    paddingTop: 30
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
   }
 });
 const st = require("./../styles/style.js");
