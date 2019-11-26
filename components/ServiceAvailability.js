@@ -32,7 +32,7 @@ class ServiceAvailability extends Component {
     const serviceInfo = JSON.parse(JSON.stringify(navigation.getParam('serviceInfo', 'NO-NAME')));
 
     AsyncStorage.getItem('userId', (err, result) => {
-      fetch(`http://localhost:8080/api/getSellerAvailability?sellerId=${serviceInfo[0].sellerID}&serviceId=${serviceInfo[0].id}`)
+      fetch(`http://localhost:8080/api/getSellerAvailability?sellerId=${serviceInfo[0].sellerID}`)
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({
