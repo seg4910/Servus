@@ -17,6 +17,7 @@ class Service extends Component {
         serviceCategory: '',
         ratings: undefined,
         city: '',
+        servicePhoto: '',
         sellerPhoto: null
       }      
     };
@@ -34,35 +35,36 @@ class Service extends Component {
                 serviceInfo: responseJson.serviceInfo
             }, function(){
                 if(this.state.serviceInfo){
-                this.setState({serviceId: this.state.serviceInfo[0].id});
-                this.setState({sellerId: this.state.serviceInfo[0].sellerID});
-                this.setState({serviceName: this.state.serviceInfo[0].serviceName});
-                this.setState({serviceDescription: this.state.serviceInfo[0].serviceDescription});
-                this.setState({sellerName: this.state.serviceInfo[0].sellerName});
-                this.setState({price: this.state.serviceInfo[0].priceHr});
-                this.setState({serviceCategory: this.state.serviceInfo[0].serviceCategory});
-                this.setState({city: this.state.serviceInfo[0].city})
-
-                fetch(`http://localhost:8080/api/getAccountInfo?type=${'sellers'}&id=${this.state.serviceInfo[0].sellerID}`)
-                .then((response) => response.json())
-                .then((responseJson) => {
+                    console.log("@@@@@@@")
+                    console.log(this.state.serviceInfo[0].photo)
                     this.setState({
-                        sellerPhoto: responseJson.photo
-                    })
-                })    
-
-                fetch('http://localhost:8080/api/getRatings?id=' + this.state.serviceInfo[0].id)
-                .then((response) => response.json())
-                .then((responseJson) => {
-                    this.setState({
-                        ratings: responseJson.ratingInfo
-                    })
-                })                
-
+                        serviceId: this.state.serviceInfo[0].id,
+                        sellerId: this.state.serviceInfo[0].sellerID,
+                        serviceName: this.state.serviceInfo[0].serviceName,
+                        serviceDescription: this.state.serviceInfo[0].serviceDescription,
+                        sellerName: this.state.serviceInfo[0].sellerName,
+                        price: this.state.serviceInfo[0].priceHr,
+                        serviceCategory: this.state.serviceInfo[0].serviceCategory,
+                        city: this.state.serviceInfo[0].city,
+                        servicePhoto: this.state.serviceInfo[0].photo,
+                    });
+                    fetch(`http://localhost:8080/api/getAccountInfo?type=${'sellers'}&id=${this.state.serviceInfo[0].sellerID}`)
+                        .then((response) => response.json())
+                        .then((responseJson) => {
+                            this.setState({
+                                sellerPhoto: responseJson.photo
+                            })
+                        })    
+                    fetch('http://localhost:8080/api/getRatings?id=' + this.state.serviceInfo[0].id)
+                        .then((response) => response.json())
+                        .then((responseJson) => {
+                            this.setState({
+                                ratings: responseJson.ratingInfo
+                            })
+                        })
                 } else {
                 //navigate to Create Account
                 alert("Something went wrong");
-        
                 }
             });
             })
@@ -95,6 +97,7 @@ class Service extends Component {
             city = {this.state.city}
             price = {this.state.price}
             sellerPhoto = {this.state.sellerPhoto}
+            servicePhoto = {this.state.servicePhoto}
           />
         );
     }
