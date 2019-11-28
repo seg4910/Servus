@@ -174,7 +174,7 @@ class HomeView extends Component {
               </View>
             </ScrollView>
             <ScrollView scrollEventThrottle={16} style={{ marginBottom: 50}}>
-              <View style={{ flex: 1, paddingTop: 20 }}>
+              <View style={{ flex: 1, paddingTop: 20}}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -185,7 +185,7 @@ class HomeView extends Component {
                   Top services
                 </Text>
                 <View
-                  style={{ marginTop: 10, flexDirection: "row" }}
+                  style={{ marginTop: 10, flexDirection: "row", alignItems:'center', flex:1 }}
                 >
                   <ScrollView
                     horizontal={false}
