@@ -48,8 +48,21 @@ class ServiceCard extends Component {
             }}
           >
             <View style={{ flex: 4 }}>
+
+
+            {this.props.servicePhoto &&
+                <Image
+                    source={{uri: this.props.servicePhoto}}
+                    style={{
+                    flex: 1,
+                    width: null,
+                    height: null,
+                    resizeMode: "cover"
+                    }}
+                />
+            }              
               
-              {this.props.serviceCat == 'LM' &&
+{/*               {this.props.serviceCat == 'LM' &&
                 <Image
                     source={require("./../../../image/LawnMowing.jpg")}
                     style={{
@@ -92,7 +105,7 @@ class ServiceCard extends Component {
                     resizeMode: "cover"
                     }}
                 />
-            }
+            } */}
 
             </View>
             <View

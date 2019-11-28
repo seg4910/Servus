@@ -16,6 +16,7 @@ import Svg, {
     Circle
 } from 'react-native-svg';
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import LottieView from 'lottie-react-native';
 
 const WIDTH = Dimensions.get('screen').width;
 
@@ -25,20 +26,32 @@ class RateSeller extends Component {
         this.state = {
             orderInfo: null,
             tip: 3,
-            rating: null,
+            rating: 3,
             comment: null
         }
     };
 
     componentDidMount() {
         const { navigation } = this.props;
-        //const orderId = JSON.parse(JSON.stringify(navigation.getParam('orderId', 'NO-ORDER')));
+        const orderId = JSON.parse(JSON.stringify(navigation.getParam('orderId', 'NO-ORDER')));
 
-        fetch(`http://localhost:8080/api/viewOrder?id=15`)
+        fetch(`http://localhost:8080/api/viewOrder?id=${orderId}`)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({ orderInfo: responseJson.order[0] })
                 console.log(responseJson.order[0])
+
+                fetch(`http://localhost:8080/api/getAccountInfo?type=${'sellers'}&id=${this.state.orderInfo.sellerId}`)
+                    .then((response) => response.json())
+                    .then((responseJson) => {
+                        console.log('FCM ' + responseJson.fcmToken);
+                        this.setState({
+                            fcmToken: responseJson.fcmToken,
+                            sellerPhoto: responseJson.photo
+                        })
+
+                    })
+
             })
     }
 
@@ -74,6 +87,44 @@ class RateSeller extends Component {
         }
     }
 
+    sendNotificationToSeller = () => {
+        console.log('here ' + this.state.orderInfo.sellerId);
+
+        fetch(`https://fcm.googleapis.com/fcm/send`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'key=AAAAHyv-GIg:APA91bFcrY4DEMCl5SyfH4V8kjehp20BVYo7Ly5CQj5D5IJUSEQ6TKOl0cvlywN5wFdxgXBCTfCkxrR0z0iBCyhrdMnjYurwcAyu2MJU5Eq-BuX7gHojKCMb1TsQlJIYfx8_oDI5YND5'
+            },
+            body: JSON.stringify({
+                "to": this.state.fcmToken,
+                "notification": {
+                    "title": "Your service is now complete",
+                    "body": "",
+                    "content_available": true,
+                    "priority": "high"
+                },
+                "data": {
+                    "title": "Your service is now complete",
+                    "body": "",
+                    "orderId": this.state.orderInfo.id,
+                    "content_available": true,
+                    "priority": "high"
+                }
+            })
+        })
+        .then(response => response.json())
+        .then(responseJson => {
+            console.log(responseJson);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+
+
+    }
+
     completeService = () => {
 
         //update ratings table
@@ -88,7 +139,7 @@ class RateSeller extends Component {
                 console.error(error);
             });
 
-
+        this.sendNotificationToSeller();
         this.props.navigation.navigate('Home');
     }
 
@@ -109,7 +160,7 @@ class RateSeller extends Component {
                             />
                         </Svg>
                         <Image
-                            source={require("../image/avatar1.jpg")}
+                            source={{uri: this.state.sellerPhoto}}
                             style={{
                                 position: 'absolute',
                                 top: 80,
@@ -117,8 +168,8 @@ class RateSeller extends Component {
                                 width: 120,
                                 height: 120,
                                 borderRadius: 75,
-                                borderWidth:2,
-                                borderColor:'#E88D72'
+                                borderWidth: 2,
+                                borderColor: '#E88D72'
 
                             }}
                         />
@@ -145,8 +196,8 @@ class RateSeller extends Component {
                                 />
                                 <View style={{ marginRight: 80, paddingTop: 3 }}><Text style={{ fontSize: 20 }}>{this.state.rating} / 5</Text></View>
                             </View>
-                            <View style={{marginLeft:20, width: WIDTH-40}}>
-                                <TextInput onChangeText={(text) => this.setState({comment:text})} style={{backgroundColor:'#f2f2f2', borderRadius:10, marginTop:20}} placeholder='Leave a comment..'/>
+                            <View style={{ marginLeft: 20, width: WIDTH - 40 }}>
+                                <TextInput onChangeText={(text) => this.setState({ comment: text })} style={{ backgroundColor: '#f2f2f2', borderRadius: 10, marginTop: 20 }} placeholder='Leave a comment..' />
                             </View>
                         </View>
 
@@ -190,7 +241,7 @@ class RateSeller extends Component {
                         </View>
 
 
-                        <View style={{alignItems:'center', marginTop:30}}>
+                        <View style={{ alignItems: 'center', marginTop: 30 }}>
                             <TouchableOpacity
                                 style={st.btn}
                                 onPress={() => this.completeService()}
@@ -205,7 +256,9 @@ class RateSeller extends Component {
             )
         } else {
             return (
-                <View><Text>Something went wrong</Text></View>
+                <View style={{ flex: 1 }}>
+                    <LottieView style={{ flex: 1 }} source={require('../image/loading.json')} autoPlay loop={true} />
+                </View>
             )
         }
     }

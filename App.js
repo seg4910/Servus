@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, {Fragment, Component} from 'react';
+import React, { Fragment, Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -52,6 +52,14 @@ import ChangePassword from './components/ChangePassword.js';
 import RateSeller from './components/RateSeller.js';
 
 class NavigationDrawerStructure extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      photo: null
+    }
+  }
+
   //Structure for the navigation Drawer
   toggleDrawer = () => {
     this.props.navigationProps.toggleDrawer();
@@ -60,6 +68,21 @@ class NavigationDrawerStructure extends Component {
   signOut = () => {
     this.props.navigationProps.navigate("Auth");
   };
+
+  componentDidMount() {
+    AsyncStorage.getItem('userId', (err, result) => {
+      fetch(`http://localhost:8080/api/getAccountInfo?type=users&id=${result}`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ photo: responseJson.photo });
+          AsyncStorage.setItem('photo', responseJson.photo);
+        })
+    })
+  }
+
+  getPhoto = () => {
+    return this.state.photo;
+  }
 
   render() {
     return (
@@ -70,6 +93,38 @@ class NavigationDrawerStructure extends Component {
             style={{ width: 35, height: 35, marginLeft: 8 }}
           />
         </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+
+class Avatar extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      photo: null
+    }
+  }
+  componentDidMount() {
+    AsyncStorage.getItem('userId', (err, result) => {
+      fetch(`http://localhost:8080/api/getAccountInfo?type=users&id=${result}`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ photo: responseJson.photo });
+          AsyncStorage.setItem('photo', responseJson.photo);
+        })
+    })
+  }
+
+  render() {
+    return (
+      <View style={{ flexDirection: "row" }}>
+          <Image
+            source={{uri: this.state.photo}}
+            style={{ height: 120, width: 120, borderRadius: 60 }}
+          />
       </View>
     );
   }
@@ -97,7 +152,7 @@ const DrawerNavigatorExample = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: "My Orders"
       }
-    }        
+    }
   },
   {
     contentComponent: props => (
@@ -113,10 +168,9 @@ const DrawerNavigatorExample = createDrawerNavigator(
             justifyContent: "center"
           }}
         >
-          <Image
-            source={require("./image/avatar1.jpg")}
-            style={{ height: 120, width: 120, borderRadius: 60 }}
-          />
+
+          <Avatar/>
+
         </View>
         <ScrollView>
           <DrawerItems {...props} />
@@ -145,6 +199,8 @@ const DrawerNavigatorExample = createDrawerNavigator(
 
         </View>
       </SafeAreaView>
+
+
     ),
     contentOptions: { activeTintColor: "#E88D72" }
   }
@@ -174,7 +230,7 @@ const AuthStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },  
+  },
   Register: {
     screen: Register,
     navigationOptions: ({ navigation }) => ({
@@ -185,7 +241,7 @@ const AuthStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },  
+  },
   CreateLocation: {
     screen: CreateLocation,
     navigationOptions: ({ navigation }) => ({
@@ -196,7 +252,7 @@ const AuthStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  }  
+  }
 });
 
 // stack of components for core application navigation
@@ -211,7 +267,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  } ,
+  },
   ServicePreview: {
     screen: ServicePreview,
     navigationOptions: ({ navigation }) => ({
@@ -299,7 +355,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },  
+  },
   ServiceAvailability: {
     screen: ServiceAvailability,
     navigationOptions: ({ navigation }) => ({
@@ -321,7 +377,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  }, 
+  },
   AddNewCard: {
     screen: AddNewCard,
     navigationOptions: ({ navigation }) => ({
@@ -343,7 +399,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },  
+  },
   Order: {
     screen: Order,
     navigationOptions: ({ navigation }) => ({
@@ -354,7 +410,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },  
+  },
   ChangePassword: {
     screen: ChangePassword,
     navigationOptions: ({ navigation }) => ({
@@ -365,7 +421,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  }, 
+  },
   RateSeller: {
     screen: RateSeller,
     navigationOptions: ({ navigation }) => ({
@@ -376,7 +432,7 @@ const AppStack = createStackNavigator({
       },
       headerTintColor: "#000000"
     })
-  },                         
+  },
 });
 
 
@@ -422,33 +478,33 @@ export default class App extends React.Component {
             });
         }
       });
-      this.createNotificationListeners();      
+    this.createNotificationListeners();
   }
-  
+
   async createNotificationListeners() {
     /*
     * Triggered when a particular notification has been received in foreground
     * */
     this.notificationListener = firebase.notifications().onNotification((notification) => {
-        const { title, body } = notification;
-        this.showAlert(title, body);
+      const { title, body } = notification;
+      this.showAlert(title, body);
     });
-  
+
     /*
     * If your app is in background, you can listen for when a notification is clicked / tapped / opened as follows:
     * */
     this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
-        const { title, body } = notificationOpen.notification;
-        this.showAlert(title, body);
+      const { title, body } = notificationOpen.notification;
+      this.showAlert(title, body);
     });
-  
+
     /*
     * If your app is closed, you can check if it was opened by a notification being clicked / tapped / opened as follows:
     * */
     const notificationOpen = await firebase.notifications().getInitialNotification();
     if (notificationOpen) {
-        const { title, body } = notificationOpen.notification;
-        this.showAlert(title, body);
+      const { title, body } = notificationOpen.notification;
+      this.showAlert(title, body);
     }
     /*
     * Triggered for data only payload in foreground
@@ -463,7 +519,7 @@ export default class App extends React.Component {
     Alert.alert(
       title, body,
       [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
       ],
       { cancelable: false },
     );
