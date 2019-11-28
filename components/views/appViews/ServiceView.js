@@ -42,7 +42,6 @@ class ServiceView extends Component {
           </View>);
       }))
     } else {
-      console.log('she null');
       return null;
     }
 
@@ -50,7 +49,6 @@ class ServiceView extends Component {
 
 
   render() {
-    console.log(this.props);
     if (this.props.ratings !== undefined) {
       return (
         <View style={{ flex: 1 }}>
@@ -98,19 +96,27 @@ class ServiceView extends Component {
             />
           </View>
 
-          <View style={{ flex:1 }}>
-            <View style={{ flex: 1.5, marginLeft: 20, marginTop: 20 }}>
-              <Text style={{ fontSize: 22, paddingBottom: 10, fontWeight: 'bold' }}>Details</Text>
-
-              <View style={{ marginLeft: 10, marginBottom: 20 }}>
-                {/*               <View style={{marginBottom:10}}>
-                <Text style={{marginLeft:5, fontSize:18}}>{this.props.sellerName}</Text>
-              </View> */}
-                <View style={{}}>
-                  <Text style={{ marginLeft: 5, fontSize: 18 }}>{this.props.serviceDescription}</Text>
-                </View>
+          <View style={{ flex: 1.5, marginLeft: 20, marginTop: 20 }}>
+            <Text style={{ fontSize: 22, paddingBottom: 10, fontWeight: 'bold' }}>Details</Text>
+              <View style={{ alignItems: "center" }}>
+              {
+                this.props.servicePhoto ?
+                  <Image
+                    source={{ uri: this.props.servicePhoto }}
+                    style={{
+                      height: 150,
+                      width: 150,
+                    }}
+                      />
+                : null
+              }
               </View>
 
+            <View style={{ marginLeft: 10, marginBottom: 20 }}>
+              {/*               <View style={{marginBottom:10}}>
+              <Text style={{marginLeft:5, fontSize:18}}>{this.props.sellerName}</Text>
+            </View> */}
+              <Text style={{ marginLeft: 5, fontSize: 18 }}>{this.props.serviceDescription}</Text>
               <View style={{ marginLeft: 10, marginRight: 30}}>
                 <View style={{ flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'center' }}>
@@ -123,25 +129,20 @@ class ServiceView extends Component {
                   </View>
                 </View>
               </View>
-
-
-            </View>
-
-            <View style={{ marginLeft: 20, flex: 2 }}>
               <Text style={{ fontSize: 22, paddingBottom: 15, fontWeight: 'bold' }}>Reviews</Text>
               <ScrollView style={{ marginLeft: 10 }}>{this.getRatings()}</ScrollView>
             </View>
-
-            <View style={{ flex: .5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
-              <TouchableOpacity
-                style={st.btn}
-                onPress={this.props.viewAvailability}>
-                <Text style={st.btnText}>VIEW AVAILABILITY</Text>
-              </TouchableOpacity>
-            </View>
           </View>
 
-        </View>
+          <View style={{ flex: .5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+            <TouchableOpacity
+              style={st.btn}
+              onPress={this.props.viewAvailability}>
+              <Text style={st.btnText}>VIEW AVAILABILITY</Text>
+            </TouchableOpacity>
+          </View>
+
+      </View>
       );
     } else {
       return (
