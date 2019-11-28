@@ -109,6 +109,8 @@ class ViewOrders extends Component {
                         duration = '1-2 Hours'
                     } else if (data.size == 'LG') {
                         duration = '2-3 Hours'
+                    } else if (data.size == 'XL') {
+                        duration = '4+ Hours'
                     }
 
                     return (

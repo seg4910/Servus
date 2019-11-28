@@ -15,13 +15,9 @@ import LottieView from 'lottie-react-native';
 class ScheduleService extends Component {
   constructor(props) {
     super(props);
-
-    console.log('SCHEDULE SERVICE CONSTRUCTOR');
-
   }
 
   componentDidMount() {
-    console.log('SCHEDULE SERVICE CDM');
 
     const serviceInfo = this.props.navigation.getParam(
       "serviceInfo",
@@ -36,6 +32,8 @@ class ScheduleService extends Component {
     const availableDates = this.props.navigation.getParam(
       "availableDates", "NO-AVAILABLEDATES"
     );
+    const sellerPhoto = JSON.parse(JSON.stringify(this.props.navigation.getParam('sellerPhoto', 'NO-NAME')));
+
     this.setState({
       serviceInfo: serviceInfo,
       selectedDay: selectedDay,
@@ -43,6 +41,7 @@ class ScheduleService extends Component {
       shifts: [],
       availableDates: availableDates,
       selectedTime: availableDates[selectedDay.dateString],
+      sellerPhoto: sellerPhoto
     });
 
   }
@@ -53,7 +52,8 @@ class ScheduleService extends Component {
       serviceInfo: this.state.serviceInfo,
       selectedTime: this.state.selectedTime,
       taskSize: this.state.taskSize,
-      selectedDay: this.state.selectedDay
+      selectedDay: this.state.selectedDay,
+      sellerPhoto: this.state.sellerPhoto
     });
   }
 
@@ -105,7 +105,7 @@ class ScheduleService extends Component {
               }}
             >
               <Text style={{ fontSize: 30, color: "#000" }}>
-                {this.state.serviceInfo[0].sellerName}
+                {this.state.serviceInfo[0].serviceName}
               </Text>
               <Text style={{ fontSize: 15 }}>
                 {this.state.serviceInfo[0].serviceCategory} Service
@@ -123,7 +123,7 @@ class ScheduleService extends Component {
               </View>
             </View>
             <Image
-              source={require("../image/LawnMowing.jpg")}
+              source={{uri: this.state.sellerPhoto}}
               style={{
                 width: 90,
                 height: 90,

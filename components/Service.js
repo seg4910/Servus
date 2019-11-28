@@ -78,7 +78,8 @@ class Service extends Component {
     viewAvailability = () => {
       //alert('sellerid: ' + this.state.sellerId)
       this.props.navigation.navigate('ServiceAvailability', {
-          serviceInfo: this.state.serviceInfo
+          serviceInfo: this.state.serviceInfo,
+          sellerPhoto: this.state.sellerPhoto
         });
     }
 

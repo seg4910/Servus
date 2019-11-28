@@ -24,12 +24,16 @@ class ReviewOrder extends Component {
     const selectedTime = this.props.navigation.getParam(
       "selectedTime", "NO-TIMESELECTED"
     );
+
+    
     const taskSize = this.props.navigation.getParam(
       "taskSize", "NO-TASKSIZE"
     );
     const selectedDay = this.props.navigation.getParam(
       "selectedDay", "NO-SELECTEDDAY"
     );
+    const sellerPhoto = this.props.navigation.getParam('sellerPhoto', 'NO-NAME');
+
     let taskSizeHr = 0;
     if (taskSize == 'SM') {
       taskSizeHr = 1;
@@ -41,12 +45,14 @@ class ReviewOrder extends Component {
       taskSizeHr = 4;
     }
     this.state = {
-      taskSize: taskSizeHr,
-      selectedTime: selectedTime[0],
+      taskSizeHr: taskSizeHr,
+      taskSize: taskSize,
+      selectedTime: selectedTime,
       serviceInfo: serviceInfo,
       selectedDay: selectedDay,
       paymentInfo: '',
-      noteToSeller: null
+      noteToSeller: null,
+      sellerPhoto: sellerPhoto
     };
   }
 
@@ -114,10 +120,11 @@ class ReviewOrder extends Component {
           serviceCategory: this.state.serviceInfo[0].serviceCategory,
           serviceName: this.state.serviceInfo[0].serviceName,
           serviceDescription: this.state.serviceInfo[0].serviceDescription,
-          minPrice: this.state.serviceInfo[0].minPrice,
-          maxPrice: this.state.serviceInfo[0].maxPrice,
           selectedTime: this.state.selectedTime,
-          note: this.state.noteToSeller
+          selectedDay: this.state.selectedDay.dateString,
+          note: this.state.noteToSeller,
+          taskSize: this.state.taskSize,
+          price: this.state.serviceInfo[0].priceHr
         }),
       })
         .then(response => response.json())
@@ -175,7 +182,7 @@ class ReviewOrder extends Component {
             </View>
           </View>
           <Image
-            source={require("../image/LawnMowing.jpg")}
+            source={{uri: this.state.sellerPhoto}}
             style={{
               width: 90,
               height: 90,
@@ -202,7 +209,7 @@ class ReviewOrder extends Component {
               <Text style={{ fontSize: 20 }}>DATE</Text>
               <View style={{ marginLeft: 30 }}>
                 <Text style={{ fontSize: 18 }}>{Moment(this.state.selectedDay.dateString).format('LL')}</Text>
-                <Text style={{ fontSize: 18 }}>{this.formatTime(this.state.selectedTime)}</Text>
+                <Text style={{ fontSize: 18 }}>{this.state.selectedTime}</Text>
               </View>
             </View>
 
@@ -215,8 +222,8 @@ class ReviewOrder extends Component {
             </View>
 
             <View style={{ marginTop: 40, paddingBottom: 15 }}>
-              <Text style={{ fontSize: 20 }}>Estimated Duration: {this.state.taskSize} hours</Text>
-              <Text style={{ fontSize: 20 }}>Estimated Cost: {this.state.taskSize}</Text>
+              <Text style={{ fontSize: 20 }}>Estimated Duration: {this.state.taskSizeHr} hours</Text>
+              <Text style={{ fontSize: 20 }}>Estimated Cost: {this.state.taskSizeHr*this.state.serviceInfo[0].priceHr}</Text>
             </View>
 
             <TextInput onChangeText={(text) => this.setState({noteToSeller: text})} placeholder="Add a note.."/>

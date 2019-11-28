@@ -23,8 +23,11 @@ class OrderDetails extends Component {
     // is there a better way to do this when there is more than one item
     // being passed through navigation?
     const serviceInfo = this.props.navigation.getParam("serviceInfo", "NO-SERVICE");
+    const sellerPhoto = JSON.parse(JSON.stringify(this.props.navigation.getParam('sellerPhoto', 'NO-NAME')));
+
     this.setState({
-      serviceInfo: serviceInfo
+      serviceInfo: serviceInfo,
+      sellerPhoto: sellerPhoto
     });
   }
 
@@ -67,6 +70,7 @@ class OrderDetails extends Component {
       selectedDay: selectedDay,
       availableDates: availableDates,
       taskSize: this.state.taskSize,
+      sellerPhoto: this.state.sellerPhoto
     });
   };
 
@@ -91,7 +95,7 @@ class OrderDetails extends Component {
               }}
             >
               <Text style={{ fontSize: 30, color: "#000" }}>
-                {this.state.serviceInfo[0].sellerName}
+                {this.state.serviceInfo[0].serviceName}
               </Text>
               <Text style={{ fontSize: 15 }}>
                 {this.state.serviceInfo[0].serviceCategory} Service
@@ -109,7 +113,7 @@ class OrderDetails extends Component {
               </View>
             </View>
             <Image
-              source={require("../image/LawnMowing.jpg")}
+              source={{uri: this.state.sellerPhoto}}
               style={{
                 width: 90,
                 height: 90,
