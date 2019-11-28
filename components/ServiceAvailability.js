@@ -30,6 +30,7 @@ class ServiceAvailability extends Component {
   componentDidMount() {
     const { navigation } = this.props;
     const serviceInfo = JSON.parse(JSON.stringify(navigation.getParam('serviceInfo', 'NO-NAME')));
+    const sellerPhoto = JSON.parse(JSON.stringify(navigation.getParam('sellerPhoto', 'NO-NAME')));
 
     AsyncStorage.getItem('userId', (err, result) => {
       fetch(`http://localhost:8080/api/getSellerAvailability?sellerId=${serviceInfo[0].sellerID}`)
@@ -37,7 +38,8 @@ class ServiceAvailability extends Component {
         .then((responseJson) => {
           this.setState({
             shiftInfo: responseJson.shiftInfo,
-            serviceInfo: serviceInfo
+            serviceInfo: serviceInfo,
+            sellerPhoto: sellerPhoto
           }, function () {
             if (this.state.shiftInfo) {
               this.setState({ sellerId: serviceInfo[0].sellerID });
@@ -66,6 +68,7 @@ class ServiceAvailability extends Component {
   bookService = () => {
     this.props.navigation.navigate('OrderDetails', {
       serviceInfo: this.state.serviceInfo,
+      sellerPhoto: this.state.sellerPhoto,
       availableDates: this.state.availableDates,
       selectedDay: this.state.selectedDay,
     });
@@ -101,7 +104,7 @@ class ServiceAvailability extends Component {
             }}
           >
             <Text style={{ fontSize: 30, color: "#000" }}>
-              {serviceInfo[0].sellerName}
+              {serviceInfo[0].serviceName}
             </Text>
             <Text style={{ fontSize: 15 }}>
               {serviceInfo[0].serviceCategory} Service
@@ -119,7 +122,7 @@ class ServiceAvailability extends Component {
             </View>
           </View>
           <Image
-            source={require("../image/LawnMowing.jpg")}
+            source={{uri: this.state.sellerPhoto}}
             style={{
               width: 90,
               height: 90,
