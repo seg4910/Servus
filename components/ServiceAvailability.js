@@ -68,7 +68,6 @@ class ServiceAvailability extends Component {
       serviceInfo: this.state.serviceInfo,
       availableDates: this.state.availableDates,
       selectedDay: this.state.selectedDay,
-      shiftDays: this.state.shiftDays
     });
   }
 

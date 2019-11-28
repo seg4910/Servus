@@ -29,7 +29,6 @@ class ServiceCard extends Component {
           //borderRightWidth: 3,
           height: 200,
           margin: 10,
-          width: 350,
           marginBottom: 10,
           borderRadius: 5
         }}
@@ -42,7 +41,6 @@ class ServiceCard extends Component {
             style={{
               overflow: "hidden",
               height: 200,
-              width: 350,
               flexDirection: "row",
               borderRadius: 5,
               borderWidth: 0.5,

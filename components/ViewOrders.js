@@ -161,6 +161,8 @@ class ViewOrders extends Component {
                     );
                 }
             })
+        } else if (this.state.orders==null) {
+            return [];
         }
     }
 
