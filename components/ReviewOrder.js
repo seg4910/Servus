@@ -24,8 +24,6 @@ class ReviewOrder extends Component {
     const selectedTime = this.props.navigation.getParam(
       "selectedTime", "NO-TIMESELECTED"
     );
-
-    
     const taskSize = this.props.navigation.getParam(
       "taskSize", "NO-TASKSIZE"
     );
@@ -56,7 +54,7 @@ class ReviewOrder extends Component {
     };
   }
 
-  formatTime(shift){
+  formatTime(shift) {
     return `${Moment(shift.startHour).format("HH:mm")} - ${Moment(shift.endHour).format("HH:mm")}`;
   }
 
@@ -71,36 +69,43 @@ class ReviewOrder extends Component {
   }
 
   sendNotificationToSeller(orderId) {
-    fetch(`https://fcm.googleapis.com/fcm/send`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'key=AAAAHyv-GIg:APA91bFcrY4DEMCl5SyfH4V8kjehp20BVYo7Ly5CQj5D5IJUSEQ6TKOl0cvlywN5wFdxgXBCTfCkxrR0z0iBCyhrdMnjYurwcAyu2MJU5Eq-BuX7gHojKCMb1TsQlJIYfx8_oDI5YND5'
-      },
-      body: JSON.stringify({
-        "to": "eS0ItdmSsSs:APA91bEwkBvvHY_a_ed4pfA2cnVRpzXl--ld8QbLpSrdP1lJyoE7lRmOjmmJqymRag9K4YBP3JwWXgNmmAkiLkk6_G8PM21-0F65dh0OylWSGlK0WUeNIJD1V8qmTyrxlQKQXbSf-V0W",
-        "notification": {
-          "title": "You have a new order request!",
-          "body": "Head to your orders to review it",
-          "content_available": true,
-          "priority": "high"
-        },
-        "data": {
-          "title": "You have a new order request!",
-          "body": "Head to your orders to review it",
-          "orderId": orderId,
-          "content_available": true,
-          "priority": "high"
-        }
+
+    fetch(`http://localhost:8080/api/getAccountInfo?type=${'sellers'}&id=${this.state.serviceInfo[0].sellerID}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        fetch(`https://fcm.googleapis.com/fcm/send`, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'key=AAAAHyv-GIg:APA91bFcrY4DEMCl5SyfH4V8kjehp20BVYo7Ly5CQj5D5IJUSEQ6TKOl0cvlywN5wFdxgXBCTfCkxrR0z0iBCyhrdMnjYurwcAyu2MJU5Eq-BuX7gHojKCMb1TsQlJIYfx8_oDI5YND5'
+          },
+          body: JSON.stringify({
+            "to": responseJson.fcmToken,
+            "notification": {
+              "title": "You have a new order request!",
+              "body": "Head to your orders to review it",
+              "content_available": true,
+              "priority": "high"
+            },
+            "data": {
+              "title": "You have a new order request!",
+              "body": "Head to your orders to review it",
+              "orderId": orderId,
+              "content_available": true,
+              "priority": "high"
+            }
+          })
+        })
+          .then(response => response.json())
+          .then(responseJson => {
+            console.log(responseJson);
+          })
+          .catch(error => {
+            console.log(error);
+          });
       })
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        console.log(responseJson);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
+
   }
 
   placeOrder() {
@@ -182,7 +187,7 @@ class ReviewOrder extends Component {
             </View>
           </View>
           <Image
-            source={{uri: this.state.sellerPhoto}}
+            source={{ uri: this.state.sellerPhoto }}
             style={{
               width: 90,
               height: 90,
@@ -223,10 +228,10 @@ class ReviewOrder extends Component {
 
             <View style={{ marginTop: 40, paddingBottom: 15 }}>
               <Text style={{ fontSize: 20 }}>Estimated Duration: {this.state.taskSizeHr} hours</Text>
-              <Text style={{ fontSize: 20 }}>Estimated Cost: {this.state.taskSizeHr*this.state.serviceInfo[0].priceHr}</Text>
+              <Text style={{ fontSize: 20 }}>Estimated Cost: {this.state.taskSizeHr * this.state.serviceInfo[0].priceHr}</Text>
             </View>
 
-            <TextInput onChangeText={(text) => this.setState({noteToSeller: text})} placeholder="Add a note.."/>
+            <TextInput onChangeText={(text) => this.setState({ noteToSeller: text })} placeholder="Add a note.." />
           </View>
 
         </View>

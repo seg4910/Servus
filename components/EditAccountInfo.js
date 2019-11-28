@@ -62,6 +62,7 @@ class EditAccountInfo extends Component {
           }),
          });
        })
+       this.props.navigation.state.params.updateInfo();
     }
     else{
       this.setState({
@@ -91,6 +92,8 @@ class EditAccountInfo extends Component {
           }),
          });
        })
+       this.props.navigation.state.params.updateInfo();
+
     }
     else{
       this.setState({
@@ -120,6 +123,8 @@ class EditAccountInfo extends Component {
           }),
          });
        })
+       this.props.navigation.state.params.updateInfo();
+
     }
     else{
       this.setState({

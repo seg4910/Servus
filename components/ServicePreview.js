@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, ScrollView, AsyncStorage, TouchableOpacity, Image } from "react-native";
 import { Button, Card } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import StarRating from "react-native-star-rating";
+
 import ServiceCard from './views/appViews/ServiceCard.js';
 
 const fetch = require("node-fetch");
@@ -67,6 +65,7 @@ class ServicePreview extends Component {
               priceHr = {data.priceHr}
               selectService = {this.selectService}
               serviceCat = {data.serviceCategory}
+              servicePhoto = {data.photo}
            />
           );
         });

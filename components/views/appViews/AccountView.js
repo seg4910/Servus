@@ -43,11 +43,15 @@ class AccountView extends Component {
   };
 
   editAccountInfo = () => {
-    this.props.navigation.navigate("EditAccountInfo");
+    this.props.navigation.navigate("EditAccountInfo", {
+      updateInfo: this.updateInfo
+    });
   }
 
   changePassword = () => {
-    this.props.navigation.navigate("ChangePassword");
+    this.props.navigation.navigate("ChangePassword", {
+      updateInfo: this.updateInfo
+    });
   }
 
   handleChoosePhoto = () => {
@@ -86,6 +90,10 @@ class AccountView extends Component {
     this.props.navigation.navigate('RateSeller');
   }
 
+  updateInfo = () => {
+    this.props.loadData();
+  }
+
   savePhotoUrl = () => {
     // fetch post image url
     console.log('saving photo');
@@ -105,6 +113,7 @@ class AccountView extends Component {
         }),
        });
     })
+    this.updateInfo();
   }
 
   uploadImage = (image) => {
@@ -126,7 +135,7 @@ class AccountView extends Component {
           } catch {
             // something going wrong here, error being thrown but upload works fine
           }
-
+        
         this.setState({uploading: false});
   };
 
