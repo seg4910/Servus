@@ -7,6 +7,7 @@
  */
 
 import React, { Fragment, Component } from 'react';
+import Icon from "react-native-vector-icons/FontAwesome";
 import {
   SafeAreaView,
   StyleSheet,
@@ -121,10 +122,18 @@ class Avatar extends Component {
   render() {
     return (
       <View style={{ flexDirection: "row" }}>
-          <Image
-            source={{uri: this.state.photo}}
-            style={{ height: 120, width: 120, borderRadius: 60 }}
-          />
+          {
+            this.state.photo ?
+              <Image
+                source={{uri: this.state.photo}}
+                style={{ height: 120, width: 120, borderRadius: 60 }}
+              />
+            :
+              <Icon
+                name="user-circle"
+                size={63}
+              />
+          }
       </View>
     );
   }

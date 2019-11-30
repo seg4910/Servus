@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
   Text,
   View,
-  SafeAreaView,
-  TextInput,
-  Platform,
   ScrollView,
   TouchableOpacity,
-  Button,
   Image,
   AsyncStorage,
   Dimensions
@@ -21,7 +16,6 @@ import Svg, {
   Path,
   Circle
 } from 'react-native-svg';
-import RNFetchBlob from 'react-native-fetch-blob';
 
 const WIDTH = Dimensions.get('screen').width;
 
@@ -126,9 +120,7 @@ class AccountView extends Component {
             imgRef.putFile(image.path).then((file) => {
 
               imgRef.getDownloadURL().then((downloadURL) => {
-                console.log('here');
                 this.setState({downloadUrl: downloadURL});
-                console.log('here');
                 this.savePhotoUrl();
               })
             });
@@ -140,8 +132,6 @@ class AccountView extends Component {
   };
 
   render() {
-
-
     return (
       <ScrollView style={{ flex: 1 }}>
 
@@ -155,21 +145,32 @@ class AccountView extends Component {
             strokeWidth="2"
           />
         </Svg>
-        <Image
-          source={{uri: this.props.photo}}
-          style={{
-            position: 'absolute',
-            top: 20,
-            left: WIDTH / 2 - 60,
-            width: 120,
-            height: 120,
-            borderRadius: 75,
-            borderWidth: 2,
-            borderColor: '#E88D72'
-
-          }}
-        />
-
+        {
+          this.props.photo ?
+            <Image
+              source={{uri: this.props.photo}}
+              style={{
+                position: 'absolute',
+                top: 20,
+                left: WIDTH / 2 - 60,
+                width: 120,
+                height: 120,
+                borderRadius: 75,
+                borderWidth: 2,
+                borderColor: '#E88D72'
+              }}
+            />
+          :
+          <Icon 
+            style={{
+              position: 'absolute',
+              top: 90,
+              left: WIDTH / 2 - 30,
+            }}
+            name="user-circle"
+            size={63}
+          />
+        }
         <View style={{ marginBottom: 40, padding: 20, borderBottomColor: '#dfe6e9', borderBottomWidth: 2 }}>
           <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{this.props.name}</Text>
           <Text style={{ color: '#7f8c8d' }}>{this.props.phone}</Text>
