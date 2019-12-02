@@ -22,6 +22,32 @@ class ServiceView extends Component {
     console.log(this.props.ratings);
   }
 
+  getSellerRating = () => {
+    if (this.props.ratings !== null) {
+      var totalRating = 0;
+      var ratingCount = 0;
+      (this.props.ratings.map((rating) => {
+        totalRating += parseInt(rating.rating);
+        ratingCount++;
+      }))
+      return (totalRating / ratingCount)
+    } else {
+      return 5
+    }
+  }
+
+  getServiceCategory = () => {
+    if (this.props.serviceCategory == 'LM') {
+      return "Lawn Services"
+    } else if (this.props.serviceCategory == 'SR') {
+      return "Snow Removal Services"
+    } else if (this.props.serviceCategory == 'CL') {
+      return "Cleaning Services"
+    } else if (this.props.serviceCategory == 'HM') {
+      return "Handyman Services"
+    }
+  }
+
   getRatings = () => {
     if (this.props.ratings !== null) {
       return (this.props.ratings.map((rating) => {
@@ -72,13 +98,13 @@ class ServiceView extends Component {
                 {this.props.serviceName}
               </Text>
               <Text style={{ fontSize: 15, color: '#7f8c8d' }}>
-                {this.props.serviceCategory} Service
+                {this.getServiceCategory()}
                 </Text>
               <View style={{ width: 100, paddingTop: 10 }}>
                 <StarRating
                   disabled={true}
                   maxStars={5}
-                  rating={4.5}
+                  rating={this.getSellerRating()}
                   starSize={16}
                   fullStarColor="orange"
                   emptyStarColor="orange"
@@ -96,9 +122,9 @@ class ServiceView extends Component {
             />
           </View>
 
-          <View style={{ flex: 1.5, marginLeft: 20, marginTop: 20 }}>
+          <View style={{ flex: 1, marginLeft: 20, marginTop: 20 }}>
             <Text style={{ fontSize: 22, paddingBottom: 10, fontWeight: 'bold' }}>Details</Text>
-              <View style={{ alignItems: "center" }}>
+{/*               <View style={{ alignItems: "center" }}>
               {
                 this.props.servicePhoto ?
                   <Image
@@ -110,7 +136,7 @@ class ServiceView extends Component {
                       />
                 : null
               }
-              </View>
+              </View> */}
 
             <View style={{ marginLeft: 10, marginBottom: 20 }}>
               {/*               <View style={{marginBottom:10}}>
@@ -134,9 +160,9 @@ class ServiceView extends Component {
             </View>
           </View>
 
-          <View style={{ flex: .5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+          <View style={{justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
             <TouchableOpacity
-              style={st.btn}
+              style={st.btnPrimary}
               onPress={this.props.viewAvailability}>
               <Text style={st.btnText}>VIEW AVAILABILITY</Text>
             </TouchableOpacity>

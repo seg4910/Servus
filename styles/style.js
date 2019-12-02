@@ -84,6 +84,14 @@ module.exports = StyleSheet.create({
     justifyContent: "center",
     marginTop: 20
   },
+  btnPrimary: {  
+    height: 45,
+    alignSelf:'stretch',
+    marginHorizontal:20,
+    borderWidth: 2,
+    borderColor: "#E88D72",
+    justifyContent: "center",
+  },  
   btnForm: {
     width: WIDTH - 155,
     height: 45,
@@ -93,7 +101,8 @@ module.exports = StyleSheet.create({
     marginTop: 20
   },
   btnText: {
-    color: "#fff",
+    textTransform: "uppercase",
+    color: "#543855",
     fontSize: 19,
     textAlign: "center",
     fontWeight: "bold"

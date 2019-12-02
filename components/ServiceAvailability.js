@@ -145,7 +145,7 @@ class ServiceAvailability extends Component {
 
         <View style={{justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
           <TouchableOpacity
-            style={st.btn}
+            style={st.btnPrimary}
             onPress={this.bookService}>
             <Text style={st.btnText}>BOOK SERVICE</Text>
           </TouchableOpacity>
