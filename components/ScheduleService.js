@@ -162,7 +162,7 @@ class ScheduleService extends Component {
 
           <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
             <TouchableOpacity
-              style={st.btn}
+              style={st.btnPrimary}
               onPress={() => this.reviewOrder()}>
               <Text style={st.btnText}>Review Order</Text>
             </TouchableOpacity>

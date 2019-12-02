@@ -14,13 +14,38 @@ import StarRating from "react-native-star-rating";
 class ServiceCard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      ratings: null
+    }
   };
+
+  componentDidMount() {
+    fetch('http://localhost:8080/api/getRatings?id=' + this.props.id)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          ratings: responseJson.ratingInfo
+        })
+      })
+  }
+
+  getSellerRating = () => {
+    if (this.state.ratings !== null) {
+      var totalRating = 0;
+      var ratingCount = 0;
+      (this.state.ratings.map((rating) => {
+        totalRating += parseInt(rating.rating);
+        ratingCount++;
+      }))
+      return (totalRating / ratingCount)
+    } else {
+      return 5
+    }
+  }
 
   render() {
 
       return (
-
-        
 
         <View
         key={this.props.id}
@@ -62,7 +87,7 @@ class ServiceCard extends Component {
                 />
             }              
               
-{/*               {this.props.serviceCat == 'LM' &&
+            {!this.props.servicePhoto && this.props.serviceCat == 'LM' &&
                 <Image
                     source={require("./../../../image/LawnMowing.jpg")}
                     style={{
@@ -73,7 +98,7 @@ class ServiceCard extends Component {
                     }}
                 />
             }
-            {this.props.serviceCat == 'SR' &&
+            {!this.props.servicePhoto && this.props.serviceCat == 'SR' &&
                 <Image
                     source={require("./../../../image/SnowRemoval.jpg")}
                     style={{
@@ -84,7 +109,7 @@ class ServiceCard extends Component {
                     }}
                 />
             }
-            {this.props.serviceCat == 'CL' &&
+            {!this.props.servicePhoto && this.props.serviceCat == 'CL' &&
                 <Image
                     source={require("./../../../image/CleaningServices.jpg")}
                     style={{
@@ -95,7 +120,7 @@ class ServiceCard extends Component {
                     }}
                 />
             }
-            {this.props.serviceCat == 'HM' &&
+            {!this.props.servicePhoto && this.props.serviceCat == 'HM' &&
                 <Image
                     source={require("./../../../image/HandymanServices.jpg")}
                     style={{
@@ -105,7 +130,7 @@ class ServiceCard extends Component {
                     resizeMode: "cover"
                     }}
                 />
-            } */}
+            } 
 
             </View>
             <View
@@ -135,7 +160,7 @@ class ServiceCard extends Component {
                       <StarRating
                         disabled={true}
                         maxStars={5}
-                        rating={4.5}
+                        rating={this.getSellerRating()}
                         starSize={16}
                         fullStarColor="orange"
                         emptyStarColor="orange"

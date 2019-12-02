@@ -133,7 +133,7 @@ class Order extends Component {
         return (
             <View style={{ flex: 1 }}>
                 {this.state.buyerInfo && (
-                    <View style={{ flex: 1, padding: 20 }}>
+                    <View style={{ flex: 1}}>
                         <View style={{ marginBottom: 40, padding: 10, borderBottomColor: '#dfe6e9', borderBottomWidth: 2 }}>
 
                             {this.state.orderInfo[0].status == 'PENDING' && (
@@ -197,25 +197,25 @@ class Order extends Component {
                         )}
 
                         {this.state.orderInfo[0].status == 'PENDING' && (
-                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-end' }}>
-                                <TouchableOpacity onPress={() => this.toggleRequestModal('CANCEL')} style={{ borderRadius: 5, backgroundColor: '#e74c3c', flex: 1, height: 50, margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontWeight: 'bold' }}>CANCEL</Text>
+                            <View style={{ flex: 1, justifyContent: 'flex-end', alignItems:'center', marginBottom:10 }}>
+                                <TouchableOpacity onPress={() => this.toggleRequestModal('CANCEL')} style={st.btnPrimary}>
+                                    <Text style={st.btnText}>CANCEL</Text>
                                 </TouchableOpacity>
                             </View>
                         )}
 
                         {this.state.orderInfo[0].status == 'ACCEPTED' && (
-                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-end' }}>
-                                <TouchableOpacity onPress={() => this.toggleRequestModal('CANCEL')} style={{ borderRadius: 5, backgroundColor: '#e74c3c', flex: 1, height: 50, margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontWeight: 'bold' }}>CANCEL</Text>
+                            <View style={{ flex: 1, justifyContent: 'flex-end', alignItems:'center', marginBottom:10 }}>
+                                <TouchableOpacity onPress={() => this.toggleRequestModal('CANCEL')} style={st.btnPrimary}>
+                                    <Text style={st.btnText}>CANCEL</Text>
                                 </TouchableOpacity>
                             </View>
                         )}
 
                         {this.state.orderInfo[0].status == 'COMPLETEP' && (
-                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-end' }}>
-                                <TouchableOpacity onPress={() => this.toggleRequestModal('COMPLETE')} style={{ borderRadius: 5, backgroundColor: '#E88D72', flex: 1, height: 50, margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontWeight: 'bold' }}>CONFIRM COMPLETION</Text>
+                            <View style={{ flex: 1, justifyContent: 'flex-end', alignItems:'center', marginBottom:10 }}>
+                                <TouchableOpacity onPress={() => this.toggleRequestModal('COMPLETE')} style={st.btnPrimary}>
+                                    <Text style={st.btnText}>CONFIRM COMPLETION</Text>
                                 </TouchableOpacity>
                             </View>
                         )}

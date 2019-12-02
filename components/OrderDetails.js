@@ -166,7 +166,7 @@ class OrderDetails extends Component {
 
           <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
             <TouchableOpacity
-              style={st.btn}
+              style={st.btnPrimary}
               onPress={() => this.scheduleService()}
             >
               <Text style={st.btnText}>SCHEDULE SERVICE</Text>

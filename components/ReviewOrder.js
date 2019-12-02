@@ -228,7 +228,7 @@ class ReviewOrder extends Component {
 
             <View style={{ marginTop: 40, paddingBottom: 15 }}>
               <Text style={{ fontSize: 20 }}>Estimated Duration: {this.state.taskSizeHr} hours</Text>
-              <Text style={{ fontSize: 20 }}>Estimated Cost: {this.state.taskSizeHr * this.state.serviceInfo[0].priceHr}</Text>
+              <Text style={{ fontSize: 20 }}>Estimated Cost: ${this.state.taskSizeHr * this.state.serviceInfo[0].priceHr}</Text>
             </View>
 
             <TextInput onChangeText={(text) => this.setState({ noteToSeller: text })} placeholder="Add a note.." />
@@ -239,7 +239,7 @@ class ReviewOrder extends Component {
 
         <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
           <TouchableOpacity
-            style={st.btn}
+            style={st.btnPrimary}
             onPress={() => this.placeOrder()}>
             <Text style={st.btnText}>PLACE ORDER</Text>
           </TouchableOpacity>
