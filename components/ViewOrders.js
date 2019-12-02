@@ -89,6 +89,7 @@ class ViewOrders extends Component {
     }
 
     retrieveOrders = (status) => {
+        let duration = null;
         if (this.state.orders) {
             return this.state.orders.map((data) => {
                 if (data.serviceCategory == 'LM') {

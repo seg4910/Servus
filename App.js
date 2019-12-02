@@ -28,6 +28,7 @@ import {
   DrawerItems
 } from "react-navigation";
 
+import Avatar from './components/Avatar.js';
 import Home from './components/Home.js';
 import Account from './components/Account.js';
 import ViewOrders from './components/ViewOrders.js';
@@ -54,36 +55,15 @@ import RateSeller from './components/RateSeller.js';
 
 class NavigationDrawerStructure extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      photo: null
-    }
-  }
-
   //Structure for the navigation Drawer
   toggleDrawer = () => {
+    
     this.props.navigationProps.toggleDrawer();
   };
 
   signOut = () => {
     this.props.navigationProps.navigate("Auth");
   };
-
-  componentDidMount() {
-    AsyncStorage.getItem('userId', (err, result) => {
-      fetch(`http://localhost:8080/api/getAccountInfo?type=users&id=${result}`)
-        .then((response) => response.json())
-        .then((responseJson) => {
-          this.setState({ photo: responseJson.photo });
-          AsyncStorage.setItem('photo', responseJson.photo);
-        })
-    })
-  }
-
-  getPhoto = () => {
-    return this.state.photo;
-  }
 
   render() {
     return (
@@ -94,46 +74,6 @@ class NavigationDrawerStructure extends Component {
             style={{ width: 35, height: 35, marginLeft: 8 }}
           />
         </TouchableOpacity>
-      </View>
-    );
-  }
-}
-
-
-class Avatar extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      photo: null
-    }
-  }
-  componentDidMount() {
-    AsyncStorage.getItem('userId', (err, result) => {
-      fetch(`http://localhost:8080/api/getAccountInfo?type=users&id=${result}`)
-        .then((response) => response.json())
-        .then((responseJson) => {
-          this.setState({ photo: responseJson.photo });
-          AsyncStorage.setItem('photo', responseJson.photo);
-        })
-    })
-  }
-
-  render() {
-    return (
-      <View style={{ flexDirection: "row" }}>
-          {
-            this.state.photo ?
-              <Image
-                source={{uri: this.state.photo}}
-                style={{ height: 120, width: 120, borderRadius: 60 }}
-              />
-            :
-              <Icon
-                name="user-circle"
-                size={63}
-              />
-          }
       </View>
     );
   }

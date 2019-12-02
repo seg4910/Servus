@@ -108,6 +108,7 @@ class AccountView extends Component {
        });
     })
     this.updateInfo();
+    this.refs.avatar.loadPhoto();
   }
 
   uploadImage = (image) => {
@@ -145,6 +146,7 @@ class AccountView extends Component {
             strokeWidth="2"
           />
         </Svg>
+
         {
           this.props.photo ?
             <Image
@@ -171,6 +173,7 @@ class AccountView extends Component {
             size={63}
           />
         }
+
         <View style={{ marginBottom: 40, padding: 20, borderBottomColor: '#dfe6e9', borderBottomWidth: 2 }}>
           <Text style={{ fontSize: 25, fontWeight: 'bold' }}>{this.props.name}</Text>
           <Text style={{ color: '#7f8c8d' }}>{this.props.phone}</Text>

@@ -117,7 +117,7 @@ class Order extends Component {
 
     render() {
         const { navigation } = this.props;
-
+        let duration = null;
         if (this.state.orderInfo) {
             if (this.state.orderInfo[0].size == 'SM') {
                 duration = '0 - 1 Hours'
