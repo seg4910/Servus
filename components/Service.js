@@ -13,6 +13,8 @@ class Service extends Component {
             serviceName: '',
             serviceDescription: '',
             sellerName: '',
+            sellerPhone: '',
+            sellerEmail: '',
             price: 0,
             serviceCategory: '',
             ratings: undefined,
@@ -50,7 +52,9 @@ class Service extends Component {
                                 .then((response) => response.json())
                                 .then((responseJson) => {
                                     this.setState({
-                                        sellerPhoto: responseJson.photo
+                                        sellerPhoto: responseJson.photo,
+                                        sellerPhone: responseJson.phone,
+                                        sellerEmail: responseJson.email,
                                     })
                                 })
                             fetch('http://localhost:8080/api/getRatings?id=' + this.state.serviceInfo[0].id)
@@ -91,7 +95,6 @@ class Service extends Component {
     }
 
     render() {
-        const { navigation } = this.props;
         return (
             <ServiceView
                 viewAvailability={this.viewAvailability}
@@ -106,6 +109,8 @@ class Service extends Component {
                 price={this.state.price}
                 sellerPhoto={this.state.sellerPhoto}
                 servicePhoto={this.state.servicePhoto}
+                sellerEmail={this.state.sellerEmail}
+                sellerPhone={this.state.sellerPhone}
             />
         );
     }

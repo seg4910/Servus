@@ -4,7 +4,8 @@ import {
   View,
   Image,
   TouchableOpacity,
-  Picker
+  Picker,
+  ScrollView,
 } from "react-native";
 import StarRating from "react-native-star-rating";
 import { Calendar } from 'react-native-calendars';
@@ -87,87 +88,96 @@ class ScheduleService extends Component {
         );
 
       return (
-        <View style={{ flex: 1 }}>
-          <View style={{
-            flexDirection: "row",
-            padding: 10,
-            paddingBottom: 5,
-            borderBottomColor: "#dfe6e9",
-            borderBottomWidth: 2,
-          }}>
+        <ScrollView>
+          <View style={{ display:"flex", flexDirection: "column" }}>
+            <View style={{
+              flexDirection: "row",
+              padding: 10,
+              paddingBottom: 5,
+              borderBottomColor: "#dfe6e9",
+              borderBottomWidth: 2,
+            }}>
 
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "column",
-                marginLeft: 20,
-                paddingBottom: 10
-              }}
-            >
-              <Text style={{ fontSize: 30, color: "#000" }}>
-                {this.state.serviceInfo[0].serviceName}
-              </Text>
-              <Text style={{ fontSize: 15 }}>
-                {this.state.serviceInfo[0].serviceCategory} Service
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "column",
+                  marginLeft: 20,
+                  paddingBottom: 10
+                }}
+              >
+                <Text style={{ fontSize: 25, color: "#000" }}>
+                  {this.state.serviceInfo[0].serviceName}
                 </Text>
-              <View style={{ width: 100, paddingTop: 10 }}>
-                <StarRating
-                  disabled={true}
-                  maxStars={5}
-                  rating={4.5}
-                  starSize={16}
-                  fullStarColor="orange"
-                  emptyStarColor="orange"
-                  style={{}}
-                />
+                <Text style={{ fontSize: 13 }}>
+                  {this.state.serviceInfo[0].serviceCategory} Service
+                  </Text>
+                <View style={{ width: 100, paddingTop: 10 }}>
+                  <StarRating
+                    disabled={true}
+                    maxStars={5}
+                    rating={4.5}
+                    starSize={16}
+                    fullStarColor="orange"
+                    emptyStarColor="orange"
+                    style={{}}
+                  />
+                </View>
               </View>
+              <Image
+                source={{uri: this.state.sellerPhoto}}
+                style={{
+                  width: 90,
+                  height: 80,
+                  borderRadius: 55
+                }}
+              />
             </View>
-            <Image
-              source={{uri: this.state.sellerPhoto}}
-              style={{
-                width: 90,
-                height: 90,
-                borderRadius: 55
+
+            <Calendar
+              theme={{
+                'stylesheet.day.basic':{
+                  'base':{
+                    width:32,
+                    height:25,
+                    alignItems: 'center'
+                  }
+                }
+              }}
+              current={this.state.selectedDay.dateString}
+              markedDates={markedDates}
+              onDayPress={(day) => {
+                this.setState({
+                  selectedDay: day,
+                  selectedTime: () => this.formatTime(todaysShifts[0]),
+                });
               }}
             />
-          </View>
 
-          <Calendar
-            current={this.state.selectedDay.dateString}
-            markedDates={markedDates}
-            onDayPress={(day) => {
-              this.setState({
-                selectedDay: day,
-                selectedTime: () => this.formatTime(todaysShifts[0]),
-              });
-            }}
-          />
-
-          <View style={{ alignItems: 'center', borderTopColor: '#dfe6e9', borderTopWidth: 2, paddingTop: 20, marginTop: 20 }}>
-            <Text style={{ fontSize: 20, marginBottom: 10 }}>
-              Available Times for {Moment(this.state.selectedDay.dateString).format("LL")}
-            </Text>
-            <View style={{ borderWidth: 1, borderColor: '#dfe6e9' }}>
-              <Picker
-                selectedValue={this.state.selectedTime}
-                style={{ height: 50, width: 250 }}
-                onValueChange={(selectedTime) => {
-                  this.setState({ selectedTime: selectedTime })
-                }
-                }>
-                {selectedShifts}
-              </Picker>
+            <View style={{ alignItems: 'center', borderTopColor: '#dfe6e9', borderTopWidth: 2, paddingTop: 20, marginTop: 20, paddingBottom: 20 }}>
+              <Text style={{ fontSize: 20, marginBottom: 10 }}>
+                Available Times for {Moment(this.state.selectedDay.dateString).format("LL")}
+              </Text>
+              <View style={{ borderWidth: 1, borderColor: '#dfe6e9' }}>
+                <Picker
+                  selectedValue={this.state.selectedTime}
+                  style={{ height: 50, width: 250 }}
+                  onValueChange={(selectedTime) => {
+                    this.setState({ selectedTime: selectedTime })
+                  }
+                  }>
+                  {selectedShifts}
+                </Picker>
+              </View>
             </View>
-          </View>
 
-          <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
             <TouchableOpacity
               style={st.btnPrimary}
               onPress={() => this.reviewOrder()}>
               <Text style={st.btnText}>Review Order</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </ScrollView>
       );
     } else {
       return (
