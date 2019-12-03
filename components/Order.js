@@ -235,7 +235,7 @@ class Order extends Component {
                                     </View>
                                     <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                                         <Icon2 style={{ paddingRight: 10, color: '#E88D72' }} name="clock-outline" size={25} />
-                                        <Text style={{ fontSize: 17 }}>{Moment(this.state.orderInfo[0].dateScheduled).format('hh:mm a')}</Text>
+                                        <Text style={{ fontSize: 17 }}>{this.state.orderInfo[0].shiftTime}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                                         <Icon2 style={{ paddingRight: 10, color: '#E88D72' }} name="timer-sand" size={25} />
