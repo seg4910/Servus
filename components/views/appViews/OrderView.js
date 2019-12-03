@@ -16,9 +16,7 @@ class OrderView extends Component {
   }
 
   render() {
-    //console.log('ORDER INFO: '+ JSON.stringify(this.props.orderInfo));
-    //console.log('ORDER INFO: '+ this.props.orderInfo[0]);    
-
+    
     if (this.props.orderInfo) {
       if (this.props.orderInfo[0].size == 'SM') {
           duration = '0 - 1 Hours'
