@@ -18,10 +18,6 @@ class ServiceView extends Component {
     super(props);
   };
 
-  componentDidMount() {
-    console.log(this.props.ratings);
-  }
-
   getSellerRating = () => {
     if (this.props.ratings !== null) {
       var totalRating = 0;
@@ -76,74 +72,72 @@ class ServiceView extends Component {
 
   render() {
     if (this.props.ratings !== undefined) {
+      console.log(this.props)
       return (
-        <View style={{ flex: 1 }}>
+        <ScrollView>
           <View style={{
-            flexDirection: "row",
-            padding: 10,
-            paddingBottom: 5,
-            borderBottomColor: "#dfe6e9",
-            borderBottomWidth: 2,
-          }}>
-
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "column",
-                marginLeft: 20,
-                paddingBottom: 10
-              }}
-            >
-              <Text style={{ fontSize: 30, color: "#000" }}>
-                {this.props.serviceName}
-              </Text>
-              <Text style={{ fontSize: 15, color: '#7f8c8d' }}>
-                {this.getServiceCategory()}
+              display: "flex",
+              flexDirection: "column",
+              marginLeft: 20,
+              marginRight: 20,
+            }}>
+            <View style={{
+              flexDirection: "row",
+              padding: 10,
+            }}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "column",
+                  paddingBottom: 10
+                }}
+              >
+                <Text style={{ fontSize: 30, color: "#000" }}>
+                  {this.props.serviceName}
                 </Text>
-              <View style={{ width: 100, paddingTop: 10 }}>
-                <StarRating
-                  disabled={true}
-                  maxStars={5}
-                  rating={this.getSellerRating()}
-                  starSize={16}
-                  fullStarColor="orange"
-                  emptyStarColor="orange"
-                  style={{}}
-                />
+                <Text style={{ fontSize: 15, color: '#7f8c8d' }}>
+                  {this.getServiceCategory()}
+                  </Text>
+                <View style={{ width: 100, paddingTop: 10 }}>
+                  <StarRating
+                    disabled={true}
+                    maxStars={5}
+                    rating={this.getSellerRating()}
+                    starSize={16}
+                    fullStarColor="orange"
+                    emptyStarColor="orange"
+                    style={{}}
+                  />
+                </View>
               </View>
             </View>
-            <Image
-              source={{uri: this.props.sellerPhoto}}
-              style={{
-                width: 90,
-                height: 90,
-                borderRadius: 55
-              }}
-            />
-          </View>
 
-          <View style={{ flex: 1, marginLeft: 20, marginTop: 20 }}>
-            <Text style={{ fontSize: 22, paddingBottom: 10, fontWeight: 'bold' }}>Details</Text>
-{/*               <View style={{ alignItems: "center" }}>
-              {
-                this.props.servicePhoto ?
-                  <Image
-                    source={{ uri: this.props.servicePhoto }}
-                    style={{
-                      height: 150,
-                      width: 150,
-                    }}
-                      />
-                : null
-              }
-              </View> */}
-
-            <View style={{ marginLeft: 10, marginBottom: 20 }}>
-              {/*               <View style={{marginBottom:10}}>
-              <Text style={{marginLeft:5, fontSize:18}}>{this.props.sellerName}</Text>
-            </View> */}
-              <Text style={{ marginLeft: 5, fontSize: 18 }}>{this.props.serviceDescription}</Text>
-              <View style={{ marginLeft: 10, marginRight: 30}}>
+            <View style={{
+              paddingTop: 5,
+              borderTopColor: "#dfe6e9",
+              borderTopWidth: 2,              
+              paddingBottom: 15,
+              borderBottomColor: "#dfe6e9",
+              borderBottomWidth: 2,
+            }}>
+              <View style={{ alignItems: "center", paddingTop: 15 }}>
+                  {
+                    this.props.servicePhoto ?
+                      <Image
+                        source={{ uri: this.props.servicePhoto }}
+                        style={{
+                          height: 150,
+                          width: 250,
+                        }}
+                          />
+                    : null
+                  }
+              </View>
+              <View style={{
+                  paddingTop:20,
+                  marginLeft: 10,
+                  marginRight: 30,
+                }}>
                 <View style={{ flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'center' }}>
                     <Icon2 color='#E88D72' name="map-marker-radius" size={45} />
@@ -155,20 +149,59 @@ class ServiceView extends Component {
                   </View>
                 </View>
               </View>
-              <Text style={{ fontSize: 22, paddingBottom: 15, fontWeight: 'bold' }}>Reviews</Text>
-              <ScrollView style={{ marginLeft: 10 }}>{this.getRatings()}</ScrollView>
             </View>
-          </View>
 
-          <View style={{justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
-            <TouchableOpacity
-              style={st.btnPrimary}
-              onPress={this.props.viewAvailability}>
-              <Text style={st.btnText}>VIEW AVAILABILITY</Text>
-            </TouchableOpacity>
-          </View>
+            <View style={{ display: "flex", flexDirection: "column",  marginTop: 20 }}>
+              <Text style={{ fontSize: 22, paddingBottom: 10, fontWeight: 'bold' }}>Description</Text>
+              <View style={{ marginLeft: 10, marginBottom: 20 }}>
+                <Text style={{ marginLeft: 5, fontSize: 18 }}>{this.props.serviceDescription}</Text>
+              </View>
+            </View>
+            <View style={{
+              paddingTop: 5,
+              borderTopColor: "#dfe6e9",
+              borderTopWidth: 2,              
+              paddingBottom: 15,
+              borderBottomColor: "#dfe6e9",
+              borderBottomWidth: 2,              
+            }}>
+              <View style={{ display: "flex", flexDirection: "row" }}>
+                <Image
+                  source={{uri: this.props.sellerPhoto}}
+                  style={{
+                    width: 75,
+                    height: 75,
+                    borderRadius: 55,
+                    alignSelf: "center"
+                  }}
+                />
+                
+                <View style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignSelf: "center",
+                  paddingLeft: 30,
+                }}>
+                    <Text style={{ fontSize:18, color: "#000", fontWeight: "bold" }}>{this.props.sellerName}</Text>
+                    <Text style={{ fontSize:14, color: "#000" }}>Servus seller</Text>
+                    <Text style={{ fontSize:12, color: '#7f8c8d' }}>{this.props.sellerEmail}</Text>
+                    <Text style={{ fontSize:12, color: '#7f8c8d' }}>{this.props.sellerPhone}</Text>
+                </View>
+              </View>
+            </View>
 
-      </View>
+            <Text style={{ fontSize: 22, paddingTop: 20, paddingBottom: 15, fontWeight: 'bold' }}>Reviews</Text>
+                <ScrollView style={{ marginLeft: 10 }}>{this.getRatings()}</ScrollView>
+
+            <View style={{justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+              <TouchableOpacity
+                style={st.btnPrimary}
+                onPress={this.props.viewAvailability}>
+                <Text style={st.btnText}>VIEW AVAILABILITY</Text>
+              </TouchableOpacity>
+            </View>
+        </View>
+      </ScrollView>
       );
     } else {
       return (
