@@ -129,7 +129,7 @@ class ViewOrders extends Component {
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={{ fontSize: 20 }}>{
-                                        this.state.buyerNames.map((name) => name.buyerId === data.buyerId ? name.buyerName : "")
+                                        data.serviceName
                                     }</Text>
                                     <View style={{ paddingTop: 10, flexDirection: 'row' }}>
                                         <Icon2 style={{ paddingRight: 10, color: '#7f8c8d' }} name="clock-outline" size={25} />
@@ -152,6 +152,9 @@ class ViewOrders extends Component {
                                     {data.status == 'COMPLETEP' && (
                                         <Text style={{ marginTop: 10, fontSize: 16, color: 'green', paddingBottom: 5 }}>COMPLETE</Text>
                                     )}
+                                    {data.status == 'ACTIVE' && (
+                                        <Text style={{ marginTop: 10, fontSize: 16, color: 'green', paddingBottom: 5 }}>ACTIVE</Text>
+                                    )}                                    
 
                                 </View>
                                 <View style={{ alignItems: 'center' }}>
@@ -191,7 +194,7 @@ class ViewOrders extends Component {
 
                 {checkActiveOrCompletep && (
                     <View style={{
-                        paddingBottom: 40, shadowColor: 'black',
+                        paddingBottom: 20, shadowColor: 'black',
                         shadowOffset: {
                             width: 0,
                             height: 3
@@ -199,6 +202,7 @@ class ViewOrders extends Component {
                         shadowRadius: 5,
                         shadowOpacity: 1.0,
                         elevation: 5,
+                        backgroundColor:'#f5dcd5'                        
 
                     }}>
                         {!this.retrieveOrders('COMPLETEP').every(this.isUndefined) && (
@@ -217,7 +221,7 @@ class ViewOrders extends Component {
                 )}
 
                 {!this.retrieveOrders('ACCEPTED').every(this.isUndefined) && (
-                    <View>
+                    <View style={{paddingBottom:20}}>
                         <Text style={{ margin: 20, marginBottom: 10, fontWeight: 'bold', fontSize: 25 }}>Upcoming Orders</Text>
                         {this.retrieveOrders('ACCEPTED')}
                     </View>
