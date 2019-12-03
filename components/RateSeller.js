@@ -243,7 +243,7 @@ class RateSeller extends Component {
 
                         <View style={{ alignItems: 'center', marginTop: 30 }}>
                             <TouchableOpacity
-                                style={st.btn}
+                                style={st.btnPrimary}
                                 onPress={() => this.completeService()}
                             >
                                 <Text style={st.btnText}>Submit</Text>

@@ -143,7 +143,7 @@ class ServiceAvailability extends Component {
             onDayChange={(day) => { this.selectDay(day) }}
           />
 
-        <View style={{justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+        <View style={{justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10, marginTop:10 }}>
           <TouchableOpacity
             style={st.btnPrimary}
             onPress={this.bookService}>
