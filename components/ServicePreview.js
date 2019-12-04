@@ -17,8 +17,15 @@ class ServicePreview extends Component {
       };
     };
 
-    componentDidMount() {
+    componentWillReceiveProps(props) {
+      this.loadData();
+    }
 
+    componentDidMount() {
+      this.loadData()
+    }
+    
+    loadData = () => {
       const serviceCat = this.props.navigation.getParam("serviceCat","ALL");
       this.setState({serviceCat: serviceCat});
 
@@ -44,7 +51,7 @@ class ServicePreview extends Component {
                 console.error(error);
             });
         });
-    }    
+    }
 
       selectService = (id) => {
         if (id !== 0) {

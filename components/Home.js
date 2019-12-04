@@ -17,30 +17,34 @@ class Home extends Component {
     };    
 
     componentDidMount() {
+      this.loadData();
+    }
+
+    loadData = () => {
           // always update the users fcm token to the current device that they are using
-      firebase.messaging().hasPermission()
-      .then(enabled => {
-        if (enabled) {
-          firebase.messaging().getToken().then(token => {
-            console.log("LOG: ", token);
-            AsyncStorage.getItem('userId', (err, result) => {
-              fetch('http://localhost:8080/api/editField', {
-                method: 'POST',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  type: "users",
-                  userId: result,
-                  fieldType: "fcmToken",
-                  fieldValue: token,
-                }),
-              });
-            });
-          })
-        }
-      });
+          firebase.messaging().hasPermission()
+          .then(enabled => {
+            if (enabled) {
+              firebase.messaging().getToken().then(token => {
+                console.log("LOG: ", token);
+                AsyncStorage.getItem('userId', (err, result) => {
+                  fetch('http://localhost:8080/api/editField', {
+                    method: 'POST',
+                    headers: {
+                      Accept: 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      type: "users",
+                      userId: result,
+                      fieldType: "fcmToken",
+                      fieldValue: token,
+                    }),
+                  });
+                });
+              })
+            }
+          });
     }
 
     render() {
@@ -48,6 +52,7 @@ class Home extends Component {
             <HomeView 
             navigation={this.props.navigation}
             selectServiceCategory = {this.selectServiceCategory}
+            loadData = {this.loadData}
           />
         )
     }

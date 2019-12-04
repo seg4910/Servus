@@ -138,6 +138,20 @@ class RateSeller extends Component {
             .catch((error) => {
                 console.error(error);
             });
+        
+        fetch('http://localhost:8080/api/editField', {
+          method: 'POST',
+          headers: {
+             Accept: 'application/json',
+             'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+             type: "orders",
+             userId: this.state.orderInfo.id,
+             fieldType: "tip",
+             fieldValue: this.state.tip,
+          }),
+         });        
 
         this.sendNotificationToSeller();
         this.props.navigation.navigate('Home');
