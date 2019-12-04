@@ -161,7 +161,7 @@ const AuthStack = createStackNavigator({
   EnterEmail: {
     screen: EnterEmail,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -172,7 +172,7 @@ const AuthStack = createStackNavigator({
   SignIn: {
     screen: SignIn,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -183,7 +183,7 @@ const AuthStack = createStackNavigator({
   Register: {
     screen: Register,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -194,7 +194,7 @@ const AuthStack = createStackNavigator({
   CreateLocation: {
     screen: CreateLocation,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -209,7 +209,7 @@ const AppStack = createStackNavigator({
   Home: {
     screen: DrawerNavigatorExample,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -220,7 +220,7 @@ const AppStack = createStackNavigator({
   ServicePreview: {
     screen: ServicePreview,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -231,7 +231,7 @@ const AppStack = createStackNavigator({
   Account: {
     screen: Account,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -242,7 +242,7 @@ const AppStack = createStackNavigator({
   ViewOrders: {
     screen: ViewOrders,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -253,7 +253,7 @@ const AppStack = createStackNavigator({
   Service: {
     screen: Service,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -264,7 +264,7 @@ const AppStack = createStackNavigator({
   PaymentInfo: {
     screen: PaymentInfo,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -275,7 +275,7 @@ const AppStack = createStackNavigator({
   EditAccountInfo: {
     screen: EditAccountInfo,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -286,7 +286,7 @@ const AppStack = createStackNavigator({
   OrderDetails: {
     screen: OrderDetails,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -297,7 +297,7 @@ const AppStack = createStackNavigator({
   ScheduleService: {
     screen: ScheduleService,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -308,7 +308,7 @@ const AppStack = createStackNavigator({
   ServiceAvailability: {
     screen: ServiceAvailability,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -319,7 +319,7 @@ const AppStack = createStackNavigator({
   ReviewOrder: {
     screen: ReviewOrder,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -330,7 +330,7 @@ const AppStack = createStackNavigator({
   AddNewCard: {
     screen: AddNewCard,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -341,7 +341,7 @@ const AppStack = createStackNavigator({
   ServiceOrdered: {
     screen: ServiceOrdered,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -352,7 +352,7 @@ const AppStack = createStackNavigator({
   Order: {
     screen: Order,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -363,7 +363,7 @@ const AppStack = createStackNavigator({
   ChangePassword: {
     screen: ChangePassword,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
@@ -374,7 +374,7 @@ const AppStack = createStackNavigator({
   RateSeller: {
     screen: RateSeller,
     navigationOptions: ({ navigation }) => ({
-      title: "Servus",
+      title: "Servus Buyer",
       //headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: "#ffffff"
