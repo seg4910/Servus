@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import ImagePicker from 'react-native-image-picker';
-import uuid from 'uuid/v4'; // Import UUID to generate UUID
 import firebase from 'react-native-firebase';
 import Svg, {
   Path,
@@ -163,15 +162,15 @@ class AccountView extends Component {
               }}
             />
           :
-          <Icon 
-            style={{
-              position: 'absolute',
-              top: 90,
-              left: WIDTH / 2 - 30,
-            }}
-            name="user-circle"
-            size={63}
-          />
+            <Icon 
+              style={{
+                position: 'absolute',
+                top: 90,
+                left: WIDTH / 2 - 30,
+              }}
+              name="user-circle"
+              size={63}
+            />
         }
 
         <View style={{ marginBottom: 40, padding: 20, borderBottomColor: '#dfe6e9', borderBottomWidth: 2 }}>

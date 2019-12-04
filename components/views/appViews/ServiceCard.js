@@ -231,7 +231,7 @@ class ServiceCard extends Component {
                 >
                   <Icon2 name="map-marker-radius" size={25} />
                   <Text style={{fontSize: 13}}>
-                    10 km
+                    Ottawa
                   </Text>
                 </View>
               </View>

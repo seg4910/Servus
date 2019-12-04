@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import HomeView from './views/appViews/HomeView.js';
-import firebase from 'react-native-firebase';
 import {
-    AsyncStorage,
     View,
     Text,
     Dimensions,
@@ -12,10 +9,10 @@ import {
     KeyboardAvoidingView
 } from "react-native";
 import Svg, {
-    Path,
     Circle
 } from 'react-native-svg';
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import Icon from "react-native-vector-icons/FontAwesome";
 import LottieView from 'lottie-react-native';
 
 const WIDTH = Dimensions.get('screen').width;
@@ -173,20 +170,23 @@ class RateSeller extends Component {
                                 strokeWidth="2"
                             />
                         </Svg>
-                        <Image
-                            source={{uri: this.state.sellerPhoto}}
-                            style={{
-                                position: 'absolute',
-                                top: 80,
-                                left: WIDTH / 2 - 60,
-                                width: 120,
-                                height: 120,
-                                borderRadius: 75,
-                                borderWidth: 2,
-                                borderColor: '#E88D72'
-
-                            }}
-                        />
+                        {
+                            this.state.sellerPhoto ? 
+                            <Image
+                                source={{uri: this.state.sellerPhoto}}
+                                style={{
+                                    position: 'absolute',
+                                    top: 80,
+                                    left: WIDTH / 2 - 60,
+                                    width: 120,
+                                    height: 120,
+                                    borderRadius: 75,
+                                    borderWidth: 2,
+                                    borderColor: '#E88D72'
+                                }}
+                            />
+                            : <Icon name="user-circle" size={83} />
+                        }
                         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', marginTop: 20 }}>
                             <Text style={{ fontSize: 30, color: "#000", textAlign: 'center' }}>
                                 {this.state.orderInfo.sellerName}

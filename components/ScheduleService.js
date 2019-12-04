@@ -7,6 +7,7 @@ import {
   Picker,
   ScrollView,
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import StarRating from "react-native-star-rating";
 import { Calendar } from 'react-native-calendars';
 import Moment from 'moment';
@@ -89,7 +90,7 @@ class ScheduleService extends Component {
 
       return (
         <ScrollView>
-          <View style={{ display:"flex", flexDirection: "column" }}>
+          <View style={{ display: "flex", flexDirection: "column" }}>
             <View style={{
               flexDirection: "row",
               padding: 10,
@@ -124,22 +125,27 @@ class ScheduleService extends Component {
                   />
                 </View>
               </View>
-              <Image
-                source={{uri: this.state.sellerPhoto}}
-                style={{
-                  width: 90,
-                  height: 80,
-                  borderRadius: 55
-                }}
-              />
+
+              {
+                this.state.sellerPhoto ?
+                  <Image
+                    source={{uri: this.state.sellerPhoto}}
+                    style={{
+                      width: 90,
+                      height: 80,
+                      borderRadius: 55
+                    }}
+                  />
+                : <Icon name="user-circle" size={83} />
+              }
             </View>
 
             <Calendar
               theme={{
-                'stylesheet.day.basic':{
-                  'base':{
-                    width:32,
-                    height:25,
+                'stylesheet.day.basic': {
+                  'base': {
+                    width: 32,
+                    height: 25,
                     alignItems: 'center'
                   }
                 }
@@ -154,7 +160,7 @@ class ScheduleService extends Component {
               }}
             />
 
-            <View style={{ alignItems: 'center', borderTopColor: '#dfe6e9', borderTopWidth: 2, paddingTop: 20, marginTop: 20, paddingBottom: 20 }}>
+            <View style={{ alignItems: 'center', borderTopColor: '#dfe6e9', borderTopWidth: 2, paddingTop: 20, marginTop: 20, paddingBottom: 70 }}>
               <Text style={{ fontSize: 20, marginBottom: 10 }}>
                 Available Times for {Moment(this.state.selectedDay.dateString).format("LL")}
               </Text>
@@ -170,12 +176,13 @@ class ScheduleService extends Component {
                 </Picker>
               </View>
             </View>
-
-            <TouchableOpacity
-              style={st.btnPrimary}
-              onPress={() => this.reviewOrder()}>
-              <Text style={st.btnText}>Review Order</Text>
-            </TouchableOpacity>
+            <View style={{ justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
+              <TouchableOpacity
+                style={st.btnPrimary}
+                onPress={() => this.reviewOrder()}>
+                <Text style={st.btnText}>Review Order</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
       );
