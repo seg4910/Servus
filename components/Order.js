@@ -256,9 +256,12 @@ class Order extends Component {
                                         {!complete && (
                                             <Text style={{ fontSize: 17 }}>Expected: ${estCost} (${this.state.orderInfo[0].price} / Hr)</Text>
                                         )}
-                                        {this.state.orderInfo[0].status == 'COMPLETE' && (
-                                            <Text style={{ fontSize: 17 }}>${this.state.orderInfo[0].totalCost}</Text>
+                                        {this.state.orderInfo[0].status == 'COMPLETE' && this.state.orderInfo[0].tip !== null && (
+                                            <Text style={{ fontSize: 17 }}>${this.state.orderInfo[0].totalCost} + ${this.state.orderInfo[0].tip} (Tip)</Text>
                                         )} 
+                                        {this.state.orderInfo[0].status == 'COMPLETE' && this.state.orderInfo[0].tip == null && (
+                                            <Text style={{ fontSize: 17 }}>${this.state.orderInfo[0].totalCost}</Text>
+                                        )}                                         
                                         {this.state.orderInfo[0].status == 'COMPLETEP' && (
                                             <Text style={{ fontSize: 17 }}>${this.state.totalCost}</Text>
                                         )}                                                                                     

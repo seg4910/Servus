@@ -7,7 +7,8 @@ import {
   TextInput,
   Platform,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  RefreshControl
 } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 import CategoryCard from './CategoryCard';
@@ -16,14 +17,35 @@ import ServicePreview from '../../ServicePreview';
 class HomeView extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      refreshing: false
+    }
+  }
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.props.loadData();
+    this.setState({ refreshing: false });
+  }
+
+  getServicePreviews = () => {
+    return (
+      <ServicePreview
+      style={{ flexDirection: "row" }}
+      navigation={this.props.navigation}
+    />
+    )
   }
 
   render() {
-
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }} >
         <View>
-          <ScrollView>
+          <ScrollView refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+              />}>
             <View
               style={{
                 height: this.startHeaderHeight,
@@ -65,7 +87,8 @@ class HomeView extends Component {
               </View>
             </View>
 
-            <ScrollView scrollEventThrottle={16}>
+            <ScrollView scrollEventThrottle={16} 
+              >
               <View style={{ flex: 1, paddingTop: 20 }}>
                 <Text
                   style={{
@@ -173,8 +196,8 @@ class HomeView extends Component {
                 </View>
               </View>
             </ScrollView>
-            <ScrollView scrollEventThrottle={16} style={{ marginBottom: 50}}>
-              <View style={{ flex: 1, paddingTop: 20}}>
+            <ScrollView scrollEventThrottle={16} style={{ marginBottom: 50 }}>
+              <View style={{ flex: 1, paddingTop: 20 }}>
                 <Text
                   style={{
                     fontSize: 20,
@@ -185,17 +208,14 @@ class HomeView extends Component {
                   Top services
                 </Text>
                 <View
-                  style={{ marginTop: 10, flexDirection: "row", alignItems:'center', flex:1 }}
+                  style={{ marginTop: 10, flexDirection: "row", alignItems: 'center', flex: 1 }}
                 >
                   <ScrollView
                     horizontal={false}
                     showsHorizontalScrollIndicator={false}
                     style={{ flex: 1 }}
                   >
-                    <ServicePreview
-                      style={{ flexDirection: "row" }}
-                      navigation={this.props.navigation}
-                    />
+                    {this.getServicePreviews()}
                   </ScrollView>
                 </View>
               </View>
