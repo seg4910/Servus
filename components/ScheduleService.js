@@ -7,6 +7,7 @@ import {
   Picker,
   ScrollView,
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import StarRating from "react-native-star-rating";
 import { Calendar } from 'react-native-calendars';
 import Moment from 'moment';
@@ -124,14 +125,18 @@ class ScheduleService extends Component {
                   />
                 </View>
               </View>
-              <Image
-                source={{uri: this.state.sellerPhoto}}
-                style={{
-                  width: 90,
-                  height: 80,
-                  borderRadius: 55
-                }}
-              />
+              {
+                this.state.sellerPhoto ?
+                  <Image
+                    source={{uri: this.state.sellerPhoto}}
+                    style={{
+                      width: 90,
+                      height: 80,
+                      borderRadius: 55
+                    }}
+                  />
+                : <Icon name="user-circle" size={83} />
+              }
             </View>
 
             <Calendar

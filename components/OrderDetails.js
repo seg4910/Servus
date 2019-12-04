@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import {
   Text,
   View,
-  AsyncStorage,
   Image,
   TouchableOpacity
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import StarRating from "react-native-star-rating";
 import LottieView from 'lottie-react-native';
 
@@ -112,14 +112,18 @@ class OrderDetails extends Component {
                 />
               </View>
             </View>
-            <Image
-              source={{uri: this.state.sellerPhoto}}
-              style={{
-                width: 90,
-                height: 90,
-                borderRadius: 55
-              }}
-            />
+            {
+              this.state.sellerPhoto ? 
+                <Image
+                  source={{uri: this.state.sellerPhoto}}
+                  style={{
+                    width: 90,
+                    height: 90,
+                    borderRadius: 55
+                  }}
+                />
+              : <Icon name="user-circle" size={83} />
+            }
           </View>
 
           <View style={{ margin: 20, marginTop: 50 }}>

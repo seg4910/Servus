@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import StarRating from "react-native-star-rating";
 import Moment from 'moment';
 const fetch = require("node-fetch");
@@ -186,14 +187,18 @@ class ReviewOrder extends Component {
               />
             </View>
           </View>
-          <Image
-            source={{ uri: this.state.sellerPhoto }}
-            style={{
-              width: 90,
-              height: 90,
-              borderRadius: 55
-            }}
-          />
+          {
+            this.state.sellerPhoto ?
+              <Image
+                source={{ uri: this.state.sellerPhoto }}
+                style={{
+                  width: 90,
+                  height: 90,
+                  borderRadius: 55
+                }}
+              />
+          : <Icon name="user-circle" size={83} />
+          }
         </View>
 
 
