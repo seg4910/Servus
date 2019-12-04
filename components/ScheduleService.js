@@ -90,7 +90,7 @@ class ScheduleService extends Component {
 
       return (
         <ScrollView>
-          <View style={{ display:"flex", flexDirection: "column" }}>
+          <View style={{ display: "flex", flexDirection: "column" }}>
             <View style={{
               flexDirection: "row",
               padding: 10,
@@ -125,6 +125,7 @@ class ScheduleService extends Component {
                   />
                 </View>
               </View>
+
               {
                 this.state.sellerPhoto ?
                   <Image
@@ -141,10 +142,10 @@ class ScheduleService extends Component {
 
             <Calendar
               theme={{
-                'stylesheet.day.basic':{
-                  'base':{
-                    width:32,
-                    height:25,
+                'stylesheet.day.basic': {
+                  'base': {
+                    width: 32,
+                    height: 25,
                     alignItems: 'center'
                   }
                 }
@@ -159,7 +160,7 @@ class ScheduleService extends Component {
               }}
             />
 
-            <View style={{ alignItems: 'center', borderTopColor: '#dfe6e9', borderTopWidth: 2, paddingTop: 20, marginTop: 20, paddingBottom: 20 }}>
+            <View style={{ alignItems: 'center', borderTopColor: '#dfe6e9', borderTopWidth: 2, paddingTop: 20, marginTop: 20, paddingBottom: 70 }}>
               <Text style={{ fontSize: 20, marginBottom: 10 }}>
                 Available Times for {Moment(this.state.selectedDay.dateString).format("LL")}
               </Text>
@@ -175,12 +176,13 @@ class ScheduleService extends Component {
                 </Picker>
               </View>
             </View>
-
-            <TouchableOpacity
-              style={st.btnPrimary}
-              onPress={() => this.reviewOrder()}>
-              <Text style={st.btnText}>Review Order</Text>
-            </TouchableOpacity>
+            <View style={{ justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
+              <TouchableOpacity
+                style={st.btnPrimary}
+                onPress={() => this.reviewOrder()}>
+                <Text style={st.btnText}>Review Order</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
       );

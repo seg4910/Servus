@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import ImagePicker from 'react-native-image-picker';
-import uuid from 'uuid/v4'; // Import UUID to generate UUID
 import firebase from 'react-native-firebase';
 import Svg, {
   Path,
