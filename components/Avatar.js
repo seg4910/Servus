@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, Button, Image, AsyncStorage } from "react-native";
+import { View, Image, AsyncStorage } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 class Avatar extends Component {
 
     constructor(props) {
@@ -25,10 +27,18 @@ class Avatar extends Component {
     render() {
         return (
             <View style={{ flexDirection: "row" }}>
-                <Image
-                    source={{ uri: this.state.photo }}
-                    style={{ height: 120, width: 120, borderRadius: 60 }}
-                />
+                {
+                    this.state.photo ?
+                        <Image
+                            source={{ uri: this.state.photo }}
+                            style={{ height: 120, width: 120, borderRadius: 60 }}
+                        />
+                    :
+                        <Icon
+                            name="user-circle"
+                            size={83}
+                        />
+                }
             </View>
         );
     }

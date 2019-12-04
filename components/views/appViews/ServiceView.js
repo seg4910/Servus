@@ -166,15 +166,19 @@ class ServiceView extends Component {
               borderBottomWidth: 2,              
             }}>
               <View style={{ display: "flex", flexDirection: "row" }}>
-                <Image
-                  source={{uri: this.props.sellerPhoto}}
-                  style={{
-                    width: 75,
-                    height: 75,
-                    borderRadius: 55,
-                    alignSelf: "center"
-                  }}
-                />
+                {
+                  this.props.sellerPhoto ?
+                    <Image
+                      source={{uri: this.props.sellerPhoto}}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        borderRadius: 55,
+                        alignSelf: "center"
+                      }}
+                    />
+                  : <Icon name="user-circle" size={83} />
+              }
                 
                 <View style={{
                   display: "flex",

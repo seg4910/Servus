@@ -162,15 +162,15 @@ class AccountView extends Component {
               }}
             />
           :
-          <Icon 
-            style={{
-              position: 'absolute',
-              top: 90,
-              left: WIDTH / 2 - 30,
-            }}
-            name="user-circle"
-            size={63}
-          />
+            <Icon 
+              style={{
+                position: 'absolute',
+                top: 90,
+                left: WIDTH / 2 - 30,
+              }}
+              name="user-circle"
+              size={63}
+            />
         }
 
         <View style={{ marginBottom: 40, padding: 20, borderBottomColor: '#dfe6e9', borderBottomWidth: 2 }}>

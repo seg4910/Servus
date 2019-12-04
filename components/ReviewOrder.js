@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   SafeAreaView
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 import StarRating from "react-native-star-rating";
 import Moment from 'moment';
 const fetch = require("node-fetch");
@@ -202,19 +203,31 @@ class ReviewOrder extends Component {
               }}
             />
           </View>
+          {
+            this.state.sellerPhoto ?
+              <Image
+                source={{ uri: this.state.sellerPhoto }}
+                style={{
+                  width: 90,
+                  height: 90,
+                  borderRadius: 55
+                }}
+              />
+          : <Icon name="user-circle" size={83} />
+          }
+        </View>
 
 
-          <View style={{ margin: 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Review Your Order</Text>
+        <View style={{ margin: 20 }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Review Your Order</Text>
 
-            <View style={{ marginLeft: 20 }}>
+          <View style={{ marginLeft: 20 }}>
 
-              <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
-                <Text style={{ fontSize: 20 }}>SERVICE</Text>
-                <View style={{ marginLeft: 30 }}>
-                  <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceName}</Text>
-                  <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceCategory}</Text>
-                </View>
+            <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
+              <Text style={{ fontSize: 20 }}>SERVICE</Text>
+              <View style={{ marginLeft: 30 }}>
+                <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceName}</Text>
+                <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceCategory}</Text>
               </View>
 
               <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
