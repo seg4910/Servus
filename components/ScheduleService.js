@@ -155,7 +155,7 @@ class ScheduleService extends Component {
               onDayPress={(day) => {
                 this.setState({
                   selectedDay: day,
-                  selectedTime: () => this.formatTime(todaysShifts[0]),
+                  selectedTime: this.formatTime(todaysShifts[0]),
                 });
               }}
             />
@@ -176,7 +176,7 @@ class ScheduleService extends Component {
                 </Picker>
               </View>
             </View>
-            <View style={{ justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
+            <View style={{ justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10, marginTop: 50 }}>
               <TouchableOpacity
                 style={st.btnPrimary}
                 onPress={() => this.reviewOrder()}>

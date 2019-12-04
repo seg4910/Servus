@@ -70,9 +70,8 @@ class AddNewCard extends Component {
        {/* <CreditCardInput onChange={this._onChange} />  */}
 
        <StripeAddCard
-        publicStripeKey="sk_test_fTlfHnvlI6jfS34mU7Prokqq00X4ultmWL"
+        publicStripeKey="pk_test_EFdJNe23DMGhrQXGDpPA2kVh00JnUm03oR"
         addCardTokenHandler={(stripeCardToken) => {
-          alert(JSON.stringify(stripeCardToken));
           AsyncStorage.getItem("userId", (err, result) => {
             //alert(err);
             fetch('http://localhost:8080/api/newCardStripe?type=users&id=' + result + '&token=' + stripeCardToken, {
@@ -101,12 +100,12 @@ class AddNewCard extends Component {
         scanCardAfterScanButtonText="Scan Card Again"
         scanCardContainer={MyScanCardContainer}
       />
-
+{/* 
        <TouchableOpacity
             style={st.btn}
             onPress={() => this.chooseTaskSize("SM")}>
             <Text style={st.btnText}>Save</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   }

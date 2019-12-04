@@ -156,7 +156,7 @@ class ReviewOrder extends Component {
     return (
       <KeyboardAvoidingView
         behavior='padding'
-        keyboardVerticalOffset={-500} 
+        keyboardVerticalOffset={-200} 
         style={{ flex: 1 }}
       >
         <SafeAreaView style={{ flex: 1 }}>
@@ -194,16 +194,7 @@ class ReviewOrder extends Component {
                 />
               </View>
             </View>
-            <Image
-              source={{ uri: this.state.sellerPhoto }}
-              style={{
-                width: 90,
-                height: 90,
-                borderRadius: 55
-              }}
-            />
-          </View>
-          {
+            {
             this.state.sellerPhoto ?
               <Image
                 source={{ uri: this.state.sellerPhoto }}
@@ -215,31 +206,32 @@ class ReviewOrder extends Component {
               />
           : <Icon name="user-circle" size={83} />
           }
-        </View>
+          </View>
+
+      
 
 
         <View style={{ margin: 20 }}>
-          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Review Your Order</Text>
+          <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom:20}}>Review Your Order</Text>
 
           <View style={{ marginLeft: 20 }}>
 
-            <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
-              <Text style={{ fontSize: 20 }}>SERVICE</Text>
-              <View style={{ marginLeft: 30 }}>
+            <View style={{ paddingBottom: 15 }}>
+            
+              <Text style={{ fontSize: 14, color: '#7f8c8d', paddingBottom: 10, marginTop:0 }}>Service</Text>
+              <View style={{ marginLeft: 30, paddingBottom:20 }}>
                 <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceName}</Text>
                 <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceCategory}</Text>
               </View>
 
-              <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
-                <Text style={{ fontSize: 20 }}>DATE</Text>
+              <Text style={{ fontSize: 14, color: '#7f8c8d', paddingBottom: 10, marginTop:0 }}>Date</Text>
                 <View style={{ marginLeft: 30 }}>
                   <Text style={{ fontSize: 18 }}>{Moment(this.state.selectedDay.dateString).format('LL')}</Text>
                   <Text style={{ fontSize: 18 }}>{this.state.selectedTime}</Text>
                 </View>
-              </View>
 
+              <Text style={{ fontSize: 14, color: '#7f8c8d', paddingBottom: 10, marginTop:10 }}>Payment</Text>
               <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
-                <Text style={{ fontSize: 20 }}>PAYMENT</Text>
                 <View style={{ marginLeft: 30 }}>
                   {this.state.paymentInfo != '' && <Text style={{ fontSize: 18 }}>{this.state.paymentInfo.brand}</Text>}
                   {this.state.paymentInfo == '' && <Text onPress={() => this.getPaymentInfo()} style={{ fontSize: 18 }}>Select Payment Info</Text>}
@@ -251,10 +243,11 @@ class ReviewOrder extends Component {
                 <Text style={{ fontSize: 20 }}>Estimated Cost: ${this.state.taskSizeHr * this.state.serviceInfo[0].priceHr}</Text>
               </View>
 
-              <TextInput onChangeText={(text) => this.setState({ noteToSeller: text })} placeholder="Add a note.." />
+              <TextInput style={{fontSize:20}}onChangeText={(text) => this.setState({ noteToSeller: text })} placeholder="Add a note.." />
             </View>
 
           </View>
+        </View>
 
 
           <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
@@ -263,7 +256,8 @@ class ReviewOrder extends Component {
               onPress={() => this.placeOrder()}>
               <Text style={st.btnText}>PLACE ORDER</Text>
             </TouchableOpacity>
-          </View></SafeAreaView>
+          </View>
+        </SafeAreaView>
       </KeyboardAvoidingView>
 
     );

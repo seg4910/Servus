@@ -64,7 +64,7 @@ class ServiceView extends Component {
           </View>);
       }))
     } else {
-      return null;
+      return <View><Text>There is no ratings for this service yet</Text></View>
     }
 
   }
@@ -156,7 +156,7 @@ class ServiceView extends Component {
                     <Icon2 color='#E88D72' name="map-marker-radius" size={45} />
                     <Text style={{ fontSize: 20 }}>{this.props.city}</Text>
                   </View>
-                  <View style={{ flex: 1, alignItems: 'center' }}>
+                  <View style={{ flex: 1, alignItems: 'center', marginTop:7 }}>
                     <Icon color='#E88D72' name="dollar" size={40} />
                     <Text style={{ fontSize: 20 }}>{this.props.price} / Hr</Text>
                   </View>
@@ -171,10 +171,10 @@ class ServiceView extends Component {
               </View>
             </View>
 
-            <Text style={{ fontSize: 14, color: '#7f8c8d', paddingBottom: 10, marginTop:15 }}>Reviews</Text>
+            <Text style={{ fontSize: 14, color: '#7f8c8d', marginTop:0 }}>Reviews</Text>
             <ScrollView style={{ marginLeft: 10 }}>{this.getRatings()}</ScrollView>
 
-            <View style={{ justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+            <View style={{ justifyContent: 'flex-end', alignItems: 'center', marginTop:30, marginBottom: 10 }}>
               <TouchableOpacity
                 style={st.btnPrimary}
                 onPress={this.props.viewAvailability}>

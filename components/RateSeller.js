@@ -185,7 +185,12 @@ class RateSeller extends Component {
                                     borderColor: '#E88D72'
                                 }}
                             />
-                            : <Icon name="user-circle" size={83} />
+                            : <Icon style={{                                    
+                            position: 'absolute',
+                            top: 60,
+                            left: WIDTH / 2 - 60,
+                            width: 120,
+                            height: 120}} name="user-circle" size={83} />
                         }
                         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', marginTop: 20 }}>
                             <Text style={{ fontSize: 30, color: "#000", textAlign: 'center' }}>
