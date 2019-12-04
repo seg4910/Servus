@@ -7,7 +7,9 @@ import {
   Image,
   Button,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView,
+  SafeAreaView
 } from "react-native";
 import StarRating from "react-native-star-rating";
 import Moment from 'moment';
@@ -151,103 +153,106 @@ class ReviewOrder extends Component {
     const { navigation } = this.props;
 
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{
-          flexDirection: "row",
-          padding: 10,
-          paddingBottom: 5,
-          borderBottomColor: "#dfe6e9",
-          borderBottomWidth: 2,
-        }}>
+      <KeyboardAvoidingView
+        behavior='padding'
+        keyboardVerticalOffset={-500} 
+        style={{ flex: 1 }}
+      >
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={{
+            flexDirection: "row",
+            padding: 10,
+            paddingBottom: 5,
+            borderBottomColor: "#dfe6e9",
+            borderBottomWidth: 2,
+          }}>
 
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "column",
-              marginLeft: 20,
-              paddingBottom: 10
-            }}
-          >
-            <Text style={{ fontSize: 30, color: "#000" }}>
-              {this.state.serviceInfo[0].sellerName}
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                marginLeft: 20,
+                paddingBottom: 10
+              }}
+            >
+              <Text style={{ fontSize: 30, color: "#000" }}>
+                {this.state.serviceInfo[0].sellerName}
+              </Text>
+              <Text style={{ fontSize: 15 }}>
+                {this.state.serviceInfo[0].serviceCategory} Service
             </Text>
-            <Text style={{ fontSize: 15 }}>
-              {this.state.serviceInfo[0].serviceCategory} Service
-            </Text>
-            <View style={{ width: 100, paddingTop: 10 }}>
-              <StarRating
-                disabled={true}
-                maxStars={5}
-                rating={4.5}
-                starSize={16}
-                fullStarColor="orange"
-                emptyStarColor="orange"
-                style={{}}
-              />
-            </View>
-          </View>
-          <Image
-            source={{ uri: this.state.sellerPhoto }}
-            style={{
-              width: 90,
-              height: 90,
-              borderRadius: 55
-            }}
-          />
-        </View>
-
-
-        <View style={{ margin: 20 }}>
-          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Review Your Order</Text>
-
-          <View style={{ marginLeft: 20 }}>
-
-            <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
-              <Text style={{ fontSize: 20 }}>SERVICE</Text>
-              <View style={{ marginLeft: 30 }}>
-                <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceName}</Text>
-                <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceCategory}</Text>
+              <View style={{ width: 100, paddingTop: 10 }}>
+                <StarRating
+                  disabled={true}
+                  maxStars={5}
+                  rating={4.5}
+                  starSize={16}
+                  fullStarColor="orange"
+                  emptyStarColor="orange"
+                  style={{}}
+                />
               </View>
             </View>
-
-            <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
-              <Text style={{ fontSize: 20 }}>DATE</Text>
-              <View style={{ marginLeft: 30 }}>
-                <Text style={{ fontSize: 18 }}>{Moment(this.state.selectedDay.dateString).format('LL')}</Text>
-                <Text style={{ fontSize: 18 }}>{this.state.selectedTime}</Text>
-              </View>
-            </View>
-
-            <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
-              <Text style={{ fontSize: 20 }}>PAYMENT</Text>
-              <View style={{ marginLeft: 30 }}>
-                {this.state.paymentInfo != '' && <Text style={{ fontSize: 18 }}>{this.state.paymentInfo.brand}</Text>}
-                {this.state.paymentInfo == '' && <Text onPress={() => this.getPaymentInfo()} style={{ fontSize: 18 }}>Select Payment Info</Text>}
-              </View>
-            </View>
-
-            <View style={{ marginTop: 40, paddingBottom: 15 }}>
-              <Text style={{ fontSize: 20 }}>Estimated Duration: {this.state.taskSizeHr} hours</Text>
-              <Text style={{ fontSize: 20 }}>Estimated Cost: ${this.state.taskSizeHr * this.state.serviceInfo[0].priceHr}</Text>
-            </View>
-
-            <TextInput onChangeText={(text) => this.setState({ noteToSeller: text })} placeholder="Add a note.." />
+            <Image
+              source={{ uri: this.state.sellerPhoto }}
+              style={{
+                width: 90,
+                height: 90,
+                borderRadius: 55
+              }}
+            />
           </View>
 
-        </View>
+
+          <View style={{ margin: 20 }}>
+            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Review Your Order</Text>
+
+            <View style={{ marginLeft: 20 }}>
+
+              <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
+                <Text style={{ fontSize: 20 }}>SERVICE</Text>
+                <View style={{ marginLeft: 30 }}>
+                  <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceName}</Text>
+                  <Text style={{ fontSize: 18 }}>{this.state.serviceInfo[0].serviceCategory}</Text>
+                </View>
+              </View>
+
+              <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
+                <Text style={{ fontSize: 20 }}>DATE</Text>
+                <View style={{ marginLeft: 30 }}>
+                  <Text style={{ fontSize: 18 }}>{Moment(this.state.selectedDay.dateString).format('LL')}</Text>
+                  <Text style={{ fontSize: 18 }}>{this.state.selectedTime}</Text>
+                </View>
+              </View>
+
+              <View style={{ paddingBottom: 15, borderBottomWidth: 2, borderBottomColor: '#dfe6e9' }}>
+                <Text style={{ fontSize: 20 }}>PAYMENT</Text>
+                <View style={{ marginLeft: 30 }}>
+                  {this.state.paymentInfo != '' && <Text style={{ fontSize: 18 }}>{this.state.paymentInfo.brand}</Text>}
+                  {this.state.paymentInfo == '' && <Text onPress={() => this.getPaymentInfo()} style={{ fontSize: 18 }}>Select Payment Info</Text>}
+                </View>
+              </View>
+
+              <View style={{ marginTop: 40, paddingBottom: 15 }}>
+                <Text style={{ fontSize: 20 }}>Estimated Duration: {this.state.taskSizeHr} hours</Text>
+                <Text style={{ fontSize: 20 }}>Estimated Cost: ${this.state.taskSizeHr * this.state.serviceInfo[0].priceHr}</Text>
+              </View>
+
+              <TextInput onChangeText={(text) => this.setState({ noteToSeller: text })} placeholder="Add a note.." />
+            </View>
+
+          </View>
 
 
-        <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
-          <TouchableOpacity
-            style={st.btnPrimary}
-            onPress={() => this.placeOrder()}>
-            <Text style={st.btnText}>PLACE ORDER</Text>
-          </TouchableOpacity>
-        </View>
+          <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+            <TouchableOpacity
+              style={st.btnPrimary}
+              onPress={() => this.placeOrder()}>
+              <Text style={st.btnText}>PLACE ORDER</Text>
+            </TouchableOpacity>
+          </View></SafeAreaView>
+      </KeyboardAvoidingView>
 
-
-
-      </View>
     );
   }
 
