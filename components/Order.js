@@ -3,17 +3,13 @@ import {
     StyleSheet,
     Text,
     View,
-    AsyncStorage,
     Image,
-    Button,
     TouchableOpacity
 } from "react-native";
-import StarRating from "react-native-star-rating";
 import Moment from 'moment';
-import OrderView from './views/appViews/OrderView';
 import Modal from "react-native-modal";
+import Icon from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-import moment from "moment";
 import { ScrollView } from "react-native-gesture-handler";
 
 const fetch = require("node-fetch");
@@ -189,7 +185,13 @@ class Order extends Component {
                                 <Text style={{ fontSize: 14, color: '#7f8c8d', paddingBottom: 10 }}>Seller Info</Text>
                                 <View style={{ flexDirection: 'row', marginBottom: 30, marginLeft: 20 }}>
                                     <View style={{ flex: .7 }}>
-                                        <Image source={{ uri: this.state.sellerInfo.photo }} style={{ height: 85, width: 85, borderRadius: 50 }} />
+                                        {
+                                            this.state.sellerInfo.photo ? 
+                                                <Image
+                                                    source={{ uri: this.state.sellerInfo.photo }}
+                                                    style={{ height: 85, width: 85, borderRadius: 50 }} />
+                                            : <Icon name="user-circle" size={83} />
+                                        }
                                     </View>
 
                                     <View style={{}}>
