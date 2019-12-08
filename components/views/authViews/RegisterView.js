@@ -34,10 +34,6 @@ class Register extends Component {
         style={st.authContainer}
       >
         <View style={st.logoContainer}>
-          <Image
-            source={require("./../../../image/React.js_logo-512.png")}
-            style={st.logo}
-          />
           <Text style={st.servus}>Welome to Servus!</Text>
         </View>
 
