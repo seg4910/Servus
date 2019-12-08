@@ -409,6 +409,7 @@ const st = require("./styles/style.js");
 export default class App extends React.Component {
 
   componentDidMount() {
+    console.disableYellowBox = true;
     firebase.messaging().hasPermission()
       .then(enabled => {
         if (enabled) {

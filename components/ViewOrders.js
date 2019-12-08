@@ -137,7 +137,7 @@ class ViewOrders extends Component {
                                     </View>
                                     <View style={{ paddingTop: 0, flexDirection: 'row' }}>
                                         <Icon2 style={{ paddingRight: 10, color: '#7f8c8d' }} name="map-marker" size={25} />
-                                        <Text style={{ fontSize: 16 }}>300 Bank Street, Ottawa</Text>
+                                        <Text style={{ fontSize: 16 }}>330 St Patrick St, Ottawa</Text>
                                     </View>
 
                                     {data.status == 'PENDING' && (
@@ -160,7 +160,7 @@ class ViewOrders extends Component {
                                 <View style={{ alignItems: 'center' }}>
                                     <Text style={{ fontSize: 45, fontWeight: 'bold', color: '#E88D72' }}>{Moment(data.dateScheduled).format('DD')}</Text>
                                     <Text style={{ fontSize: 20, color: '#E88D72', marginTop: -13 }}>{Moment(data.dateScheduled).format('MMMM')}</Text>
-                                    <Text style={{ fontSize: 16, color: '#7f8c8d', paddingTop: 7 }}>{Moment(data.dateScheduled).format('LT')}</Text>
+                                    <Text style={{ fontSize: 16, color: '#7f8c8d', paddingTop: 7 }}>{data.shiftTime}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
