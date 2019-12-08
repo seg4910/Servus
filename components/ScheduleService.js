@@ -79,6 +79,7 @@ class ScheduleService extends Component {
   render() {
     if (this.state) {
       const markedDates = this.getMarkedDates();
+
       const todaysShifts = this.state.availableDates[this.state.selectedDay.dateString];
       const selectedShifts = todaysShifts === undefined ?
         <Picker.Item key={'NA'} label="No available shifts" value="NA" />
